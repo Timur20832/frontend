@@ -1,4 +1,4 @@
-class Picture extends SlideElement
+/*lass Picture extends SlideElement
 {
     private path: string;
 
@@ -11,4 +11,8 @@ class Picture extends SlideElement
     {
         return this.path
     }
+}
+*/
+type Picture = {
+    path: string
 }
