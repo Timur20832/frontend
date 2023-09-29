@@ -1,6 +1,6 @@
 class Slide{
     private id: number;
-    private elements: Array<SlideElement>;
+    private elements: Array<Figure | Picture | TextBox>;
     private numberOfSlide: number;
     private backgroundColor: string;
 
@@ -8,7 +8,7 @@ class Slide{
         this.id = id;
     }
 
-    public setElements(elements: Array<SlideElement>): void
+    public setElements(elements: Array<Figure | Picture | TextBox>): void
     {
         this.elements = elements;
     }
@@ -28,7 +28,7 @@ class Slide{
         return this.id;
     }
 
-    public getElements(): Array<SlideElement>
+    public getElements(): Array<Figure | Picture | TextBox>
     {
         return this.elements;
     }

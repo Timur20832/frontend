@@ -1,4 +1,5 @@
-class SlideElement implements SlideElementInterface {
+class SlideElement
+{
     private id: number;
     private posX: number;
     private posY: number;
