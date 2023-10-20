@@ -5,14 +5,14 @@ enum Form
     "square"
 }
 
-type Figure = {
-    shape: Form,
+type Figure = SlideElement & {
+    shape: string,
     innerColor: string,
     width: number,
     height: number,
 }
 
-type Picture = {
+type Picture = SlideElement & {
     path: string
 }
 
@@ -35,11 +35,11 @@ type SlideElement = {
     posX: number,
     posY: number,
     size: number,
-    borderColor: string,
+    borderColor: string|null,
     isSelected: boolean,
 }
 
-type TextBox = {
+type TextBox = SlideElement & {
     content: string;
     font: string;
 }
