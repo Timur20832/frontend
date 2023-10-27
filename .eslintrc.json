@@ -26,5 +26,6 @@
     "semi": ["error", "always"],
     "prettier/prettier": "off",
     "no-unused-vars": "warn"
-  }
+  },
+  "ignorePatterns": ["src/*"],
 }
