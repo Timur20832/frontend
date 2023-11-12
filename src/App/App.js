@@ -3,7 +3,6 @@ import ToolBar from './blocks_view/ToolBar';
 import SlideBox from './blocks_view/SlideBox';
 import InfoBar from './blocks_view/InfoBar';
 import SlidePreview from './blocks_view/SlidePreview';
-import { Slide } from './types/types';
 
 function App() {
   return (

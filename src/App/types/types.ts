@@ -5,6 +5,13 @@ export enum Form
     "square"
 }
 
+export type Slide = {
+    id: number,
+    elements: Array<Figure | Picture | TextBox>,
+    numberOfSlide: number,
+    backgroundColor: string,
+}
+
 export type Figure = SlideElement & {
     shape: string,
     innerColor: string,
@@ -21,13 +28,6 @@ export type Presentation = {
     slide: Array<Slide>,
     history: Array<Presentation>,
     historyIndex: number,
-}
-
-export type Slide = {
-    id: number,
-    elements: Array<Figure | Picture | TextBox>,
-    numberOfSlide: number,
-    backgroundColor: string,
 }
 
 export type SlideElement = {
