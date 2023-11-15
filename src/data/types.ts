@@ -1,13 +1,23 @@
-import { type } from "os";
-export enum Form {
-  triangle = "shapeTriangle",
-  circle = "circle-shape.svg",
-  square = "shape-square.svg",
+type Scale = {
+  width: number;
+  height: number;
+}
+
+type Position = {
+  top: number;
+  left: number;
+}
+
+type Font = {
+  font_style?: string;
+  font_size: number;
+  font_family?: string;
+  Color: string;
 }
 
 export type Figure = SlideElement & {
   type: "Figure"
-  shape: Form;
+  shape: string;
   innerColor: string;
   width: number;
   height: number;
@@ -33,9 +43,8 @@ export type Slide = {
 
 export type SlideElement = {
   id: number;
-  posX: number;
-  posY: number;
-  size: number;
+  pos: Position;
+  size: Scale;
   borderColor: string | null;
   isSelected: boolean;
 };
@@ -43,7 +52,7 @@ export type SlideElement = {
 export type TextBox = SlideElement & {
   type: "Text"
   content: string;
-  font: string;
+  font: Font;
 };
 
 export type GeneralElementType =

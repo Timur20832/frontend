@@ -3,7 +3,7 @@ import * as ReactDOMClient from 'react-dom/client';
 import { Editor } from './components/editor';
 import './index.css';
 import { Navbar } from './components/navbar';
-
+import './styles/navbar-style.css';
 function App() {
   return (
     <div className='container'>
