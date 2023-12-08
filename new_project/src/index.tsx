@@ -2,7 +2,7 @@ import React from "react";
 import * as ReactDOMClient from "react-dom/client";
 import { Editor } from "./components/editor";
 import "./index.css";
-import { Navbar } from "./components/navbar";
+import { Navbar } from "./components/Navbar/navbar";
 function App() {
   return (
     <div className="container">

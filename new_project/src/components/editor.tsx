@@ -1,6 +1,6 @@
 import { ShowSlide, ShowSlider } from "./slide";
 import { presentation, text } from "../data/consts";
-import { textElement, false_text } from "./navbar";
+import { textElement, false_text } from "./Navbar/navbar";
 import { useState } from "react";
 import { TextBox, Position } from "../data/types";
 import { getByPlaceholderText } from "@testing-library/react";

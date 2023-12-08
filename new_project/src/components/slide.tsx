@@ -1,7 +1,7 @@
 import React from "react";
-import { Presentation, GeneralElementType } from "../data/types";
+import { Presentation } from "../data/types";
 
-import { SelectTypeOfElement } from "./Elements";
+import { SelectTypeOfElement } from "./Elements/Elements";
 
 export function ShowSlider(presentation: Presentation) {
   return (
