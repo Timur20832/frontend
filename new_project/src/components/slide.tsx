@@ -18,11 +18,16 @@ export function ShowSlider(presentation: Presentation) {
 
 export function ShowSlide(presentation: Presentation) {
   const zoom = 1;
+  const activeSlide = presentation.slide.find((slide) => slide.active);
+  if (!activeSlide) {
+    return <div>Oops mistake</div>;
+  }
+
   return (
     <div>
-      {presentation.slide[0].elements.map((element) => (
-        <>{SelectTypeOfElement(element, zoom)}</>
-      ))}
+      {activeSlide.elements.map((element) =>
+        SelectTypeOfElement(element, zoom),
+      )}
     </div>
   );
 }

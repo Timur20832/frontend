@@ -3,7 +3,7 @@ import { Editor } from "./components/editor";
 import "./index.css";
 import { Navbar } from "./components/Navbar/navbar";
 import { Provider } from "react-redux";
-import { store } from "./store/main";
+import store from "./store/ObjectsReducer";
 function App() {
   return (
     <div className="container">

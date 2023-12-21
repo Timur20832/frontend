@@ -2,13 +2,19 @@ import { ShowSlide, ShowSlider } from "./slide";
 import { presentation, text } from "../data/consts";
 import { textElement, false_text } from "./Navbar/navbar";
 import { useState } from "react";
-import { TextBox, Position } from "../data/types";
-import { getByPlaceholderText } from "@testing-library/react";
+import { Position, TextBox } from "../data/types";
+import { useDispatch, useSelector } from "react-redux";
+import { appdispatch, rootState } from "../store/ObjectsReducer";
+import { changeElements } from "./ElementsCreator/ElementsCreator";
+import { createInputElement } from "./ElementsCreator/create";
+
 export function Editor() {
-  const [textElements, setTextElements] = useState<TextBox[]>([]);
-
   const [inputValue, setInputValue] = useState("");
-
+  const useAppDispath = () => useDispatch<appdispatch>();
+  const dispatch = useAppDispath();
+  const elements = useSelector(
+    (state: rootState) => state.elementsSlicer.elements,
+  );
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
@@ -18,20 +24,8 @@ export function Editor() {
       top: event.clientY - event.currentTarget.getBoundingClientRect().top,
       left: event.clientX - event.currentTarget.getBoundingClientRect().left,
     };
-
     if (textElement) {
-      const childTextElements: TextBox = {
-        id: textElements.length + 1,
-        pos: clickPosition,
-        type: text.type,
-        content: "Write your text",
-        size: text.size,
-        borderColor: text.borderColor,
-        isSelected: text.isSelected,
-        font: text.font,
-      };
-      setTextElements([...textElements, childTextElements]);
-      false_text();
+      createInputElement(dispatch, elements, clickPosition);
     }
   }
 
@@ -40,7 +34,7 @@ export function Editor() {
       <div className="slider">{ShowSlider(presentation)}</div>
       <div className="main-slaid" onClick={createInput}>
         {ShowSlide(presentation)}
-        {textElements.map((element) => (
+        {elements.map((element) => (
           <input
             type="text"
             key={element.id}

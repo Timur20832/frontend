@@ -41,9 +41,11 @@ export type TextBox = SlideElement & {
   font: Font;
 };
 
+export type GeneralElementType = Figure | Picture | TextBox;
+
 export type Slide = {
   id: number;
-  elements: Array<Figure | Picture | TextBox>;
+  elements: Array<GeneralElementType>;
   numberOfSlide: number;
   backgroundColor: string;
   active: boolean;
@@ -55,5 +57,3 @@ export type Presentation = {
   history: Array<Presentation>;
   historyIndex: number;
 };
-
-export type GeneralElementType = Figure | Picture | TextBox;

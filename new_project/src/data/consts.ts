@@ -59,7 +59,7 @@ export const text: TextBox = {
   },
 };
 
-const slide: Slide = {
+export const slide: Slide = {
   id: 1,
   elements: [figure, img, text],
   numberOfSlide: 1,
