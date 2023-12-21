@@ -28,10 +28,11 @@ export function Navbar() {
         </div>
         <div className={style.info__main}>
           <div className={style.info__menubar}>
-            <button className={style.button__style}>Download fail</button>
-            <button className={style.button__style}>Noname</button>
-            <button className={style.button__style}>Noname</button>
-            <button className={style.button__style}>Noname</button>
+            <button className={style.button_style}>Download file</button>
+            <button className={style.button_style}>Create slide</button>
+            <button className={style.button_style}>Delete slide</button>
+            <button className={style.button_style}>Next slide</button>
+            <button className={style.button_style}>Prev slide</button>
           </div>
           <div className={style.info__tools}>
             <button
