@@ -8,6 +8,14 @@ export type Position = {
   left: number;
 };
 
+export type SlideElement = {
+  id: number;
+  pos: Position;
+  size: Scale;
+  borderColor: string;
+  isSelected: boolean;
+};
+
 type Font = {
   font_style: string;
   font_size: number;
@@ -27,11 +35,10 @@ export type Picture = SlideElement & {
   path: string;
 };
 
-export type Presentation = {
-  name: string;
-  slide: Array<Slide>;
-  history: Array<Presentation>;
-  historyIndex: number;
+export type TextBox = SlideElement & {
+  type: "Text";
+  content: string;
+  font: Font;
 };
 
 export type Slide = {
@@ -39,20 +46,14 @@ export type Slide = {
   elements: Array<Figure | Picture | TextBox>;
   numberOfSlide: number;
   backgroundColor: string;
+  active: boolean;
 };
 
-export type SlideElement = {
-  id: number;
-  pos: Position;
-  size: Scale;
-  borderColor: string | null;
-  isSelected: boolean;
-};
-
-export type TextBox = SlideElement & {
-  type: "Text";
-  content: string;
-  font: Font;
+export type Presentation = {
+  name: string;
+  slide: Array<Slide>;
+  history: Array<Presentation>;
+  historyIndex: number;
 };
 
 export type GeneralElementType = Figure | Picture | TextBox;

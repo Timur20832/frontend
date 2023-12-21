@@ -1,5 +1,5 @@
 import { Picture } from "../../../data/types";
-export function ShowImageElement(Element: Picture) {
+export function ShowImageElement(Element: Picture, zoom: number) {
   return (
     <img
       className="pos"

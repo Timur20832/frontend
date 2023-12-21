@@ -4,7 +4,7 @@
 }
 
 body {
-  background-color: rgb(0, 0, 0);
+  background-color: black;
   height: 100%;
 }
 
@@ -23,17 +23,18 @@ body {
 
 .slider {
   position: relative;
-  background-color: rgb(255, 255, 255);
+  background-color: white;
   width: 20%;
 }
 
 .main-slaid {
   position: relative;
-  background-color: rgba(255, 255, 255);
-  width: 100%;
+  background-color: white;
+  width: 70%;
   margin: 0% 10%;
-  height: 628px;
+  height: 600px;
   border: 1px solid grey;
+  overflow: hidden;
 }
 
 .list {
@@ -48,8 +49,8 @@ body {
 
 .list__child {
   position: relative;
-  width: 100px;
-  height: 100px;
+  width: 90%;
+  height: 180px;
   top: 0;
   border: solid;
 }

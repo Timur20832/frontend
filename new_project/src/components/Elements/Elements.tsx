@@ -3,14 +3,14 @@ import { ShowGraphElement } from "./GraphElement/GraphElement";
 import { ShowImageElement } from "./ImageElement/ImageElement";
 import { ShowTextElement } from "./TextElement/TextElement";
 
-export function SelectTypeOfElement(Element: GeneralElementType) {
+export function SelectTypeOfElement(Element: GeneralElementType, zoom: number) {
   switch (Element.type) {
     case "Text":
-      return ShowTextElement(Element);
+      return ShowTextElement(Element, zoom);
     case "Image":
-      return ShowImageElement(Element);
+      return ShowImageElement(Element, zoom);
     case "Figure":
-      return ShowGraphElement(Element);
+      return ShowGraphElement(Element, zoom);
   }
 }
 
