@@ -37,24 +37,6 @@ body {
   overflow: hidden;
 }
 
-.list {
-  list-style: none;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: center;
-  margin-top: 10px;
-}
-
-.list__child {
-  position: relative;
-  width: 90%;
-  height: 180px;
-  top: 0;
-  border: solid;
-}
-
 .pos {
   position: absolute;
 }

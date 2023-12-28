@@ -1,0 +1,9 @@
+.main {
+  position: relative;
+  background-color: white;
+  width: 70%;
+  margin: 0% 10%;
+  height: 600px;
+  border: 1px solid grey;
+  overflow: hidden;
+}

@@ -1,23 +1,15 @@
-import * as ReactDOMClient from "react-dom/client";
-import { Editor } from "./components/editor";
 import "./index.css";
-import { Navbar } from "./components/Navbar/navbar";
-import { Provider } from "react-redux";
-import store from "./store/ObjectsReducer";
+import { Navbar } from "./components1/navbarComponents/navbar/navbar";
+import Editor from "./components1/main/editor";
+import ReactDOM from "react-dom";
+import { presentation } from "./data/consts";
 function App() {
   return (
     <div className="container">
       <Navbar />
-      <Editor />
+      <Editor presentation={presentation} />
     </div>
   );
 }
-const root = ReactDOMClient.createRoot(
-  document.getElementById("root") as HTMLElement,
-);
 
-root.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-);
+ReactDOM.render(<App />, document.getElementById("root"));
