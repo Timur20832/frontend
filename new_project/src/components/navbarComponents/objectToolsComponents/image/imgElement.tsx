@@ -1,11 +1,15 @@
 import React from "react";
-import style from "./imgElement.module.css";
-import shapetext from "./shapeimg.png";
+
+// import Button styles
+import ButtonStyle from "./imgElement.module.css";
+
+// import svg / svg's
+import { ReactComponent as ImageNavbarSVG } from "../../../../sources/navbar icons/image-navbar-icon.svg";
 
 const ImageElement = () => {
   return (
-    <button className={`${style.buttontools} ${style.active}`}>
-      <img className={style.icontools} src={shapetext} alt="" />
+    <button className={ButtonStyle.buttontools}>
+      <ImageNavbarSVG />
     </button>
   );
 };

@@ -34,7 +34,7 @@ const img: Picture = {
   },
   borderColor: "black",
   isSelected: false,
-  path: require("../img/kot.jpg"),
+  path: require("../sources/images/kot.jpg"),
 };
 
 export const text: TextBox = {

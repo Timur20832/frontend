@@ -1,5 +1,5 @@
 import { Picture } from "../../../../data/types";
-import img from "./shapeimg.png";
+import img from "../../../../sources/shapes/shapes images/shape-img.png";
 export function ShowImageElement(Element: Picture) {
   return (
     <img

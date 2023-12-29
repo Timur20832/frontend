@@ -1,13 +1,20 @@
 import React from "react";
+
+// import object / object's
 import { Presentation } from "../../../../data/types";
-import style from "./exportFile.module.css";
+
+// import Button styles
+import ButtonStyle from "./exportFile.module.css";
+
+// import svg / svg's
+import { ReactComponent as ExportNavbarSVG } from "../../../../sources/navbar icons/export-navbar-icon.svg";
 
 type exportProps = {
   presentation: Presentation;
 };
 
 const ExportFile = (props: exportProps) => {
-  const downloadObjectAsJson = () => {
+  const exportObjectAsJson = () => {
     const dataStr =
       "data:text/json;charset=utf-8," +
       encodeURIComponent(JSON.stringify(props.presentation));
@@ -20,8 +27,8 @@ const ExportFile = (props: exportProps) => {
   };
 
   return (
-    <button className={style.buttonstyle} onClick={downloadObjectAsJson}>
-      Export file
+    <button className={ButtonStyle.buttontools} onClick={exportObjectAsJson}>
+      <ExportNavbarSVG />
     </button>
   );
 };

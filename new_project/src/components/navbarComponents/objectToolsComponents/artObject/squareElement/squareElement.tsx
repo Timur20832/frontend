@@ -1,11 +1,15 @@
 import React from "react";
-import style from "./squareElement.module.css";
-import shapetext from "./shapesquare.png";
+
+// import Button styles
+import ButtonStyle from "./squareElement.module.css";
+
+// import svg / svg's
+import { ReactComponent as SquareNavbarSVG } from "../../../../../sources/navbar icons/square-navbar-icon.svg";
 
 const SquareElement = () => {
   return (
-    <button className={`${style.buttontools} ${style.active}`}>
-      <img className={style.icontools} src={shapetext} alt="" />
+    <button className={ButtonStyle.buttontools}>
+      <SquareNavbarSVG />
     </button>
   );
 };

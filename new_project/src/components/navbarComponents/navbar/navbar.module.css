@@ -1,43 +1,26 @@
-/* todo: изменить бэм имена на то, что поддерживает eslint
-   разбить все стили и компоненты на разные части
-*/
 .navbar {
-  background-color: #fff;
-  height: 50px;
+  display: flex;
   width: 100%;
-  display: flex;
-  align-items: center;
+  height: 65px;
+  background: #D9D9D9;
 }
 
-.info {
+.first_group_buttontools {
   display: flex;
-  flex-direction: column;
-  gap: 5px;
+  margin: 10px 0 10px 0;
 }
 
-.info__menubar {
-  display: flex;
-  gap: 5px;
-}
-
-.info__main {
-  display: flex;
-  gap: 25px;
-}
-
-.info__tools {
+.second_group_buttontools {
+  margin: 10px 0 10px 1px;
+  border-radius: 6px;
+  border: 3px solid black;
+  margin-left: calc(443px - 35px);
   display: flex;
   gap: 5px;
-  border: solid #000;
-  padding: 2px;
 }
 
-.borderindent {
-  width: 1px;
-  background-color: #000;
-  height: 15px;
-}
-
-.active:active {
-  border: solid blue;
+.separator {
+  width: 3px;
+  background-color: #c4c4c4;
+  border-radius: 10px;
 }

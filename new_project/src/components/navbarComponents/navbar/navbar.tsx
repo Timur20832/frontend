@@ -1,5 +1,9 @@
 import React from "react";
-import style from "./navbar.module.css";
+
+// import Navbar styles
+import NavbarStyle from "./navbar.module.css";
+
+// import objects
 import ImageElement from "../objectToolsComponents/image/imgElement";
 import CircleElement from "../objectToolsComponents/artObject/circleElement/circleElement";
 import TrinagleElement from "../objectToolsComponents/artObject/triangleElement/triangleElement";
@@ -7,10 +11,12 @@ import SquareElement from "../objectToolsComponents/artObject/squareElement/squa
 import TextElement from "../objectToolsComponents/textElement/textElement";
 import CreateSlide from "../slideToolsComponents/createSlide/createSlide";
 import DeleteSlide from "../slideToolsComponents/deleteSlide/deleteSlide";
-import DownloadFile from "../slideToolsComponents/downloadFile/downloadFile";
+import ImportFile from "../slideToolsComponents/importFile/importFile";
 import ExportFile from "../slideToolsComponents/exportFile/exportFile";
 import LogoPresentation from "../presentationToolsComponents/logoPresentation/logoPresentation";
 import NamePresentation from "../presentationToolsComponents/namePresentation/namePresentation";
+import CursorComponent from "../slideToolsComponents/cursorComponent/cursorElement";
+
 import { Presentation } from "../../../data/types";
 
 type navBarProps = {
@@ -18,30 +24,33 @@ type navBarProps = {
   setPresentation: (presentation: Presentation) => void;
 };
 
-export function Navbar(props: navBarProps) {
+export function Navbar(prop: navBarProps) {
   return (
-    <div className={style.navbar}>
+    <div className={NavbarStyle.navbar}>
       <LogoPresentation />
-      <div className={style.info}>
-        <NamePresentation />
-        <div className={style.info__main}>
-          <div className={style.info__menubar}>
-            <CreateSlide />
-            <DeleteSlide />
-            <DownloadFile
-              presentation={props.presentation}
-              setPresentation={props.setPresentation}
-            />
-            <ExportFile presentation={props.presentation} />
-          </div>
-          <div className={style.info__tools}>
-            <TextElement />
-            <ImageElement />
-            <CircleElement />
-            <TrinagleElement />
-            <SquareElement />
-          </div>
-        </div>
+      <NamePresentation />
+      <div className={NavbarStyle.first_group_buttontools}>
+        <CreateSlide />
+        <DeleteSlide />
+        <span className={NavbarStyle.separator}></span>
+        <ExportFile presentation={prop.presentation} />
+        <ImportFile
+          presentation={prop.presentation}
+          setPresentation={prop.setPresentation}
+        />
+      </div>
+      <div className={NavbarStyle.second_group_buttontools}>
+        <CursorComponent />
+        <span className={NavbarStyle.separator}></span>
+        <TextElement />
+        <span className={NavbarStyle.separator}></span>
+        <ImageElement />
+        <span className={NavbarStyle.separator}></span>
+        <CircleElement />
+        <span className={NavbarStyle.separator}></span>
+        <TrinagleElement />
+        <span className={NavbarStyle.separator}></span>
+        <SquareElement />
       </div>
     </div>
   );

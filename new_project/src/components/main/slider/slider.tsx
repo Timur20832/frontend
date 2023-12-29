@@ -2,6 +2,7 @@ import React from "react";
 import { Presentation } from "../../../data/types";
 import { SelectTypeOfElement } from "../viewHook";
 import styles from "./slider.module.css";
+import EditorStyle from "../editor.module.css";
 
 function ShowSlider({ presentation }: { presentation: Presentation }) {
   const presentationComponent = presentation;
@@ -17,6 +18,7 @@ function ShowSlider({ presentation }: { presentation: Presentation }) {
           </li>
         ))}
       </ul>
+      <div className={EditorStyle.scroll_area}></div>
     </div>
   );
 }

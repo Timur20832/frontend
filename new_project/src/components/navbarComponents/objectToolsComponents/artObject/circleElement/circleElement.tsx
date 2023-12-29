@@ -1,11 +1,15 @@
 import React from "react";
-import style from "./circleElement.module.css";
-import shapetext from "./shapecircle.png";
+
+// import Button styles
+import ButtonStyle from "./circleElement.module.css";
+
+// import svg / svg's
+import { ReactComponent as CircleNavbarSVG } from "../../../../../sources/navbar icons/circle-navbar-icon.svg";
 
 const CircleElement = () => {
   return (
-    <button className={`${style.buttontools} ${style.active}`}>
-      <img className={style.icontools} src={shapetext} alt="" />
+    <button className={ButtonStyle.buttontools}>
+      <CircleNavbarSVG />
     </button>
   );
 };

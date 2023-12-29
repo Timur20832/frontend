@@ -1,8 +1,14 @@
 import React from "react";
-import style from "./deleteSlide.module.css";
+import ButtonStyle from "./deleteSlide.module.css";
+
+import { ReactComponent as DeleteSlideSVG } from "../../../../sources/navbar icons/remove-slide.svg";
 
 const DeleteSlide = () => {
-  return <button className={style.buttonstyle}>Delete slide</button>;
+  return (
+    <button className={ButtonStyle.buttontools}>
+      <DeleteSlideSVG />
+    </button>
+  );
 };
 
 export default DeleteSlide;
