@@ -22,7 +22,8 @@
   "rules": {
     "no-duplicate-imports": "error",
     "no-self-compare": "error",
-    "no-use-before-define": "error","prettier/prettier": [
+    "no-use-before-define": "error",
+    "prettier/prettier": [
       "error",
       {
         "endOfLine": "auto"

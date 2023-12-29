@@ -75,7 +75,7 @@ const slide2: Slide = {
   active: false,
 };
 
-export const presentation: Presentation = {
+export const presentationInitState: Presentation = {
   name: "untitled1",
   slide: [slide, slide2],
   history: [],

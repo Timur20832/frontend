@@ -11,8 +11,14 @@ import DownloadFile from "../slideToolsComponents/downloadFile/downloadFile";
 import ExportFile from "../slideToolsComponents/exportFile/exportFile";
 import LogoPresentation from "../presentationToolsComponents/logoPresentation/logoPresentation";
 import NamePresentation from "../presentationToolsComponents/namePresentation/namePresentation";
+import { Presentation } from "../../../data/types";
 
-export function Navbar() {
+type navBarProps = {
+  presentation: Presentation;
+  setPresentation: (presentation: Presentation) => void;
+};
+
+export function Navbar(props: navBarProps) {
   return (
     <div className={style.navbar}>
       <LogoPresentation />
@@ -22,8 +28,11 @@ export function Navbar() {
           <div className={style.info__menubar}>
             <CreateSlide />
             <DeleteSlide />
-            <DownloadFile />
-            <ExportFile />
+            <DownloadFile
+              presentation={props.presentation}
+              setPresentation={props.setPresentation}
+            />
+            <ExportFile presentation={props.presentation} />
           </div>
           <div className={style.info__tools}>
             <TextElement />
