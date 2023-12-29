@@ -1,11 +1,15 @@
 import React from "react";
-import style from "./triangleElement.module.css";
-import shapetext from "./shapetriangle.png";
+
+// import Button styles
+import ButtonStyle from "./triangleElement.module.css";
+
+// import svg / svg's
+import { ReactComponent as TriangleNavbarSVG } from "../../../../../sources/navbar icons/triangle-navbar-icon.svg";
 
 const TriangleElement = () => {
   return (
-    <button className={`${style.buttontools} ${style.active}`}>
-      <img className={style.icontools} src={shapetext} alt="" />
+    <button className={ButtonStyle.buttontools}>
+      <TriangleNavbarSVG />
     </button>
   );
 };

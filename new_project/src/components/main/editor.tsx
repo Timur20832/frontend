@@ -2,6 +2,11 @@ import React from "react";
 import { Presentation } from "../../data/types";
 import ShowSlide from "./mainSlide/mainSlide";
 import ShowSlider from "./slider/slider";
+
+// import Editor styles
+import EditorStyle from "./editor.module.css";
+
+const Editor = ({ presentation }: { presentation: Presentation }) => {
 type editorProps = {
   presentation: Presentation;
   setPresentation: (presentation: Presentation) => void;
@@ -13,7 +18,9 @@ const Editor = (prop: editorProps) => {
         presentation={prop.presentation}
         setPresentation={prop.setPresentation}
       />
-      <ShowSlide presentation={prop.presentation} />
+        <div className={EditorStyle.slide_area}>
+            <ShowSlide presentation={presentation} />
+        </div>
     </div>
   );
 };

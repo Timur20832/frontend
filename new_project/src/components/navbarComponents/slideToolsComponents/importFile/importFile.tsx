@@ -1,11 +1,17 @@
 import React, { ChangeEvent } from "react";
 import { Presentation } from "../../../../data/types";
 
-type downloaderProps = {
+// import styles
+import InputStyle from "./importFile.module.css";
+
+// import svg / svg's
+import { ReactComponent as ImportSVG } from "../../../../sources/navbar icons/import-navbar-icon.svg";
+
+type importerProps = {
   setPresentation: (presentation: Presentation) => void;
 };
 
-const DownloadFile = (props: downloaderProps) => {
+const ImportFile = (props: importerProps) => {
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     if (files && files.length > 0) {
@@ -22,13 +28,18 @@ const DownloadFile = (props: downloaderProps) => {
   };
 
   return (
-    <input
-      id="import-file-button"
-      type="file"
-      className="popUp-import"
-      onChange={handleFileChange}
-    />
+    <div className="input__wrapper">
+      <input
+        id="import-file-button"
+        type="file"
+        className={InputStyle.popUp}
+        onChange={handleFileChange}
+      />
+      <label htmlFor={"import-file-button"} className={InputStyle.buttontools}>
+        <ImportSVG />
+      </label>
+    </div>
   );
 };
 
-export default DownloadFile;
+export default ImportFile;

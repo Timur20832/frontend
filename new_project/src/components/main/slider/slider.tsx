@@ -1,6 +1,7 @@
 import { Presentation, Slide } from "../../../data/types";
 import { SelectTypeOfElement } from "../viewHook";
 import styles from "./slider.module.css";
+import EditorStyle from "../editor.module.css";
 import { useState } from "react";
 
 type SliderProps = {
@@ -101,6 +102,7 @@ function ShowSlider(prop: SliderProps) {
           </div>
         ))}
       </ul>
+      <div className={EditorStyle.scroll_area}></div>
     </div>
   );
 }

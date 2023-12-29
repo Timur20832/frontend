@@ -1,6 +1,9 @@
 import React from "react";
 import style from "./deleteSlide.module.css";
 import { Presentation } from "../../../../data/types";
+import ButtonStyle from "./deleteSlide.module.css";
+
+import { ReactComponent as DeleteSlideSVG } from "../../../../sources/navbar icons/remove-slide.svg";
 
 type deleterProps = {
   presentation: Presentation;
@@ -33,8 +36,8 @@ const DeleteSlide = (prop: deleterProps) => {
     prop.setPresentation(newPresentation);
   };
   return (
-    <button className={style.buttonstyle} onClick={deleteSlide}>
-      Delete slide
+    <button className={ButtonStyle.buttontools} onClick={deleteSlide}>
+        <DeleteSlideSVG />
     </button>
   );
 };

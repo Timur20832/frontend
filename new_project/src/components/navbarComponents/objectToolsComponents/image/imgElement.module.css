@@ -1,6 +1,6 @@
 .buttontools {
-  width: 15px;
-  height: 15px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8,11 +8,9 @@
   background: none;
 }
 
-.active:active {
-  border: solid blue;
-}
-
-.icontools {
-  width: 15px;
-  height: 15px;
+.buttontools:active {
+  transition: 0.1s;
+  width: 30px;
+  height: 30px;
+  margin: 5px 5px 5px 5px;
 }

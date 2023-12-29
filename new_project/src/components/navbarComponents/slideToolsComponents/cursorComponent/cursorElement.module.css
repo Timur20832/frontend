@@ -1,0 +1,17 @@
+.buttontools {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    background: none;
+    margin: 5px 5px 5px 5px;
+}
+
+.active:active {
+    transition: 0.1s;
+    width: 20px;
+    height: 20px;
+    margin: 10px 10px 10px 10px;
+}
