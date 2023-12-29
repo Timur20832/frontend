@@ -26,12 +26,15 @@ export function Navbar(props: navBarProps) {
         <NamePresentation />
         <div className={style.info__main}>
           <div className={style.info__menubar}>
-            <CreateSlide />
-            <DeleteSlide />
-            <DownloadFile
+            <CreateSlide
               presentation={props.presentation}
               setPresentation={props.setPresentation}
             />
+            <DeleteSlide
+              presentation={props.presentation}
+              setPresentation={props.setPresentation}
+            />
+            <DownloadFile setPresentation={props.setPresentation} />
             <ExportFile presentation={props.presentation} />
           </div>
           <div className={style.info__tools}>

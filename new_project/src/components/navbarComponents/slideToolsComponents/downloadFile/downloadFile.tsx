@@ -2,7 +2,6 @@ import React, { ChangeEvent } from "react";
 import { Presentation } from "../../../../data/types";
 
 type downloaderProps = {
-  presentation: Presentation;
   setPresentation: (presentation: Presentation) => void;
 };
 
@@ -17,7 +16,6 @@ const DownloadFile = (props: downloaderProps) => {
         console.log(JSON.parse(contents) as Presentation);
         const newPresentation = JSON.parse(contents) as Presentation;
         props.setPresentation(newPresentation);
-        console.log(props.presentation);
       };
       reader.readAsText(file);
     }

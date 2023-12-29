@@ -68,9 +68,9 @@ export const slide: Slide = {
 };
 
 const slide2: Slide = {
-  id: 1,
+  id: 2,
   elements: [figure, img, text],
-  numberOfSlide: 1,
+  numberOfSlide: 2,
   backgroundColor: "black",
   active: false,
 };
