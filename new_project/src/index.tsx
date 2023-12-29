@@ -1,6 +1,6 @@
 import "./index.css";
-import { Navbar } from "./components1/navbarComponents/navbar/navbar";
-import Editor from "./components1/main/editor";
+import { Navbar } from "./components/navbarComponents/navbar/navbar";
+import Editor from "./components/main/editor";
 import ReactDOM from "react-dom";
 import { presentation } from "./data/consts";
 function App() {
