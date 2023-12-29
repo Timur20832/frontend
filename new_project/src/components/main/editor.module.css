@@ -1,16 +1,16 @@
 .editor {
-    width: 100%;
-    display: flex;
+  width: 100%;
+  display: flex;
 }
 
 .scroll_area {
-    margin: 0;
-    width: 10px;
-    background-color: #C1C1C1;;
+  margin: 0;
+  width: 10px;
+  background-color: #c1c1c1;
 }
 
 .slide_area {
-    height: calc(100vh - 65px);
-    width: calc(100vw - 350px);
-    background-color: #ffffff;
+  height: calc(100vh - 65px);
+  width: calc(100vw - 350px);
+  background-color: #ffffff;
 }

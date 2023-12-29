@@ -1,9 +1,6 @@
 import React from "react";
-import style from "./createSlide.module.css";
 import { Presentation, Slide } from "../../../../data/types";
-
 import ButtonStyle from "./createSlide.module.css";
-
 import { ReactComponent as CreateSlideSVG } from "../../../../sources/navbar icons/add-slide.svg";
 
 type createrProps = {
@@ -32,9 +29,9 @@ const CreateSlide = (prop: createrProps) => {
     prop.setPresentation(newPresentation);
   };
   return (
-        <button className={ButtonStyle.buttontools}>
-            <CreateSlideSVG />
-        </button>
+    <button className={ButtonStyle.buttontools} onClick={createSlide}>
+      <CreateSlideSVG />
+    </button>
   );
 };
 

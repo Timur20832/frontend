@@ -1,9 +1,9 @@
 .slider {
   position: relative;
-  background-color: #C1C1C1;;
+  background-color: #c1c1c1;
   width: 350px;
   height: calc(100vh - 65px);
-  overflow-y:auto;
+  overflow-y: auto;
   overflow-x: hidden;
 }
 
@@ -27,8 +27,7 @@
   background-color: white;
 }
 
-.slider::-webkit-scrollbar-track
-{
+.slider::-webkit-scrollbar-track {
   margin-right: 18px;
   margin-top: 21px;
   margin-bottom: 20px;
@@ -40,20 +39,17 @@
   padding-right: 10px;
 }
 
-.slider::-webkit-scrollbar
-{
+.slider::-webkit-scrollbar {
   width: 10px;
-  background-color: #C1C1C1;;
+  background-color: #c1c1c1;
 }
 
-.slider::-webkit-scrollbar-thumb
-{
+.slider::-webkit-scrollbar-thumb {
   border-radius: 10px;
   background-color: #565656;
 }
 
-.slider::-webkit-scrollbar-thumb:hover
-{
+.slider::-webkit-scrollbar-thumb:hover {
   transition: 10ms;
   border-radius: 10px;
   background-color: #3f3f3f;

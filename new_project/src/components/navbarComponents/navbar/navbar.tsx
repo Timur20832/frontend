@@ -1,9 +1,5 @@
 import React from "react";
-
-// import Navbar styles
 import NavbarStyle from "./navbar.module.css";
-
-// import objects
 import ImageElement from "../objectToolsComponents/image/imgElement";
 import CircleElement from "../objectToolsComponents/artObject/circleElement/circleElement";
 import TrinagleElement from "../objectToolsComponents/artObject/triangleElement/triangleElement";
@@ -19,28 +15,28 @@ import CursorComponent from "../slideToolsComponents/cursorComponent/cursorEleme
 
 import { Presentation } from "../../../data/types";
 
-type navBarProps = {
+type navBarprop = {
   presentation: Presentation;
   setPresentation: (presentation: Presentation) => void;
 };
 
-export function Navbar(prop: navBarProps) {
+export function Navbar(prop: navBarprop) {
   return (
     <div className={NavbarStyle.navbar}>
       <LogoPresentation />
       <NamePresentation />
       <div className={NavbarStyle.first_group_buttontools}>
         <CreateSlide
-            presentation={props.presentation}
-            setPresentation={props.setPresentation}
+          presentation={prop.presentation}
+          setPresentation={prop.setPresentation}
         />
         <DeleteSlide
-            presentation={props.presentation}
-            setPresentation={props.setPresentation}
+          presentation={prop.presentation}
+          setPresentation={prop.setPresentation}
         />
         <span className={NavbarStyle.separator}></span>
-        <ExportFile presentation={props.presentation} />
-        <ImportFile setPresentation={props.setPresentation}/>
+        <ExportFile presentation={prop.presentation} />
+        <ImportFile setPresentation={prop.setPresentation} />
       </div>
       <div className={NavbarStyle.second_group_buttontools}>
         <CursorComponent />

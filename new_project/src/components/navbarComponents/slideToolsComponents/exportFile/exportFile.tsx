@@ -15,9 +15,16 @@ type exportProps = {
 
 const ExportFile = (props: exportProps) => {
   const exportObjectAsJson = () => {
+    const presentationForSave: Presentation = {
+      name: props.presentation.name,
+      slide: props.presentation.slide,
+      history: [],
+      historyIndex: 1,
+    };
+
     const dataStr =
       "data:text/json;charset=utf-8," +
-      encodeURIComponent(JSON.stringify(props.presentation));
+      encodeURIComponent(JSON.stringify(presentationForSave));
     const downloadAnchorNode = document.createElement("a");
     downloadAnchorNode.setAttribute("href", dataStr);
     downloadAnchorNode.setAttribute("download", "presentation.json");
