@@ -16,6 +16,7 @@ import { Presentation } from "../../../data/types";
 type navBarProps = {
   presentation: Presentation;
   setPresentation: (presentation: Presentation) => void;
+  setActive: (active: string) => void;
 };
 
 export function Navbar(props: navBarProps) {
@@ -35,11 +36,11 @@ export function Navbar(props: navBarProps) {
             <ExportFile presentation={props.presentation} />
           </div>
           <div className={style.info__tools}>
-            <TextElement />
+            <TextElement setActive={props.setActive} />
             <ImageElement />
-            <CircleElement />
-            <TrinagleElement />
-            <SquareElement />
+            <CircleElement setActive={props.setActive} />
+            <TrinagleElement setActive={props.setActive} />
+            <SquareElement setActive={props.setActive} />
           </div>
         </div>
       </div>

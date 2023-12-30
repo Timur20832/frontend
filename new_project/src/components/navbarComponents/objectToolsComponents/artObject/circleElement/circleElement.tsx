@@ -2,9 +2,15 @@ import React from "react";
 import style from "./circleElement.module.css";
 import shapetext from "./shapecircle.png";
 
-const CircleElement = () => {
+type props = { setActive: (active: string) => void };
+
+const CircleElement = (prop: props) => {
+  const changeActive = () => prop.setActive("circle");
   return (
-    <button className={`${style.buttontools} ${style.active}`}>
+    <button
+      className={`${style.buttontools} ${style.active}`}
+      onClick={changeActive}
+    >
       <img className={style.icontools} src={shapetext} alt="" />
     </button>
   );

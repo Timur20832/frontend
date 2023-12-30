@@ -9,14 +9,20 @@ function App() {
   useEffect(() => {
     console.log();
   }, [presentation]);
-
+  const [active, setActive] = useState("");
   return (
     <div className="container">
       <Navbar
         presentation={presentation}
         setPresentation={setPresentationData}
+        setActive={setActive}
       />
-      <Editor presentation={presentation} />
+      <Editor
+        presentation={presentation}
+        active={active}
+        setPresentation={setPresentationData}
+        setActive={setActive}
+      />
     </div>
   );
 }

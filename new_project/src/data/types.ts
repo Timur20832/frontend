@@ -27,8 +27,6 @@ export type Figure = SlideElement & {
   type: "Figure";
   shape: string;
   innerColor: string;
-  width: number;
-  height: number;
 };
 export type Picture = SlideElement & {
   type: "Image";
