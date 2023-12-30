@@ -42,15 +42,13 @@ export function Navbar(prop: navBarprop) {
       <div className={NavbarStyle.second_group_buttontools}>
         <CursorComponent />
         <span className={NavbarStyle.separator}></span>
-          <TextElement setActive={prop.setActive} />
+        <TextElement setActive={prop.setActive} />
         <span className={NavbarStyle.separator}></span>
-          <CircleElement setActive={prop.setActive} />
+        <CircleElement setActive={prop.setActive} />
         <span className={NavbarStyle.separator}></span>
-          <TrinagleElement setActive={prop.setActive} />
+        <TrinagleElement setActive={prop.setActive} />
         <span className={NavbarStyle.separator}></span>
-        <TrinagleElement />
-        <span className={NavbarStyle.separator}></span>
-          <SquareElement setActive={prop.setActive} />
+        <SquareElement setActive={prop.setActive} />
       </div>
     </div>
   );

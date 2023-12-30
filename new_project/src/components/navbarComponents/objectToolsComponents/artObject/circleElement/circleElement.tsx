@@ -15,7 +15,7 @@ const CircleElement = (prop: props) => {
       className={`${ButtonStyle.buttontools} ${ButtonStyle.active}`}
       onClick={changeActive}
     >
-        <CircleNavbarSVG />
+      <CircleNavbarSVG />
     </button>
   );
 };

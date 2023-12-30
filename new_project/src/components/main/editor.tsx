@@ -16,15 +16,17 @@ const Editor = (prop: props) => {
   return (
     <div style={{ display: "flex", width: "100%" }}>
       <ShowSlider
-          presentation={prop.presentation}
-          setPresentation={prop.setPresentation}
-      />
-      <ShowSlide
         presentation={prop.presentation}
-        active={prop.active}
         setPresentation={prop.setPresentation}
-        setActive={prop.setActive}
       />
+      <div className={EditorStyle.slide_area}>
+        <ShowSlide
+          presentation={prop.presentation}
+          active={prop.active}
+          setPresentation={prop.setPresentation}
+          setActive={prop.setActive}
+        />
+      </div>
     </div>
   );
 };

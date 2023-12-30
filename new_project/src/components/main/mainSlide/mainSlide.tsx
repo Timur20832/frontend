@@ -1,10 +1,6 @@
 import React from "react";
 import { GeneralElementType, Presentation, Slide } from "../../../data/types";
 import { SelectTypeOfElement } from "../viewHook";
-
-// import hooks
-import { presentationHook } from "../../../data/Hooks/PresentationHooks";
-import style from "./mainSlide.module.css";
 import {
   createTextElement,
   SampleTextElement,
@@ -57,7 +53,7 @@ export function ShowSlide(prop: slideProps) {
     }
   };
   return (
-    <div className={SlideStyle.main}  onClick={handleSlideClick} >
+    <div className={SlideStyle.main} onClick={handleSlideClick}>
       {activeSlide.elements.map((element) =>
         SelectTypeOfElement(element, zoom),
       )}
