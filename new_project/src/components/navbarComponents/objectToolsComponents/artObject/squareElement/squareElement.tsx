@@ -6,9 +6,12 @@ import ButtonStyle from "./squareElement.module.css";
 // import svg / svg's
 import { ReactComponent as SquareNavbarSVG } from "../../../../../sources/navbar icons/square-navbar-icon.svg";
 
-const SquareElement = () => {
+type props = { setActive: (active: string) => void };
+
+const SquareElement = (prop: props) => {
+  const changeActive = () => prop.setActive("square");
   return (
-    <button className={ButtonStyle.buttontools}>
+    <button className={ButtonStyle.buttontools} onClick={changeActive}>
       <SquareNavbarSVG />
     </button>
   );

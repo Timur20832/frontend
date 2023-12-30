@@ -6,9 +6,14 @@ import ButtonStyle from "./textElement.module.css";
 // import svg / svg's
 import { ReactComponent as TextNavbarSVG } from "../../../../sources/navbar icons/text-navbar-icon.svg";
 
-const TextElement = () => {
+type props = {
+  setActive: (active: string) => void;
+};
+
+const TextElement = (prop: props) => {
+  const changeActive = () => prop.setActive("text");
   return (
-    <button className={ButtonStyle.buttontools}>
+    <button className={ButtonStyle.buttontools} onClick={changeActive}>
       <TextNavbarSVG />
     </button>
   );

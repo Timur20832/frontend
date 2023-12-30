@@ -18,6 +18,7 @@ import { Presentation } from "../../../data/types";
 type navBarprop = {
   presentation: Presentation;
   setPresentation: (presentation: Presentation) => void;
+  setActive: (active: string) => void;
 };
 
 export function Navbar(prop: navBarprop) {
@@ -41,15 +42,15 @@ export function Navbar(prop: navBarprop) {
       <div className={NavbarStyle.second_group_buttontools}>
         <CursorComponent />
         <span className={NavbarStyle.separator}></span>
-        <TextElement />
+          <TextElement setActive={prop.setActive} />
         <span className={NavbarStyle.separator}></span>
-        <ImageElement />
+          <CircleElement setActive={prop.setActive} />
         <span className={NavbarStyle.separator}></span>
-        <CircleElement />
+          <TrinagleElement setActive={prop.setActive} />
         <span className={NavbarStyle.separator}></span>
         <TrinagleElement />
         <span className={NavbarStyle.separator}></span>
-        <SquareElement />
+          <SquareElement setActive={prop.setActive} />
       </div>
     </div>
   );

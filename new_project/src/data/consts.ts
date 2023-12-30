@@ -17,8 +17,6 @@ const figure: Figure = {
   isSelected: false,
   shape: "square",
   innerColor: "black",
-  width: 100,
-  height: 10,
 };
 
 const img: Picture = {
@@ -59,9 +57,30 @@ export const text: TextBox = {
   },
 };
 
+export const text1: TextBox = {
+  type: "Text",
+  id: 3,
+  pos: {
+    top: 15,
+    left: 10,
+  },
+  size: {
+    height: 20,
+    width: 40,
+  },
+  borderColor: "black",
+  isSelected: false,
+  content: "Write your text",
+  font: {
+    font_style: "normal",
+    font_family: "",
+    font_size: 36,
+    Color: "black",
+  },
+};
 export const slide: Slide = {
   id: 1,
-  elements: [figure, img, text],
+  elements: [],
   numberOfSlide: 1,
   backgroundColor: "black",
   active: true,
