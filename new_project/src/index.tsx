@@ -1,31 +1,21 @@
 import "./index.css";
 import { Navbar } from "./components/navbarComponents/navbar/navbar";
 import Editor from "./components/main/editor";
-import ReactDOM from "react-dom";
-import { presentationInitState } from "./data/consts";
-import { useEffect, useState } from "react";
-function App() {
-  const [presentation, setPresentationData] = useState(presentationInitState);
+import ReactDOM from "react-dom/client";
+import { store } from "./redux/store";
+import { Provider } from "react-redux";
+import React from "react";
 
-  useEffect(() => {
-    console.log();
-  }, [presentation]);
-  const [active, setActive] = useState("");
-  return (
-    <div className="container">
-      <Navbar
-        presentation={presentation}
-        setPresentation={setPresentationData}
-        setActive={setActive}
-      />
-      <Editor
-        presentation={presentation}
-        active={active}
-        setPresentation={setPresentationData}
-        setActive={setActive}
-      />
-    </div>
-  );
-}
-
-ReactDOM.render(<App />, document.getElementById("root"));
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLElement,
+);
+root.render(
+  <Provider store={store}>
+    <React.StrictMode>
+      <div className="container">
+        <Navbar />
+        <Editor />
+      </div>
+    </React.StrictMode>
+  </Provider>,
+);

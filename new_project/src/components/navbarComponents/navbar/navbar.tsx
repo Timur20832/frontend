@@ -1,6 +1,5 @@
 import React from "react";
 import NavbarStyle from "./navbar.module.css";
-import ImageElement from "../objectToolsComponents/image/imgElement";
 import CircleElement from "../objectToolsComponents/artObject/circleElement/circleElement";
 import TrinagleElement from "../objectToolsComponents/artObject/triangleElement/triangleElement";
 import SquareElement from "../objectToolsComponents/artObject/squareElement/squareElement";
@@ -12,32 +11,21 @@ import ExportFile from "../slideToolsComponents/exportFile/exportFile";
 import LogoPresentation from "../presentationToolsComponents/logoPresentation/logoPresentation";
 import NamePresentation from "../presentationToolsComponents/namePresentation/namePresentation";
 import CursorComponent from "../slideToolsComponents/cursorComponent/cursorElement";
+import { useAppSelector } from "../../../redux/hooks";
 
-import { Presentation } from "../../../data/types";
-
-type navBarprop = {
-  presentation: Presentation;
-  setPresentation: (presentation: Presentation) => void;
-  setActive: (active: string) => void;
-};
-
-export function Navbar(prop: navBarprop) {
+export function Navbar() {
+  const slides = useAppSelector((state) => state.slides);
+  const presentation = useAppSelector((state) => state.presentation);
   return (
     <div className={NavbarStyle.navbar}>
       <LogoPresentation />
       <NamePresentation />
       <div className={NavbarStyle.first_group_buttontools}>
-        <CreateSlide
-          presentation={prop.presentation}
-          setPresentation={prop.setPresentation}
-        />
-        <DeleteSlide
-          presentation={prop.presentation}
-          setPresentation={prop.setPresentation}
-        />
+        <CreateSlide slides={slides} />
+        <DeleteSlide slides={slides} />
         <span className={NavbarStyle.separator}></span>
-        <ExportFile presentation={prop.presentation} />
-        <ImportFile setPresentation={prop.setPresentation} />
+        <ExportFile presentation={presentation} />
+        <ImportFile/>
       </div>
       <div className={NavbarStyle.second_group_buttontools}>
         <CursorComponent />

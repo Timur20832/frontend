@@ -2,21 +2,16 @@ import React from "react";
 import { Presentation, Slide } from "../../../../data/types";
 import ButtonStyle from "./createSlide.module.css";
 import { ReactComponent as CreateSlideSVG } from "../../../../sources/navbar icons/add-slide.svg";
+import { useAppActions } from "../../../../redux/hooks";
 
-type createrProps = {
-  presentation: Presentation;
-  setPresentation: (presentation: Presentation) => void;
+type createSlideProps = {
+  slides: Slide[];
 };
-const CreateSlide = (prop: createrProps) => {
+
+const CreateSlide = (prop: createSlideProps) => {
+  const { createCreateSlideAction } = useAppActions();
   const createSlide = () => {
-    prop.presentation.history.push(prop.presentation);
-    const newPresentation: Presentation = {
-      name: prop.presentation.name,
-      slide: prop.presentation.slide,
-      history: prop.presentation.history,
-      historyIndex: prop.presentation.historyIndex + 1,
-    };
-    const id = newPresentation.slide.length + 1;
+    const id = prop.slides.length + 1;
     const newSlide: Slide = {
       id: id,
       elements: [],
@@ -24,9 +19,7 @@ const CreateSlide = (prop: createrProps) => {
       backgroundColor: "white",
       active: false,
     };
-    console.log(newPresentation.slide);
-    newPresentation.slide.push(newSlide);
-    prop.setPresentation(newPresentation);
+    createCreateSlideAction(newSlide);
   };
   return (
     <button className={ButtonStyle.buttontools} onClick={createSlide}>

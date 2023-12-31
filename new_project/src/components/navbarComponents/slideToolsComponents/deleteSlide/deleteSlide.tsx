@@ -1,38 +1,24 @@
 import React from "react";
-import { Presentation } from "../../../../data/types";
+import { Presentation, Slide } from "../../../../data/types";
 import ButtonStyle from "./deleteSlide.module.css";
 
 import { ReactComponent as DeleteSlideSVG } from "../../../../sources/navbar icons/remove-slide.svg";
+import { useAppActions } from "../../../../redux/hooks";
 
 type deleterProps = {
-  presentation: Presentation;
-  setPresentation: (presentation: Presentation) => void;
+  slides: Slide[];
 };
 const DeleteSlide = (prop: deleterProps) => {
-  const deleteSlide = () => {
-    prop.presentation.history.push(prop.presentation);
-    const newPresentation: Presentation = {
-      name: prop.presentation.name,
-      slide: prop.presentation.slide,
-      history: prop.presentation.history,
-      historyIndex: prop.presentation.historyIndex + 1,
-    };
-    if (newPresentation.slide.length > 1) {
-      const activeSlideIndex =
-        newPresentation.slide.findIndex((slide) => slide.active) ??
-        newPresentation.slide[newPresentation.slide.length - 1];
-      console.log(activeSlideIndex);
-      newPresentation.slide.splice(activeSlideIndex, 1);
-      const anotherSlideId =
-        activeSlideIndex - 1 < 0 ? 0 : activeSlideIndex - 1;
+  const { createDeleteSlideAction, createChangeActiveSlideAction } =
+    useAppActions();
 
-      console.log(anotherSlideId);
-      newPresentation.slide[anotherSlideId].active = true;
-      console.log(newPresentation.slide);
-    } else {
-      newPresentation.slide[0].elements = [];
-    }
-    prop.setPresentation(newPresentation);
+  const deleteSlide = () => {
+    const activeSlideIndex =
+      prop.slides.findIndex((slide) => slide.active) ??
+      prop.slides[prop.slides.length - 1];
+    createDeleteSlideAction(activeSlideIndex);
+    const anotherSlideId = activeSlideIndex - 1 < 0 ? 0 : activeSlideIndex - 1;
+    createChangeActiveSlideAction(anotherSlideId);
   };
   return (
     <button className={ButtonStyle.buttontools} onClick={deleteSlide}>

@@ -5,6 +5,7 @@ import ShowSlider from "./slider/slider";
 
 // import Editor styles
 import EditorStyle from "./editor.module.css";
+import { useAppSelector } from "../../redux/hooks";
 
 type props = {
   presentation: Presentation;
@@ -13,12 +14,10 @@ type props = {
   setActive: (active: string) => void;
 };
 const Editor = (prop: props) => {
+  const slides = useAppSelector((state) => state.slides);
   return (
     <div style={{ display: "flex", width: "100%" }}>
-      <ShowSlider
-        presentation={prop.presentation}
-        setPresentation={prop.setPresentation}
-      />
+      <ShowSlider slides={slides} />
       <div className={EditorStyle.slide_area}>
         <ShowSlide
           presentation={prop.presentation}

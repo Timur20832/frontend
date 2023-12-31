@@ -3,31 +3,22 @@ import { SelectTypeOfElement } from "../viewHook";
 import styles from "./slider.module.css";
 import EditorStyle from "../editor.module.css";
 import { useState } from "react";
+import { useAppActions } from "../../../redux/hooks";
 
 type SliderProps = {
-  presentation: Presentation;
-  setPresentation: (presentation: Presentation) => void;
+  slides: Slide[];
 };
 
 function ShowSlider(prop: SliderProps) {
-  const presentationComponent = prop.presentation;
+  const slidesComponent = prop.slides;
   const zoom = 0.3;
   const [currentSlide, setCurrentSlide] = useState<Slide | null>(null);
+  const { createChangeSlideOrderAction, createChangeActiveSlideAction } =
+    useAppActions();
+
   function dragStartHandler(e: React.DragEvent<HTMLDivElement>, slide: Slide) {
     setCurrentSlide(slide);
   }
-
-  const setSlideList = (slides: Slide[]) => {
-    prop.presentation.history.push(prop.presentation);
-    const newPresentation: Presentation = {
-      name: prop.presentation.name,
-      slide: prop.presentation.slide,
-      history: prop.presentation.history,
-      historyIndex: prop.presentation.historyIndex + 1,
-    };
-    newPresentation.slide = slides;
-    prop.setPresentation(newPresentation);
-  };
 
   function dragEndHandler(e: React.DragEvent<HTMLDivElement>) {
     const targetElement = e.target as HTMLDivElement;
@@ -43,20 +34,9 @@ function ShowSlider(prop: SliderProps) {
   function dropHandler(e: React.DragEvent<HTMLDivElement>, slide: Slide) {
     e.preventDefault();
     const targetElement = e.target as HTMLDivElement;
-    const newSlideList = presentationComponent.slide.map((curSlide: Slide) => {
-      if (curSlide.id === slide.id) {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        return { ...curSlide, id: currentSlide.id };
-      }
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      if (curSlide.id === currentSlide.id) {
-        return { ...curSlide, id: slide.id };
-      }
-      return curSlide;
-    });
-    setSlideList(newSlideList);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    createChangeSlideOrderAction(currentSlide.id, slide.id);
     targetElement.style.borderColor = "#000000";
   }
 
@@ -67,25 +47,13 @@ function ShowSlider(prop: SliderProps) {
   };
 
   const changeActive = (curSlide: Slide) => {
-    prop.presentation.history.push(prop.presentation);
-    const newPresentation: Presentation = {
-      name: prop.presentation.name,
-      slide: prop.presentation.slide,
-      history: prop.presentation.history,
-      historyIndex: prop.presentation.historyIndex + 1,
-    };
-    newPresentation.slide[
-      newPresentation.slide.findIndex((slide) => slide.active)
-    ].active = false;
-    newPresentation.slide[
-      newPresentation.slide.findIndex((slide) => slide.id === curSlide.id)
-    ].active = true;
-    prop.setPresentation(newPresentation);
+    createChangeActiveSlideAction(curSlide.id);
   };
+
   return (
     <div className={styles.slider}>
       <ul className={styles.list}>
-        {prop.presentation.slide.sort(sortSlides).map((slide) => (
+        {prop.slides.sort(sortSlides).map((slide) => (
           <div
             className={styles.child}
             onDragStart={(e) => dragStartHandler(e, slide)}
