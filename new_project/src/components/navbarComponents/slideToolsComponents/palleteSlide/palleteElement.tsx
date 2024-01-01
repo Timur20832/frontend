@@ -18,17 +18,18 @@ function palleteElement() {
   ]);
 
   function handleSubmit(e: { preventDefault: () => void; target: any }) {
-    // Prevent the browser from reloading the page
     e.preventDefault();
 
-    // Read the form data
     const form = e.target;
     const formData = new FormData(form);
 
-    // Or you can work with it as a plain object:
     const formJson = Object.fromEntries(formData.entries());
     if (typeof formJson["myInput"] === "string") {
-      if ((formJson["myInput"] !== "") && (formJson["myInput"][0] === "#") && (formJson["myInput"].length === 7)) {
+      if (
+        formJson["myInput"] !== "" &&
+        formJson["myInput"][0] === "#" &&
+        formJson["myInput"].length === 7
+      ) {
         setHexColor(formJson["myInput"]);
       }
     } else {
@@ -57,10 +58,14 @@ function palleteElement() {
           <form method="post" onSubmit={handleSubmit}>
             <input className={PalleteStyle.colorInput} name="myInput" />
             <div className={PalleteStyle.buttonNDiv}>
-              <input type="submit" value="Enter" className={PalleteStyle.submitButton}/>
+              <input
+                type="submit"
+                value="Enter"
+                className={PalleteStyle.submitButton}
+              />
               <div
-                  className={PalleteStyle.previewAddedColor}
-                  style={{backgroundColor: hexColor}}
+                className={PalleteStyle.previewAddedColor}
+                style={{ backgroundColor: hexColor }}
               ></div>
             </div>
           </form>
