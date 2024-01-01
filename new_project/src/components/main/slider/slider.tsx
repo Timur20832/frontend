@@ -42,15 +42,14 @@ function ShowSlider(prop: SliderProps) {
 
   function dropHandler(e: React.DragEvent<HTMLDivElement>, slide: Slide) {
     e.preventDefault();
+    if (currentSlide === null) {
+      return;
+    }
     const targetElement = e.target as HTMLDivElement;
     const newSlideList = presentationComponent.slide.map((curSlide: Slide) => {
       if (curSlide.id === slide.id) {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
         return { ...curSlide, id: currentSlide.id };
       }
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
       if (curSlide.id === currentSlide.id) {
         return { ...curSlide, id: slide.id };
       }
