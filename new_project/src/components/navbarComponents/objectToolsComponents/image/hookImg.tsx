@@ -32,7 +32,7 @@ export function ShowImageElement(
         className="pos"
         onDragStart={(event) => getIdElement(event, Element, "img")}
         draggable={true}
-        src={img}
+        src={Element.path}
         alt="jopa"
         style={{
           width: Element.size.width * zoomX,

@@ -1,5 +1,15 @@
-import { Slide, TextBox } from "../../../../data/types";
+import { GeneralElementType, Slide, TextBox } from "../../../../data/types";
 import React from "react";
+
+/*function changeActiveElements(slide: Slide, element: GeneralElementType) {
+  slide.elements.map((element) => {
+    if (element.isSelected === true) {
+      element.isSelected = false;
+    }
+  });
+  element.isSelected = true;
+}*/
+
 export function ShowTextElement(
   Element: TextBox,
   zoomX: number,
@@ -85,7 +95,7 @@ export const createTextElement = (event: React.MouseEvent, slide: Slide) => {
       width: 500,
     },
     borderColor: "black",
-    isSelected: true,
+    isSelected: false,
   };
   return element;
 };
