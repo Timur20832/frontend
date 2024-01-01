@@ -1,11 +1,11 @@
 import React from "react";
-import style from "./logoPresentation.module.css";
+import LogoStyle from "./logoPresentation.module.css";
 
 import { ReactComponent as LogoSVG } from "../../../../sources/navbar icons/logo.svg";
 
 const LogoPresentation = () => {
   return (
-    <div className={style.Logo}>
+    <div className={LogoStyle.Logo}>
       <LogoSVG />
     </div>
   );

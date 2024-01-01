@@ -12,6 +12,7 @@ import ExportFile from "../slideToolsComponents/exportFile/exportFile";
 import LogoPresentation from "../presentationToolsComponents/logoPresentation/logoPresentation";
 import NamePresentation from "../presentationToolsComponents/namePresentation/namePresentation";
 import CursorComponent from "../slideToolsComponents/cursorComponent/cursorElement";
+import PalleteElement from "../slideToolsComponents/palleteSlide/palleteElement";
 
 import { Presentation } from "../../../data/types";
 
@@ -49,6 +50,8 @@ export function Navbar(prop: navBarprop) {
         <TrinagleElement setActive={prop.setActive} />
         <span className={NavbarStyle.separator}></span>
         <SquareElement setActive={prop.setActive} />
+        <span className={NavbarStyle.separator}></span>
+        <PalleteElement />
       </div>
     </div>
   );
