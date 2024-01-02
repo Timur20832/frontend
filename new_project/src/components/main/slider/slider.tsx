@@ -10,7 +10,9 @@ type SliderProps = {
 
 function ShowSlider(prop: SliderProps) {
   const presentationComponent = prop.presentation;
-  const zoom = 0.3;
+  const zoomX = 0.21;
+  const zoomY = 0.26;
+  const visibility = "none";
   const [currentSlide, setCurrentSlide] = useState<Slide | null>(null);
   function dragStartHandler(e: React.DragEvent<HTMLDivElement>, slide: Slide) {
     setCurrentSlide(slide);
@@ -95,7 +97,7 @@ function ShowSlider(prop: SliderProps) {
             onClick={() => changeActive(slide)}
           >
             {slide.elements.map((element) =>
-              SelectTypeOfElement(element, zoom),
+              SelectTypeOfElement({ element, zoomX, zoomY, visibility }),
             )}
           </div>
         ))}

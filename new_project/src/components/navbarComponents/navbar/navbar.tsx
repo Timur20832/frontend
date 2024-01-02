@@ -47,6 +47,11 @@ export function Navbar(prop: navBarprop) {
       <div className={NavbarStyle.second_group_buttontools}>
         <CursorComponent />
         <span className={NavbarStyle.separator}></span>
+        <ImageElement
+            presentation={prop.presentation}
+            setPresentation={prop.setPresentation}
+        />
+        <span className={NavbarStyle.separator}></span>
         <TextElement setActive={prop.setActive} />
         <span className={NavbarStyle.separator}></span>
         <TextPalleteElement />

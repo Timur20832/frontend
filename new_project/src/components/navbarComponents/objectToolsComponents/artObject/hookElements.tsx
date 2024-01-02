@@ -1,71 +1,104 @@
-import { Figure, Slide } from "../../../../data/types";
+import {Figure, GeneralElementType, Slide} from "../../../../data/types";
 import React from "react";
 
-export function ShowGraphElement(Element: Figure) {
+export function ShowGraphElement(
+  Element: Figure,
+  zoomX: number,
+  zoomY: number,
+  visibility: string,
+) {
+  function getIdElement(
+    event: React.DragEvent<HTMLDivElement>,
+    element: Figure,
+    type: "div" | "artobj",
+  ) {
+    event.dataTransfer.setData("id", `${element.id}`);
+    switch (type) {
+      case "div":
+        event.dataTransfer.setData("div", "true");
+        event.dataTransfer.setData("artobj", "false");
+        break;
+      case "artobj":
+        event.dataTransfer.setData("artobj", "true");
+        event.dataTransfer.setData("div", "false");
+        break;
+    }
+  }
+
   return (
-    <div>
-      <svg
-        key={Element.id}
-        style={{
-          position: "absolute",
-          width: Element.size.width + "%",
-          height: Element.size.height + "%",
-          left: Element.pos.left / 9 + "%",
-          top: Element.pos.top / 6 + "%",
-        }}
-      >
-        {Element.shape === "triangle" && (
-          <g>
-            <g>
-              <polygon
-                points=""
-                fill={Element.innerColor}
-                stroke={Element.borderColor}
-                strokeWidth={25}
-              />
-            </g>
-          </g>
-        )}
-        {Element.shape === "square" && (
-          <g>
-            <g>
-              <rect
-                width={100 + "%"}
-                height={100 + "%"}
-                fill={Element.innerColor}
-                stroke={Element.borderColor}
-              />
-            </g>
-          </g>
-        )}
-        {Element.shape === "circle" && (
-          <g>
-            <g>
-              <circle
-                cx={100}
-                cy={75}
-                r={70}
-                fill={Element.innerColor}
-                stroke={Element.borderColor}
-              />
-            </g>
-          </g>
-        )}
-      </svg>
+    <>
       <div
+        onDragStart={(event) => getIdElement(event, Element, "artobj")}
+        draggable={true}
+      >
+        <svg
+          key={Element.id}
+          style={{
+            position: "absolute",
+            width: Element.size.width * zoomX,
+            height: Element.size.height * zoomX,
+            left: Element.pos.left * zoomX,
+            top: Element.pos.top * zoomX,
+          }}
+        >
+          {Element.shape === "triangle" && (
+            <g>
+              <g>
+                <polygon
+                  points={`${0}, ${Element.size.height * zoomY} 
+                ${(Element.size.width / 2) * zoomX},${0} 
+                ${Element.size.width * zoomX}, ${Element.size.height * zoomY}`}
+                  fill={Element.innerColor}
+                  stroke={Element.borderColor}
+                />
+              </g>
+            </g>
+          )}
+          {Element.shape === "square" && (
+            <g>
+              <g>
+                <rect
+                  width={Element.size.width * zoomX}
+                  height={Element.size.height * zoomX}
+                  fill={Element.innerColor}
+                  stroke={Element.borderColor}
+                />
+              </g>
+            </g>
+          )}
+          {Element.shape === "circle" && (
+            <g>
+              <g>
+                <circle
+                  cx={(Element.size.width * zoomX) / 2}
+                  cy={(Element.size.height * zoomY) / 2}
+                  r={(Element.size.height * ((zoomX + zoomY) / 2)) / 2 - 5}
+                  fill={Element.innerColor}
+                  stroke={Element.borderColor}
+                />
+              </g>
+            </g>
+          )}
+        </svg>
+      </div>
+      <div
+        onDragStart={(event) => getIdElement(event, Element, "div")}
+        draggable={true}
         style={{
           cursor: "nwse-resize",
           position: "absolute",
-          width: "5px",
-          height: "5px",
-          left: Element.pos.left - 0.3 + "%",
-          top: Element.pos.top - 0.3 + "%",
-          backgroundColor: "black",
+          backgroundColor: "green",
+          width: `${5 * zoomX}px`,
+          height: `${5 * zoomY}px`,
+          top: (Element.pos.top + Element.size.height) * zoomX + 5 * zoomX,
+          left: (Element.pos.left + Element.size.width) * zoomX + 5 * zoomY,
+          display: visibility,
         }}
-      />
-    </div>
+      ></div>
+    </>
   );
 }
+
 
 export const createGraphElement = (
   event: React.MouseEvent,
@@ -82,8 +115,8 @@ export const createGraphElement = (
       top: event.clientY - event.currentTarget.getBoundingClientRect().top,
     },
     size: {
-      height: 25,
-      width: 25,
+      height: 150,
+      width: 150,
     },
     borderColor: "black",
     isSelected: false,
@@ -91,70 +124,4 @@ export const createGraphElement = (
     innerColor: "black",
   };
   return element;
-};
-
-export const SampleGraphElement = ({ element }: { element: Figure }) => {
-  return (
-    <div>
-      <svg
-        key={element.id}
-        style={{
-          position: "absolute",
-          width: element.size.width,
-          height: element.size.height,
-          left: element.pos.left,
-          top: element.pos.top,
-        }}
-      >
-        {element.shape === "triangle" && (
-          <g>
-            <g>
-              <polygon
-                points=""
-                fill={element.innerColor}
-                stroke={element.borderColor}
-                strokeWidth={25}
-              />
-            </g>
-          </g>
-        )}
-        {element.shape === "square" && (
-          <g>
-            <g>
-              <rect
-                width={150}
-                height={150}
-                fill={element.innerColor}
-                stroke={element.borderColor}
-              />
-            </g>
-          </g>
-        )}
-        {element.shape === "circle" && (
-          <g>
-            <g>
-              <circle
-                cx={100}
-                cy={75}
-                r={70}
-                fill={element.innerColor}
-                stroke={element.borderColor}
-              />
-            </g>
-          </g>
-        )}
-      </svg>
-      <div
-        style={{
-          cursor: "nwse-resize",
-          position: "absolute",
-          width: "5px",
-          height: "5px",
-          left: element.pos.left - 0.3 + "%",
-          top: element.pos.top - 0.3 + "%",
-          backgroundColor: "black",
-        }}
-      />
-    </div>
-  );
 };
