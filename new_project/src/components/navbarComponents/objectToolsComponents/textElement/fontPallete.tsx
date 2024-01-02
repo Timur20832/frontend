@@ -79,20 +79,25 @@ function FontPalleteElement() {
           opacity: props.status ? "100%" : "0%",
         }}
       >
-        <div className={FontPalleteStyle.fontSelectBlock}>
-          {fontPallete.map((fontPalleteUnit) => (
-            <button
-              className={FontPalleteStyle.fontPalleteUnit}
-              style={{
-                backgroundColor: fontPalleteUnit.font,
-                animation: ArrowRotateAnim,
-                opacity: props.status ? "100%" : "0%",
-              }}
-              onClick={() => setFont(fontPalleteUnit.font)}
-            >
-              {fontPalleteUnit.font}
-            </button>
-          ))}
+        <div className={FontPalleteStyle.fontSelect}>
+          <div className={FontPalleteStyle.fontSelectBlock}>
+            {fontPallete.map((fontPalleteUnit) => (
+              <button
+                className={FontPalleteStyle.fontPalleteUnit}
+                style={{
+                  backgroundColor: fontPalleteUnit.font,
+                  animation: ArrowRotateAnim,
+                  opacity: props.status ? "100%" : "0%",
+                }}
+                onClick={() => setFont(fontPalleteUnit.font)}
+              >
+                {fontPalleteUnit.font}
+              </button>
+            ))}
+          </div>
+          <button className={FontPalleteStyle.fontSelectButton} onClick={changeFont} type={"button"}>
+            submit
+          </button>
         </div>
         <div className={FontPalleteStyle.scroll_area}></div>
         <div className={FontPalleteStyle.fontPreviewBlock}>
@@ -106,9 +111,6 @@ function FontPalleteElement() {
             onClick={() => setDropDownShow(!dropDownShow)}
           >
             <ShowArrowButton status={dropDownShow} />
-          </button>
-          <button onClick={changeFont} type={"button"}>
-            submit
           </button>
         </div>
       </div>
