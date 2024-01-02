@@ -39,6 +39,23 @@
   width: 50px;
 }
 
+.fontSelectButton {
+  width: 75px;
+  margin: 0 0 1px 5px;
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: #7c7c7c;
+}
+
+.fontSelectButton:active {
+  background-color: #3f3f3f;
+}
+
+.fontSelect {
+  display: flex;
+  flex-direction: column;
+}
+
 .fontPalleteUnit {
   box-sizing: content-box;
   width: 70px;
