@@ -1,7 +1,6 @@
 import { Presentation, Slide } from "../../../data/types";
 import { SelectTypeOfElement } from "../viewHook";
-import styles from "./slider.module.css";
-import EditorStyle from "../editor.module.css";
+import SliderStyle from "./slider.module.css";
 import { useState } from "react";
 
 type SliderProps = {
@@ -83,11 +82,11 @@ function ShowSlider(prop: SliderProps) {
     prop.setPresentation(newPresentation);
   };
   return (
-    <div className={styles.slider}>
-      <ul className={styles.list}>
+    <div className={SliderStyle.slider}>
+      <ul className={SliderStyle.list}>
         {prop.presentation.slide.sort(sortSlides).map((slide) => (
           <div
-            className={styles.child}
+            className={SliderStyle.child}
             onDragStart={(e) => dragStartHandler(e, slide)}
             onDragLeave={(e) => dragEndHandler(e)}
             onDragEnd={(e) => dragEndHandler(e)}
@@ -102,7 +101,7 @@ function ShowSlider(prop: SliderProps) {
           </div>
         ))}
       </ul>
-      <div className={EditorStyle.scroll_area}></div>
+      <div className={SliderStyle.scroll_area}></div>
     </div>
   );
 }

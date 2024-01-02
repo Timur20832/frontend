@@ -3,8 +3,8 @@ import PalleteStyle from "./palleteElement.module.css";
 
 import { ReactComponent as PalleteSVG } from "../../../../sources/navbar icons/pallete-navbar-icon.svg";
 
-function palleteElement() {
-  const [show, setShow] = React.useState(true);
+function colorPalleteElement() {
+  const [show, setShow] = React.useState(false);
   const [hexColor, setHexColor] = React.useState("#ffffff");
   const [Pallete] = useState([
     { unitId: 1, nameColor: "white", color: "#ffffff" },
@@ -28,7 +28,11 @@ function palleteElement() {
     // Or you can work with it as a plain object:
     const formJson = Object.fromEntries(formData.entries());
     if (typeof formJson["myInput"] === "string") {
-      if ((formJson["myInput"] !== "") && (formJson["myInput"][0] === "#") && (formJson["myInput"].length === 7)) {
+      if (
+        formJson["myInput"] !== "" &&
+        formJson["myInput"][0] === "#" &&
+        formJson["myInput"].length === 7
+      ) {
         setHexColor(formJson["myInput"]);
       }
     } else {
@@ -57,10 +61,14 @@ function palleteElement() {
           <form method="post" onSubmit={handleSubmit}>
             <input className={PalleteStyle.colorInput} name="myInput" />
             <div className={PalleteStyle.buttonNDiv}>
-              <input type="submit" value="Enter" className={PalleteStyle.submitButton}/>
+              <input
+                type="submit"
+                value="Enter"
+                className={PalleteStyle.submitButton}
+              />
               <div
-                  className={PalleteStyle.previewAddedColor}
-                  style={{backgroundColor: hexColor}}
+                className={PalleteStyle.previewAddedColor}
+                style={{ backgroundColor: hexColor }}
               ></div>
             </div>
           </form>
@@ -82,4 +90,4 @@ function palleteElement() {
   );
 }
 
-export default palleteElement;
+export default colorPalleteElement;

@@ -12,7 +12,8 @@ import ExportFile from "../slideToolsComponents/exportFile/exportFile";
 import LogoPresentation from "../presentationToolsComponents/logoPresentation/logoPresentation";
 import NamePresentation from "../presentationToolsComponents/namePresentation/namePresentation";
 import CursorComponent from "../slideToolsComponents/cursorComponent/cursorElement";
-import PalleteElement from "../slideToolsComponents/palleteSlide/palleteElement";
+import ColorPalleteElement from "../slideToolsComponents/palleteSlide/palleteElement";
+import TextPalleteElement from "../objectToolsComponents/textElement/fontPallete";
 
 import { Presentation } from "../../../data/types";
 
@@ -45,13 +46,15 @@ export function Navbar(prop: navBarprop) {
         <span className={NavbarStyle.separator}></span>
         <TextElement setActive={prop.setActive} />
         <span className={NavbarStyle.separator}></span>
+        <TextPalleteElement />
+        <span className={NavbarStyle.separator}></span>
         <CircleElement setActive={prop.setActive} />
         <span className={NavbarStyle.separator}></span>
         <TrinagleElement setActive={prop.setActive} />
         <span className={NavbarStyle.separator}></span>
         <SquareElement setActive={prop.setActive} />
         <span className={NavbarStyle.separator}></span>
-        <PalleteElement />
+        <ColorPalleteElement />
       </div>
     </div>
   );
