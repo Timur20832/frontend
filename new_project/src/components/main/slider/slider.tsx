@@ -50,7 +50,7 @@ function ShowSlider(prop: SliderProps) {
   const changeActive = (curSlide: Slide) => {
     console.log(prop.slides);
     createChangeActiveSlideAction(
-      prop.slides.findIndex((slide) => (slide.id === curSlide.id)),
+      prop.slides.findIndex((slide) => slide.id === curSlide.id),
     );
   };
 

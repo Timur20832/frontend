@@ -1,14 +1,14 @@
 import { Picture } from "../../../../data/types";
 import img from "../../../../sources/shapes/shapes images/shape-img.png";
 import React from "react";
-import {useAppActions} from "../../../../redux/hooks";
+import { useAppActions } from "../../../../redux/hooks";
 export function ShowImageElement(
   Element: Picture,
   zoomX: number,
   zoomY: number,
   visibility: string,
 ) {
-    const { createSetActiveElementAction } = useAppActions();
+  const { createSetActiveElementAction } = useAppActions();
   function getIdElement(
     event:
       | React.DragEvent<HTMLTextAreaElement>
@@ -28,9 +28,9 @@ export function ShowImageElement(
         break;
     }
   }
-    const setActive = () => {
-        createSetActiveElementAction(Element.id);
-    };
+  const setActive = () => {
+    createSetActiveElementAction(Element.id);
+  };
   return (
     <>
       <img

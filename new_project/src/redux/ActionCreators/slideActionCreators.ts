@@ -109,8 +109,7 @@ function createDeleteActiveElementAction() {
   };
 }
 
-function createChangeFontAction(font: string, size: number)
-{
+function createChangeFontAction(font: string, size: number) {
   return {
     type: SlideActions.CHANGE_FONT,
     payload: {

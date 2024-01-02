@@ -3,7 +3,12 @@ import React from "react";
 import ButtonStyle from "./imgElement.module.css";
 // import svg / svg's
 import { ReactComponent as ImageNavbarSVG } from "../../../../sources/navbar icons/image-navbar-icon.svg";
-import {GeneralElementType, Picture, Slide, SlideElement} from "../../../../data/types";
+import {
+  GeneralElementType,
+  Picture,
+  Slide,
+  SlideElement,
+} from "../../../../data/types";
 import { useAppActions } from "../../../../redux/hooks";
 
 type props = {

@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import PalleteStyle from "./palleteElement.module.css";
 
 import { ReactComponent as PalleteSVG } from "../../../../sources/navbar icons/pallete-navbar-icon.svg";
-import {useAppActions} from "../../../../redux/hooks";
-import {Slide} from "../../../../data/types";
+import { useAppActions } from "../../../../redux/hooks";
+import { Slide } from "../../../../data/types";
 
-type PalleteProp= {
+type PalleteProp = {
   slides: Slide[];
-}
+};
 
 function colorPalleteElement(prop: PalleteProp) {
   const [show, setShow] = React.useState(false);

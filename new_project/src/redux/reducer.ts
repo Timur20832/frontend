@@ -1,5 +1,5 @@
 import { SlideAction, SlideActions } from "./Actions/slideActions";
-import { Presentation, Slide } from "../data/types";
+import { Presentation, Slide, TextBox } from "../data/types";
 import { presentationInitState, slide } from "../data/consts";
 import { combineReducers } from "redux";
 import {
@@ -7,6 +7,7 @@ import {
   PresentationActions,
 } from "./Actions/presentationActions";
 import { ToolAction, ToolActions } from "./Actions/toolActions";
+import { type } from "node:os";
 
 const initData: Presentation = presentationInitState;
 
@@ -17,12 +18,10 @@ const slidesReducer = (
   switch (action.type) {
     case SlideActions.CREATE_SLIDE: {
       const newState = [...state, action.payload.slide];
-      console.log(newState);
       return newState;
     }
     case SlideActions.DELETE_SLIDE: {
       let newState = [...state];
-      console.log(newState[action.payload.slideId]);
       if (newState.length > 1) {
         newState = newState.filter(
           (item) => item.id !== action.payload.slideId,
@@ -30,7 +29,6 @@ const slidesReducer = (
       } else {
         newState[0].elements = [];
       }
-      console.log(newState);
       return newState;
     }
     case SlideActions.CHANGE_ORDER: {
@@ -49,11 +47,9 @@ const slidesReducer = (
     }
     case SlideActions.CHANGE_ACTIVE_SLIDE: {
       const newState = [...state];
-      console.log("new active reducer", action.payload.currentSlideId);
       if (newState.findIndex((slide) => slide.active) > -1) {
         newState[newState.findIndex((slide) => slide.active)].active = false;
       }
-      console.log(newState);
       newState[action.payload.currentSlideId].active = true;
       return newState;
     }
@@ -95,6 +91,63 @@ const slidesReducer = (
       const newState = [...state];
       newState[action.payload.activeSlideIndex].backgroundColor =
         action.payload.newColor;
+      return newState;
+    }
+    case SlideActions.SET_ACTIVE_ELEMENT: {
+      const newState = [...state];
+      const activeSlideIndex = newState.findIndex((slide) => slide.active);
+      const selectedElementIndex = newState[
+        activeSlideIndex
+      ].elements.findIndex((element) => element.isSelected);
+      if (selectedElementIndex > -1) {
+        newState[activeSlideIndex].elements[selectedElementIndex].isSelected =
+          false;
+      }
+      if (
+        newState[activeSlideIndex].elements[
+          newState[activeSlideIndex].elements.findIndex(
+            (element) => element.id === action.payload.elementId,
+          )
+        ] === undefined
+      ) {
+        return newState;
+      }
+      newState[activeSlideIndex].elements[
+        newState[activeSlideIndex].elements.findIndex(
+          (element) => element.id === action.payload.elementId,
+        )
+      ].isSelected = true;
+      return newState;
+    }
+    case SlideActions.DELETE_ACTIVE_ELEMENT: {
+      const newState = [...state];
+      const activeSlideIndex = newState.findIndex((slide) => slide.active);
+      const selectedElementIndex = newState[
+        activeSlideIndex
+      ].elements.findIndex((element) => element.isSelected);
+
+      if (selectedElementIndex > -1) {
+        newState[activeSlideIndex].elements = newState[
+          activeSlideIndex
+        ].elements.filter((item) => !item.isSelected);
+      }
+      return newState;
+    }
+    case SlideActions.CHANGE_FONT: {
+      const newState = [...state];
+      const activeSlideIndex = newState.findIndex((slide) => slide.active);
+      const selectedElementIndex = newState[
+        activeSlideIndex
+      ].elements.findIndex((element) => element.isSelected);
+      const selectedElement =
+        newState[activeSlideIndex].elements[selectedElementIndex];
+
+      if (selectedElement.type === "Text") {
+        const textBox = selectedElement as TextBox;
+        textBox.font.font_size = action.payload.size;
+        textBox.font.font_family = action.payload.font;
+        newState[activeSlideIndex].elements[selectedElementIndex] = textBox;
+      }
       return newState;
     }
     default:

@@ -107,7 +107,9 @@ function FontPalleteElement() {
           >
             <ShowArrowButton status={dropDownShow} />
           </button>
-          <button onClick={changeFont} type={"button"}>submit</button>
+          <button onClick={changeFont} type={"button"}>
+            submit
+          </button>
         </div>
       </div>
     );

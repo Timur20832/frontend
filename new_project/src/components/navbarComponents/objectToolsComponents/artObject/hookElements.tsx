@@ -5,7 +5,7 @@ import {
   SlideElement,
 } from "../../../../data/types";
 import React from "react";
-import {useAppActions} from "../../../../redux/hooks";
+import { useAppActions } from "../../../../redux/hooks";
 
 export function ShowGraphElement(
   Element: Figure,
@@ -13,7 +13,7 @@ export function ShowGraphElement(
   zoomY: number,
   visibility: string,
 ) {
-    const { createSetActiveElementAction } = useAppActions();
+  const { createSetActiveElementAction } = useAppActions();
   function getIdElement(
     event: React.DragEvent<HTMLDivElement>,
     element: Figure,
@@ -31,9 +31,9 @@ export function ShowGraphElement(
         break;
     }
   }
-    const setActive = () => {
-        createSetActiveElementAction(Element.id);
-    };
+  const setActive = () => {
+    createSetActiveElementAction(Element.id);
+  };
   return (
     <>
       <div

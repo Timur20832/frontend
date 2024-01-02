@@ -100,7 +100,7 @@ type ChangeFontAction = {
     font: string;
     size: number;
   };
-}
+};
 
 type SlideAction =
   | CreateSlideAction
