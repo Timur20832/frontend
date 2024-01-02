@@ -14,6 +14,7 @@ import CursorComponent from "../slideToolsComponents/cursorComponent/cursorEleme
 import { useAppSelector } from "../../../redux/hooks";
 import ColorPalleteElement from "../slideToolsComponents/palleteSlide/palleteElement";
 import TextPalleteElement from "../objectToolsComponents/textElement/fontPallete";
+import ImageElement from "../objectToolsComponents/image/imgElement";
 
 export function Navbar() {
   const slides = useAppSelector((state) => state.slides);
@@ -21,36 +22,28 @@ export function Navbar() {
   return (
     <div className={NavbarStyle.navbar}>
       <LogoPresentation />
-      <NamePresentation
-        presentation={prop.presentation}
-        setPresentation={prop.setPresentation}
-      />
+      <NamePresentation />
       <div className={NavbarStyle.first_group_buttontools}>
         <CreateSlide slides={slides} />
         <DeleteSlide slides={slides} />
         <span className={NavbarStyle.separator}></span>
-        <ExportFile presentation={presentation} />
-        <ImportFile/>
+        <ExportFile presentation={presentation} slides={slides} />
+        <ImportFile />
       </div>
       <div className={NavbarStyle.second_group_buttontools}>
-        <CursorComponent />
+        <ImageElement slides={slides} />
         <span className={NavbarStyle.separator}></span>
-        <ImageElement
-            presentation={prop.presentation}
-            setPresentation={prop.setPresentation}
-        />
-        <span className={NavbarStyle.separator}></span>
-        <TextElement setActive={prop.setActive} />
+        <TextElement />
         <span className={NavbarStyle.separator}></span>
         <TextPalleteElement />
         <span className={NavbarStyle.separator}></span>
-        <CircleElement setActive={prop.setActive} />
+        <CircleElement />
         <span className={NavbarStyle.separator}></span>
-        <TrinagleElement setActive={prop.setActive} />
+        <TrinagleElement />
         <span className={NavbarStyle.separator}></span>
-        <SquareElement setActive={prop.setActive} />
+        <SquareElement />
         <span className={NavbarStyle.separator}></span>
-        <ColorPalleteElement />
+        <ColorPalleteElement slides={slides} />
       </div>
     </div>
   );

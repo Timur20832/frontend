@@ -1,98 +1,98 @@
 .buttontools {
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 0;
-    background: none;
-    margin: 5px 5px 5px 5px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: none;
+  margin: 5px 5px 5px 5px;
 }
 
 .buttontools:active {
-    transition: 0.1s;
-    width: 20px;
-    height: 20px;
-    margin: 10px 10px 10px 10px;
+  transition: 0.1s;
+  width: 20px;
+  height: 20px;
+  margin: 10px 10px 10px 10px;
 }
 
 .pallete {
-    display: flex;
-    position: absolute;
-    height: 80px;
-    width: 240px;
-    border: 3px solid black;
-    border-radius: 5px;
-    background-color: #d9d9d9;
-    margin: 40px 10px 10px 320px;
-    z-index: 1;
-    transition-duration: 1s;
+  display: flex;
+  position: absolute;
+  height: 80px;
+  width: 240px;
+  border: 3px solid black;
+  border-radius: 5px;
+  background-color: #d9d9d9;
+  margin: 40px 10px 10px 320px;
+  z-index: 1;
+  transition-duration: 1s;
 }
 
 .colorPreviewBlock {
-    display: flex;
-    flex-wrap: wrap;
-    width: 180px;
-    height: 60px;
-    margin: 0 0 0 5px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 180px;
+  height: 60px;
+  margin: 0 0 0 5px;
 }
 
 .palleteUnit {
-    width: 20px;
-    height: 20px;
-    border: none;
-    border-radius: 5px;
-    margin: 10px 5px 5px 5px;
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: 5px;
+  margin: 10px 5px 5px 5px;
 }
 
 .inputMenu {
-    height: 20px;
-    margin: 0 5px 0 0;
+  height: 20px;
+  margin: 0 5px 0 0;
 }
 
 .colorInput {
-    margin-top: 10px;
-    border: 2px solid black;
-    border-radius: 5px;
-    height: 20px;
-    width: 100px;
-    outline: none;
-    box-sizing: border-box;
-    background-color: transparent;
-    font-family: 'Roboto', sans-serif;
-    text-align: center;
+  margin-top: 10px;
+  border: 2px solid black;
+  border-radius: 5px;
+  height: 20px;
+  width: 100px;
+  outline: none;
+  box-sizing: border-box;
+  background-color: transparent;
+  font-family: "Roboto", sans-serif;
+  text-align: center;
 }
 
 .submitButton {
-    box-sizing: border-box;
-    height: 20px;
-    margin-top: 5px;
-    background-color: #606060;
-    color: #ffffff;
-    font-family: 'Roboto', sans-serif;
-    text-align: center;
-    border: 2px solid black;
-    border-radius: 5px;
-    width: 50px;
+  box-sizing: border-box;
+  height: 20px;
+  margin-top: 5px;
+  background-color: #606060;
+  color: #ffffff;
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  border: 2px solid black;
+  border-radius: 5px;
+  width: 50px;
 }
 
 .submitButton:active {
-    transition-duration: 0.1s;
-    margin-top: 5px;
-    background-color: #7c7c7c;
-    border: 2px solid black;
-    border-radius: 5px;
-    width: 50px;
+  transition-duration: 0.1s;
+  margin-top: 5px;
+  background-color: #7c7c7c;
+  border: 2px solid black;
+  border-radius: 5px;
+  width: 50px;
 }
 
 .previewAddedColor {
-    margin: 5px 5px 0 15px;
-    width: 20px;
-    height: 20px;
-    border-radius: 5px;
+  margin: 5px 5px 0 15px;
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
 }
 
 .buttonNDiv {
-    display: flex;
-    margin-top: 10px;
+  display: flex;
+  margin-top: 10px;
 }

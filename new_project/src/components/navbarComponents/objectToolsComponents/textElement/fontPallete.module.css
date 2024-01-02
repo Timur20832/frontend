@@ -1,111 +1,111 @@
 .buttontools {
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 0;
-    background: none;
-    margin: 5px 5px 5px 5px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: none;
+  margin: 5px 5px 5px 5px;
 }
 
 .buttontools:active {
-    transition: 0.1s;
-    width: 20px;
-    height: 20px;
-    margin: 10px 10px 10px 10px;
+  transition: 0.1s;
+  width: 20px;
+  height: 20px;
+  margin: 10px 10px 10px 10px;
 }
 
 .pallete {
-    display: flex;
-    position: absolute;
-    height: 80px;
-    width: 150px;
-    border: 3px solid black;
-    border-radius: 5px;
-    background-color: #d9d9d9;
-    margin: 40px 10px 10px 100px;
-    z-index: 1;
-    transition-duration: 1s;
+  display: flex;
+  position: absolute;
+  height: 80px;
+  width: 150px;
+  border: 3px solid black;
+  border-radius: 5px;
+  background-color: #d9d9d9;
+  margin: 40px 10px 10px 100px;
+  z-index: 1;
+  transition-duration: 1s;
 }
 
 .fontSelectBlock {
-    overflow: auto;
-    width: 90px;
+  overflow: auto;
+  width: 90px;
 }
 
 .fontPreviewBlock {
-    display: flex;
-    width: 50px;
+  display: flex;
+  width: 50px;
 }
 
 .fontPalleteUnit {
-    box-sizing: content-box;
-    width: 70px;
-    height: 20px;
-    border-radius: 5px;
-    margin: 5px 0 0 5px;
-    font-size: 10px;
-    overflow: hidden;
-    border: 2px solid black;
+  box-sizing: content-box;
+  width: 70px;
+  height: 20px;
+  border-radius: 5px;
+  margin: 5px 0 0 5px;
+  font-size: 10px;
+  overflow: hidden;
+  border: 2px solid black;
 }
 
 .fontSelectBlock::-webkit-scrollbar-track {
-    margin-top: 5px;
-    margin-bottom: 5px;
-    border-radius: 10px;
-    background-color: transparent;
-    border: 2px solid #565656;
-    box-sizing: border-box;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  background-color: transparent;
+  border: 2px solid #565656;
+  box-sizing: border-box;
 }
 
 .fontSelectBlock::-webkit-scrollbar {
-    width: 5px;
-    background-color: #d9d9d9;
+  width: 5px;
+  background-color: #d9d9d9;
 }
 
 .fontSelectBlock::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background-color: #565656;
+  border-radius: 10px;
+  background-color: #565656;
 }
 
 .fontSelectBlock::-webkit-scrollbar-thumb:hover {
-    transition: 10ms;
-    border-radius: 10px;
-    background-color: #3f3f3f;
-    width: 25%;
+  transition: 10ms;
+  border-radius: 10px;
+  background-color: #3f3f3f;
+  width: 25%;
 }
 
 .scroll_area {
-    width: 5px;
+  width: 5px;
 }
 
 .fontSizeList {
-    background-color: #ffffff;
-    border: 2px solid black;
-    border-radius: 5px;
-    width: 20px;
-    margin: 5px 0 0 0;
+  background-color: #ffffff;
+  border: 2px solid black;
+  border-radius: 5px;
+  width: 20px;
+  margin: 5px 0 0 0;
 }
 
 .fontSizeSelectButton {
-    width: 20px;
-    border: 2px solid black;
-    border-radius: 5px;
+  width: 20px;
+  border: 2px solid black;
+  border-radius: 5px;
 }
 
 .dropDownButton {
-    height: 22px;
-    width: 150px;
-    margin: 5px 0 0 5px;
-    font-size: 20px;
-    text-align: center;
-    border: 2px solid black;
-    border-radius: 5px;
-    background-color: #ffffff;
+  height: 22px;
+  width: 150px;
+  margin: 5px 0 0 5px;
+  font-size: 20px;
+  text-align: center;
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: #ffffff;
 }
 
 .ArrowSVG {
-    width: 15px;
-    height: 15px;
+  width: 15px;
+  height: 15px;
 }

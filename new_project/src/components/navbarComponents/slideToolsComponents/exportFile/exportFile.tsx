@@ -1,23 +1,18 @@
 import React from "react";
-
-// import object / object's
-import { Presentation } from "../../../../data/types";
-
-// import Button styles
+import { Presentation, Slide } from "../../../../data/types";
 import ButtonStyle from "./exportFile.module.css";
-
-// import svg / svg's
 import { ReactComponent as ExportNavbarSVG } from "../../../../sources/navbar icons/export-navbar-icon.svg";
 
 type exportProps = {
   presentation: Presentation;
+  slides: Slide[];
 };
 
 const ExportFile = (props: exportProps) => {
   const exportObjectAsJson = () => {
     const presentationForSave: Presentation = {
       name: props.presentation.name,
-      slide: props.presentation.slide,
+      slide: props.slides,
       history: [],
       historyIndex: 1,
     };

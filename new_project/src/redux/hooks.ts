@@ -3,6 +3,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as SlideActionCreator from "./ActionCreators/slideActionCreators";
 import * as PresentationActionCreator from "./ActionCreators/presentationActionCreators";
+import * as ToolActionCreator from "./ActionCreators/toolActionCreators";
 // Выведение типа `RootState` из хранилища
 type RootState = ReturnType<typeof rootReducer>;
 
@@ -14,7 +15,8 @@ const useAppActions = () => {
   return bindActionCreators(
     {
       ...SlideActionCreator,
-      ...PresentationActionCreator
+      ...PresentationActionCreator,
+      ...ToolActionCreator,
     },
     dispatch,
   );

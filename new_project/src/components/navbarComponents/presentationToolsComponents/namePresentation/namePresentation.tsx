@@ -1,14 +1,9 @@
-import React, { ChangeEvent } from "react";
-
-// import Presentation style
+import React from "react";
 import PresentationNameStyle from "./namePresentation.module.css";
-import { Presentation } from "../../../../data/types";
+import { useAppActions } from "../../../../redux/hooks";
 
-type NameProps = {
-  presentation: Presentation;
-  setPresentation: (presentation: Presentation) => void;
-};
-const NamePresentation = (props: NameProps) => {
+const NamePresentation = () => {
+  const { createRenamePresentationAction } = useAppActions();
   function updateName(e: { preventDefault: () => void; target: any }) {
     e.preventDefault();
 
@@ -17,14 +12,7 @@ const NamePresentation = (props: NameProps) => {
 
     const formJson = Object.fromEntries(formData.entries());
     if (typeof formJson["presentationName"] === "string") {
-      props.presentation.history.push(props.presentation);
-      const newPresentation: Presentation = {
-        name: formJson["presentationName"],
-        slide: props.presentation.slide,
-        history: props.presentation.history,
-        historyIndex: props.presentation.historyIndex + 1,
-      };
-      props.setPresentation(newPresentation);
+      createRenamePresentationAction(formJson["presentationName"]);
     }
   }
   return (

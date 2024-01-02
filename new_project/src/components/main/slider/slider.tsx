@@ -9,10 +9,9 @@ type SliderProps = {
 };
 
 function ShowSlider(prop: SliderProps) {
-  const slidesComponent = prop.slides;
-    const zoomX = 0.21;
-    const zoomY = 0.26;
-    const visibility = "none";
+  const zoomX = 0.21;
+  const zoomY = 0.26;
+  const visibility = "none";
   const [currentSlide, setCurrentSlide] = useState<Slide | null>(null);
   const { createChangeSlideOrderAction, createChangeActiveSlideAction } =
     useAppActions();
@@ -38,8 +37,6 @@ function ShowSlider(prop: SliderProps) {
       return;
     }
     const targetElement = e.target as HTMLDivElement;
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     createChangeSlideOrderAction(currentSlide.id, slide.id);
     targetElement.style.borderColor = "#000000";
   }
@@ -51,7 +48,10 @@ function ShowSlider(prop: SliderProps) {
   };
 
   const changeActive = (curSlide: Slide) => {
-    createChangeActiveSlideAction(curSlide.id);
+    console.log(prop.slides);
+    createChangeActiveSlideAction(
+      prop.slides.findIndex((slide) => (slide.id === curSlide.id)),
+    );
   };
 
   return (
@@ -67,6 +67,9 @@ function ShowSlider(prop: SliderProps) {
             onDrop={(e) => dropHandler(e, slide)}
             draggable={true}
             onClick={() => changeActive(slide)}
+            style={{
+              backgroundColor: slide.backgroundColor,
+            }}
           >
             {slide.elements.map((element) =>
               SelectTypeOfElement({ element, zoomX, zoomY, visibility }),

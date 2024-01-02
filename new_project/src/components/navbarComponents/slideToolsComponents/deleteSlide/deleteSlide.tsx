@@ -13,11 +13,15 @@ const DeleteSlide = (prop: deleterProps) => {
     useAppActions();
 
   const deleteSlide = () => {
+    console.log(prop.slides);
     const activeSlideIndex =
       prop.slides.findIndex((slide) => slide.active) ??
       prop.slides[prop.slides.length - 1];
-    createDeleteSlideAction(activeSlideIndex);
+    console.log(activeSlideIndex);
+    createDeleteSlideAction(prop.slides[activeSlideIndex].id);
+    console.log(prop.slides);
     const anotherSlideId = activeSlideIndex - 1 < 0 ? 0 : activeSlideIndex - 1;
+    console.log(anotherSlideId);
     createChangeActiveSlideAction(anotherSlideId);
   };
   return (

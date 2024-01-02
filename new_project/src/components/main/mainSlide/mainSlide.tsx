@@ -3,62 +3,52 @@ import { GeneralElementType, Presentation, Slide } from "../../../data/types";
 import { SelectTypeOfElement } from "../viewHook";
 import { createTextElement } from "../../navbarComponents/objectToolsComponents/textElement/hookText";
 import { createGraphElement } from "../../navbarComponents/objectToolsComponents/artObject/hookElements";
-
-// import Slide styles
 import SlideStyle from "./mainSlide.module.css";
+import { useAppActions } from "../../../redux/hooks";
 
-type slideProps = {
-  presentation: Presentation;
-  active: string;
-  setPresentation: (presentation: Presentation) => void;
-  setActive: (active: string) => void;
+type SlideProps = {
+  slides: Slide[];
+  activeTool: string;
 };
 
-const addElementSlide = (
-  prop: slideProps,
-  element: GeneralElementType,
-  activeSlide: Slide,
-) => {
-  const newPresentation = prop.presentation;
-  newPresentation.slide[activeSlide.id - 1].elements.push(element);
-  prop.setPresentation(newPresentation);
-  prop.setActive("nothing");
-};
-
-export function ShowSlide(prop: slideProps) {
+export function ShowSlide(prop: SlideProps) {
+  const {
+    createChooseToolAction,
+    createAddElementAction,
+    createMoveElementAction,
+    createResizeElementAction,
+  } = useAppActions();
   const zoomX = 1;
   const zoomY = 1;
   const visibility = "block";
-  const activeSlide = prop.presentation.slide.find((slide) => slide.active);
+  const activeSlide = prop.slides.find((slide) => slide.active);
   if (!activeSlide) {
     return <div>Oops mistake</div>;
   }
+  const addElementSlide = (element: GeneralElementType) => {
+    createAddElementAction(element);
+    createChooseToolAction("nothing");
+  };
   const handleSlideClick = (event: React.MouseEvent) => {
-    if (prop.active === "text") {
+    if (prop.activeTool === "text") {
       const element = createTextElement(event, activeSlide);
-      addElementSlide(prop, element, activeSlide);
+      addElementSlide(element);
     } else if (
-      prop.active === "circle" ||
-      prop.active === "square" ||
-      prop.active === "triangle"
+      prop.activeTool === "circle" ||
+      prop.activeTool === "square" ||
+      prop.activeTool === "triangle"
     ) {
-      const element = createGraphElement(event, activeSlide, prop.active);
-      addElementSlide(prop, element, activeSlide);
+      const element = createGraphElement(event, activeSlide, prop.activeTool);
+      addElementSlide(element);
     }
   };
 
   const dropHandler = (event: React.DragEvent<HTMLDivElement>) => {
     const elementId = +event.dataTransfer.getData("id");
-    const newPresentation: Presentation = {
-      name: prop.presentation.name,
-      slide: prop.presentation.slide,
-      history: prop.presentation.history,
-      historyIndex: prop.presentation.historyIndex + 1,
-    };
-    const currentSlideIndex = prop.presentation.slide.findIndex(
+    const currentSlideIndex = prop.slides.findIndex(
       (slide) => activeSlide.id === slide.id,
     );
-    const currentIndexElement = newPresentation.slide[
+    const currentIndexElement = prop.slides[
       currentSlideIndex
     ].elements.findIndex((element) => element.id === elementId);
     if (
@@ -66,44 +56,40 @@ export function ShowSlide(prop: slideProps) {
       event.dataTransfer.getData("img") === "true" ||
       event.dataTransfer.getData("artobj") === "true"
     ) {
-      newPresentation.slide[currentSlideIndex].elements[
-        currentIndexElement
-      ].pos.left =
-        event.pageX - event.currentTarget.getBoundingClientRect().left;
-      newPresentation.slide[currentSlideIndex].elements[
-        currentIndexElement
-      ].pos.top = event.pageY - event.currentTarget.getBoundingClientRect().top;
+      createMoveElementAction(
+        elementId,
+        event.pageX - event.currentTarget.getBoundingClientRect().left,
+        event.pageY - event.currentTarget.getBoundingClientRect().top,
+      );
     } else if (event.dataTransfer.getData("div") === "true") {
-      newPresentation.slide[currentSlideIndex].elements[
-        currentIndexElement
-      ].size.width =
-        event.pageX -
-        newPresentation.slide[currentSlideIndex].elements[currentIndexElement]
-          .pos.left -
-        event.currentTarget.getBoundingClientRect().left;
-      newPresentation.slide[currentSlideIndex].elements[
-        currentIndexElement
-      ].size.height =
+      createResizeElementAction(
+        elementId,
         event.pageY -
-        newPresentation.slide[currentSlideIndex].elements[currentIndexElement]
-          .pos.top -
-        event.currentTarget.getBoundingClientRect().top;
+          prop.slides[currentSlideIndex].elements[currentIndexElement].pos.top -
+          event.currentTarget.getBoundingClientRect().top,
+        event.pageX -
+          prop.slides[currentSlideIndex].elements[currentIndexElement].pos
+            .left -
+          event.currentTarget.getBoundingClientRect().left,
+      );
     }
     event.dataTransfer.setData("textarea", "");
     event.dataTransfer.setData("div", "");
-    prop.setPresentation(newPresentation);
-    console.log(prop.presentation);
   };
 
   const allowDrop = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
   };
+
   return (
     <div
       className={SlideStyle.main}
       onClick={handleSlideClick}
       onDragOver={allowDrop}
       onDrop={(event) => dropHandler(event)}
+      style={{
+        backgroundColor: activeSlide.backgroundColor,
+      }}
     >
       {activeSlide.elements.map((element) =>
         SelectTypeOfElement({ element, zoomX, zoomY, visibility }),

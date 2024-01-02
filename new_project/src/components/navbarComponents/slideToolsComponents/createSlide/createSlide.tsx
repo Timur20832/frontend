@@ -17,7 +17,7 @@ const CreateSlide = (prop: createSlideProps) => {
   };
 
   const createSlide = () => {
-      const id = findLastId(prop.slides) + 1;
+    const id = findLastId(prop.slides) + 1;
     const newSlide: Slide = {
       id: id,
       elements: [],

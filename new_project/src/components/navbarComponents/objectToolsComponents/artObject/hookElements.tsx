@@ -1,4 +1,4 @@
-import {Figure, GeneralElementType, Slide} from "../../../../data/types";
+import { Figure, GeneralElementType, Slide } from "../../../../data/types";
 import React from "react";
 
 export function ShowGraphElement(
@@ -98,7 +98,6 @@ export function ShowGraphElement(
     </>
   );
 }
-
 
 export const createGraphElement = (
   event: React.MouseEvent,

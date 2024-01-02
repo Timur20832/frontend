@@ -6,12 +6,10 @@ import InputStyle from "./importFile.module.css";
 
 // import svg / svg's
 import { ReactComponent as ImportSVG } from "../../../../sources/navbar icons/import-navbar-icon.svg";
-import {useAppActions} from "../../../../redux/hooks";
-
+import { useAppActions } from "../../../../redux/hooks";
 
 const ImportFile = () => {
-  const {createImportPresentationAction } =
-      useAppActions();
+  const { createImportPresentationAction } = useAppActions();
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     if (files && files.length > 0) {

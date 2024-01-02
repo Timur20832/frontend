@@ -2,10 +2,17 @@ import React, { useState } from "react";
 import PalleteStyle from "./palleteElement.module.css";
 
 import { ReactComponent as PalleteSVG } from "../../../../sources/navbar icons/pallete-navbar-icon.svg";
+import {useAppActions} from "../../../../redux/hooks";
+import {Slide} from "../../../../data/types";
 
-function colorPalleteElement() {
+type PalleteProp= {
+  slides: Slide[];
+}
+
+function colorPalleteElement(prop: PalleteProp) {
   const [show, setShow] = React.useState(false);
   const [hexColor, setHexColor] = React.useState("#ffffff");
+  const { createChangeBackgroundColor } = useAppActions();
   const [Pallete] = useState([
     { unitId: 1, nameColor: "white", color: "#ffffff" },
     { unitId: 2, nameColor: "black", color: "#000000" },
@@ -35,6 +42,10 @@ function colorPalleteElement() {
     } else {
       setHexColor("#ffffff");
     }
+    createChangeBackgroundColor(
+      hexColor,
+      prop.slides.findIndex((slide) => slide.active),
+    );
   }
 
   function ShowPallete(props: { status: boolean }) {

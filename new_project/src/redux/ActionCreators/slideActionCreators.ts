@@ -1,4 +1,4 @@
-import { Slide } from "../../data/types";
+import { GeneralElementType, Slide } from "../../data/types";
 import { SlideActions } from "../Actions/slideActions";
 
 function createCreateSlideAction(slide: Slide) {
@@ -34,9 +34,58 @@ function createChangeSlideOrderAction(
 
 function createChangeActiveSlideAction(currentSlideId: number) {
   return {
-    type: SlideActions.CHANGE_ORDER,
+    type: SlideActions.CHANGE_ACTIVE_SLIDE,
     payload: {
       currentSlideId: currentSlideId,
+    },
+  };
+}
+
+function createAddElementAction(element: GeneralElementType) {
+  return {
+    type: SlideActions.ADD_ELEMENT,
+    payload: {
+      element: element,
+    },
+  };
+}
+
+function createMoveElementAction(
+  elementId: number,
+  newLeft: number,
+  newTop: number,
+) {
+  return {
+    type: SlideActions.MOVE_ELEMENT,
+    payload: {
+      elementId: elementId,
+      newLeft: newLeft,
+      newTop: newTop,
+    },
+  };
+}
+
+function createResizeElementAction(
+  elementId: number,
+  newHeight: number,
+  newWidth: number,
+) {
+  return {
+    type: SlideActions.RESIZE_ELEMENT,
+    payload: {
+      elementId: elementId,
+      newHeight: newHeight,
+      newWidth: newWidth,
+    },
+  };
+}
+
+function createChangeBackgroundColor(newColor: string, activeSlideIndex: number) {
+  return {
+    type: SlideActions.CHANGE_BACKGROUND_COLOR,
+    payload: {
+      activeSlideIndex: activeSlideIndex,
+      newColor: newColor,
     },
   };
 }
@@ -46,4 +95,8 @@ export {
   createChangeSlideOrderAction,
   createCreateSlideAction,
   createDeleteSlideAction,
+  createAddElementAction,
+  createMoveElementAction,
+  createResizeElementAction,
+  createChangeBackgroundColor,
 };

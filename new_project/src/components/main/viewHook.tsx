@@ -13,11 +13,26 @@ type props = {
 export function SelectTypeOfElement(prop: props) {
   switch (prop.element.type) {
     case "Text":
-      return ShowTextElement(prop.element, prop.zoomX, prop.zoomY, prop.visibility);
+      return ShowTextElement(
+        prop.element,
+        prop.zoomX,
+        prop.zoomY,
+        prop.visibility,
+      );
     case "Image":
-      return ShowImageElement(prop.element, prop.zoomX, prop.zoomY, prop.visibility);
+      return ShowImageElement(
+        prop.element,
+        prop.zoomX,
+        prop.zoomY,
+        prop.visibility,
+      );
     case "Figure":
-      return ShowGraphElement(prop.element, prop.zoomX, prop.zoomY, prop.visibility);
+      return ShowGraphElement(
+        prop.element,
+        prop.zoomX,
+        prop.zoomY,
+        prop.visibility,
+      );
   }
 }
 

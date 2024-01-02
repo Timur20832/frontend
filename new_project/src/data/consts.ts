@@ -82,7 +82,7 @@ export const slide: Slide = {
   id: 1,
   elements: [],
   numberOfSlide: 1,
-  backgroundColor: "black",
+  backgroundColor: "#ff0000",
   active: true,
 };
 
@@ -90,7 +90,7 @@ const slide2: Slide = {
   id: 2,
   elements: [figure, img, text],
   numberOfSlide: 2,
-  backgroundColor: "black",
+  backgroundColor: "#ffffff",
   active: false,
 };
 
