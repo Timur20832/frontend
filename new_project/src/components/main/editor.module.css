@@ -3,12 +3,6 @@
   display: flex;
 }
 
-.scroll_area {
-  margin: 0;
-  width: 10px;
-  background-color: #c1c1c1;
-}
-
 .slide_area {
   height: calc(100vh - 65px);
   width: calc(100vw - 350px);

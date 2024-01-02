@@ -10,8 +10,14 @@ type createSlideProps = {
 
 const CreateSlide = (prop: createSlideProps) => {
   const { createCreateSlideAction } = useAppActions();
+
+  const findLastId = (slides: Slide[]) => {
+    const max = slides.reduce((acc, curr) => (acc.id > curr.id ? acc : curr));
+    return max.id;
+  };
+
   const createSlide = () => {
-    const id = prop.slides.length + 1;
+      const id = findLastId(prop.slides) + 1;
     const newSlide: Slide = {
       id: id,
       elements: [],

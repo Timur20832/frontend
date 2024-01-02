@@ -1,7 +1,6 @@
 import { Presentation, Slide } from "../../../data/types";
 import { SelectTypeOfElement } from "../viewHook";
-import styles from "./slider.module.css";
-import EditorStyle from "../editor.module.css";
+import SliderStyle from "./slider.module.css";
 import { useState } from "react";
 import { useAppActions } from "../../../redux/hooks";
 
@@ -11,7 +10,9 @@ type SliderProps = {
 
 function ShowSlider(prop: SliderProps) {
   const slidesComponent = prop.slides;
-  const zoom = 0.3;
+    const zoomX = 0.21;
+    const zoomY = 0.26;
+    const visibility = "none";
   const [currentSlide, setCurrentSlide] = useState<Slide | null>(null);
   const { createChangeSlideOrderAction, createChangeActiveSlideAction } =
     useAppActions();
@@ -33,6 +34,9 @@ function ShowSlider(prop: SliderProps) {
 
   function dropHandler(e: React.DragEvent<HTMLDivElement>, slide: Slide) {
     e.preventDefault();
+    if (currentSlide === null) {
+      return;
+    }
     const targetElement = e.target as HTMLDivElement;
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
@@ -51,11 +55,11 @@ function ShowSlider(prop: SliderProps) {
   };
 
   return (
-    <div className={styles.slider}>
-      <ul className={styles.list}>
+    <div className={SliderStyle.slider}>
+      <ul className={SliderStyle.list}>
         {prop.slides.sort(sortSlides).map((slide) => (
           <div
-            className={styles.child}
+            className={SliderStyle.child}
             onDragStart={(e) => dragStartHandler(e, slide)}
             onDragLeave={(e) => dragEndHandler(e)}
             onDragEnd={(e) => dragEndHandler(e)}
@@ -65,12 +69,12 @@ function ShowSlider(prop: SliderProps) {
             onClick={() => changeActive(slide)}
           >
             {slide.elements.map((element) =>
-              SelectTypeOfElement(element, zoom),
+              SelectTypeOfElement({ element, zoomX, zoomY, visibility }),
             )}
           </div>
         ))}
       </ul>
-      <div className={EditorStyle.scroll_area}></div>
+      <div className={SliderStyle.scroll_area}></div>
     </div>
   );
 }

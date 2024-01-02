@@ -5,7 +5,7 @@ import { ReactComponent as CursorNavbarSVG } from "../../../../sources/navbar ic
 
 const CursorElement = () => {
   return (
-    <button className={`${ButtonStyle.buttontools} ${ButtonStyle.active}`}>
+    <button className={ButtonStyle.buttontools}>
       <CursorNavbarSVG />
     </button>
   );
