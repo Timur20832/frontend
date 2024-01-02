@@ -18,14 +18,11 @@ function colorPalleteElement() {
   ]);
 
   function handleSubmit(e: { preventDefault: () => void; target: any }) {
-    // Prevent the browser from reloading the page
     e.preventDefault();
 
-    // Read the form data
     const form = e.target;
     const formData = new FormData(form);
 
-    // Or you can work with it as a plain object:
     const formJson = Object.fromEntries(formData.entries());
     if (typeof formJson["myInput"] === "string") {
       if (

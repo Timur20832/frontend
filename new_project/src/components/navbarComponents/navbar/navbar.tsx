@@ -27,7 +27,10 @@ export function Navbar(prop: navBarprop) {
   return (
     <div className={NavbarStyle.navbar}>
       <LogoPresentation />
-      <NamePresentation />
+      <NamePresentation
+        presentation={prop.presentation}
+        setPresentation={prop.setPresentation}
+      />
       <div className={NavbarStyle.first_group_buttontools}>
         <CreateSlide
           presentation={prop.presentation}

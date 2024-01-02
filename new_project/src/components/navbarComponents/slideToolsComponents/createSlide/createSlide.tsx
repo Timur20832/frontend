@@ -8,6 +8,11 @@ type createrProps = {
   setPresentation: (presentation: Presentation) => void;
 };
 const CreateSlide = (prop: createrProps) => {
+  const findLastId = (slides: Slide[]) => {
+    const max = slides.reduce((acc, curr) => (acc.id > curr.id ? acc : curr));
+    return max.id;
+  };
+
   const createSlide = () => {
     prop.presentation.history.push(prop.presentation);
     const newPresentation: Presentation = {
@@ -16,7 +21,7 @@ const CreateSlide = (prop: createrProps) => {
       history: prop.presentation.history,
       historyIndex: prop.presentation.historyIndex + 1,
     };
-    const id = newPresentation.slide.length + 1;
+    const id = findLastId(newPresentation.slide) + 1;
     const newSlide: Slide = {
       id: id,
       elements: [],
