@@ -80,12 +80,42 @@ function createResizeElementAction(
   };
 }
 
-function createChangeBackgroundColor(newColor: string, activeSlideIndex: number) {
+function createChangeBackgroundColor(
+  newColor: string,
+  activeSlideIndex: number,
+) {
   return {
     type: SlideActions.CHANGE_BACKGROUND_COLOR,
     payload: {
       activeSlideIndex: activeSlideIndex,
       newColor: newColor,
+    },
+  };
+}
+
+function createSetActiveElementAction(elementId: number) {
+  return {
+    type: SlideActions.SET_ACTIVE_ELEMENT,
+    payload: {
+      elementId: elementId,
+    },
+  };
+}
+
+function createDeleteActiveElementAction() {
+  return {
+    type: SlideActions.DELETE_ACTIVE_ELEMENT,
+    payload: "",
+  };
+}
+
+function createChangeFontAction(font: string, size: number)
+{
+  return {
+    type: SlideActions.CHANGE_FONT,
+    payload: {
+      font: font,
+      size: size,
     },
   };
 }
@@ -99,4 +129,7 @@ export {
   createMoveElementAction,
   createResizeElementAction,
   createChangeBackgroundColor,
+  createSetActiveElementAction,
+  createDeleteActiveElementAction,
+  createChangeFontAction,
 };

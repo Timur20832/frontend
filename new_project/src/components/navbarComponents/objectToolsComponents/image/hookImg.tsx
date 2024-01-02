@@ -1,12 +1,14 @@
 import { Picture } from "../../../../data/types";
 import img from "../../../../sources/shapes/shapes images/shape-img.png";
 import React from "react";
+import {useAppActions} from "../../../../redux/hooks";
 export function ShowImageElement(
   Element: Picture,
   zoomX: number,
   zoomY: number,
   visibility: string,
 ) {
+    const { createSetActiveElementAction } = useAppActions();
   function getIdElement(
     event:
       | React.DragEvent<HTMLTextAreaElement>
@@ -26,6 +28,9 @@ export function ShowImageElement(
         break;
     }
   }
+    const setActive = () => {
+        createSetActiveElementAction(Element.id);
+    };
   return (
     <>
       <img
@@ -33,7 +38,8 @@ export function ShowImageElement(
         onDragStart={(event) => getIdElement(event, Element, "img")}
         draggable={true}
         src={Element.path}
-        alt="jopa"
+        alt="img"
+        onClick={setActive}
         style={{
           width: Element.size.width * zoomX,
           height: Element.size.height * zoomX,

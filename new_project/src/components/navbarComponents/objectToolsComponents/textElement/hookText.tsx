@@ -1,5 +1,11 @@
-import { GeneralElementType, Slide, TextBox } from "../../../../data/types";
+import {
+  GeneralElementType,
+  Slide,
+  SlideElement,
+  TextBox,
+} from "../../../../data/types";
 import React from "react";
+import { useAppActions } from "../../../../redux/hooks";
 
 /*function changeActiveElements(slide: Slide, element: GeneralElementType) {
   slide.elements.map((element) => {
@@ -16,6 +22,7 @@ export function ShowTextElement(
   zoomY: number,
   visibility: string,
 ) {
+  const { createSetActiveElementAction } = useAppActions();
   function getIdElement(
     event:
       | React.DragEvent<HTMLTextAreaElement>
@@ -35,6 +42,9 @@ export function ShowTextElement(
         break;
     }
   }
+  const setActive = () => {
+    createSetActiveElementAction(Element.id);
+  };
   return (
     <>
       <textarea
@@ -43,6 +53,7 @@ export function ShowTextElement(
           width: Element.size.width * zoomX,
           height: Element.size.height * zoomY,
           fontSize: (Element.font.font_size * (zoomX + zoomY)) / 2,
+          fontFamily: Element.font.font_family,
           color: Element.font.Color,
           top: Element.pos.top * zoomY + "px",
           left: Element.pos.left * zoomX + "px",
@@ -51,6 +62,7 @@ export function ShowTextElement(
           outline: "none",
           backgroundColor: "transparent",
         }}
+        onClick={setActive}
         onDragStart={(event) => getIdElement(event, Element, "textarea")}
         draggable={true}
       >
@@ -75,7 +87,15 @@ export function ShowTextElement(
 }
 
 export const createTextElement = (event: React.MouseEvent, slide: Slide) => {
-  const id: number = slide.elements.length + 1;
+  const findLastId = (elements: SlideElement[]) => {
+    if (elements.length === 0) {
+      return 0;
+    }
+    const max = elements.reduce((acc, curr) => (acc.id > curr.id ? acc : curr));
+    return max.id;
+  };
+
+  const id: number = findLastId(slide.elements) + 1;
   const element: TextBox = {
     type: "Text",
     id: id,

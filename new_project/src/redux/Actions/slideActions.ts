@@ -15,6 +15,9 @@ enum SlideActions {
   MOVE_ELEMENT = "MOVE_ELEMENT",
   RESIZE_ELEMENT = "RESIZE_ELEMENT",
   CHANGE_BACKGROUND_COLOR = "CHANGE_BACKGROUND_COLOR",
+  SET_ACTIVE_ELEMENT = "SET_ACTIVE_ELEMENT",
+  DELETE_ACTIVE_ELEMENT = "DELETE_ACTIVE_ELEMENT",
+  CHANGE_FONT = "CHANGE_FONT",
 }
 
 type CreateSlideAction = {
@@ -79,6 +82,26 @@ type ChangeBackgroundColorAction = {
   };
 };
 
+type SetActiveElementAction = {
+  type: SlideActions.SET_ACTIVE_ELEMENT;
+  payload: {
+    elementId: number;
+  };
+};
+
+type DeleteActiveElementAction = {
+  type: SlideActions.DELETE_ACTIVE_ELEMENT;
+  payload: Record<string, never>;
+};
+
+type ChangeFontAction = {
+  type: SlideActions.CHANGE_FONT;
+  payload: {
+    font: string;
+    size: number;
+  };
+}
+
 type SlideAction =
   | CreateSlideAction
   | DeleteSlideAction
@@ -87,6 +110,9 @@ type SlideAction =
   | AddElementAction
   | MoveElementAction
   | ResizeElementAction
-  | ChangeBackgroundColorAction;
+  | ChangeBackgroundColorAction
+  | SetActiveElementAction
+  | DeleteActiveElementAction
+  | ChangeFontAction;
 
 export { SlideActions, type SlideAction };

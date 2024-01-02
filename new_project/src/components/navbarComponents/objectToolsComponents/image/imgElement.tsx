@@ -3,7 +3,7 @@ import React from "react";
 import ButtonStyle from "./imgElement.module.css";
 // import svg / svg's
 import { ReactComponent as ImageNavbarSVG } from "../../../../sources/navbar icons/image-navbar-icon.svg";
-import { GeneralElementType, Picture, Slide } from "../../../../data/types";
+import {GeneralElementType, Picture, Slide, SlideElement} from "../../../../data/types";
 import { useAppActions } from "../../../../redux/hooks";
 
 type props = {
@@ -15,6 +15,14 @@ const ImageElement = (prop: props) => {
   const addElementSlide = (element: GeneralElementType) => {
     createAddElementAction(element);
   };
+  const findLastId = (elements: SlideElement[]) => {
+    if (elements.length === 0) {
+      return 0;
+    }
+    const max = elements.reduce((acc, curr) => (acc.id > curr.id ? acc : curr));
+    return max.id;
+  };
+
   function createImage() {
     const activeSlide = prop.slides.find((slide) => slide.active);
     if (!activeSlide) return null;

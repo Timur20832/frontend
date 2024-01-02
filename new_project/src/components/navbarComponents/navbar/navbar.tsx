@@ -10,11 +10,11 @@ import ImportFile from "../slideToolsComponents/importFile/importFile";
 import ExportFile from "../slideToolsComponents/exportFile/exportFile";
 import LogoPresentation from "../presentationToolsComponents/logoPresentation/logoPresentation";
 import NamePresentation from "../presentationToolsComponents/namePresentation/namePresentation";
-import CursorComponent from "../slideToolsComponents/cursorComponent/cursorElement";
 import { useAppSelector } from "../../../redux/hooks";
 import ColorPalleteElement from "../slideToolsComponents/palleteSlide/palleteElement";
 import TextPalleteElement from "../objectToolsComponents/textElement/fontPallete";
 import ImageElement from "../objectToolsComponents/image/imgElement";
+import CursorElement from "../slideToolsComponents/cursorComponent/cursorElement";
 
 export function Navbar() {
   const slides = useAppSelector((state) => state.slides);
@@ -31,6 +31,8 @@ export function Navbar() {
         <ImportFile />
       </div>
       <div className={NavbarStyle.second_group_buttontools}>
+        <CursorElement />
+        <span className={NavbarStyle.separator}></span>
         <ImageElement slides={slides} />
         <span className={NavbarStyle.separator}></span>
         <TextElement />

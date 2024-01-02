@@ -1,7 +1,5 @@
 import { Figure, Picture, TextBox, Slide, Presentation } from "./types";
-// TODO: исправить форматирование кода
-// переделать фигуры чтобы менять цвета
-// КОГДА ПУСТЫЕ ДАННЫЕ
+
 const figure: Figure = {
   type: "Figure",
   id: 1,
@@ -59,7 +57,7 @@ export const text: TextBox = {
 
 export const text1: TextBox = {
   type: "Text",
-  id: 3,
+  id: 1,
   pos: {
     top: 15,
     left: 10,

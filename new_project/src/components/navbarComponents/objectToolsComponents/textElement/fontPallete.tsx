@@ -5,6 +5,9 @@ import { ReactComponent as FontPalleteSVG } from "../../../../sources/navbar ico
 import { ReactComponent as ArrowDownSVG } from "../../../../sources/navbar icons/arrow-down-navbar-icon.svg";
 import { ReactComponent as ArrowUpSVG } from "../../../../sources/navbar icons/arrow-up-navbar-icon.svg";
 import PalleteElement from "../../slideToolsComponents/palleteSlide/palleteElement";
+import { Simulate } from "react-dom/test-utils";
+import change = Simulate.change;
+import { useAppActions } from "../../../../redux/hooks";
 
 const ArrowRotateAnim = "100%{transform: rotate(180deg);}";
 
@@ -12,6 +15,7 @@ function FontPalleteElement() {
   const [show, setShow] = React.useState(false);
   const [fontSize, setFontSize] = React.useState(16);
   const [font, setFont] = React.useState("Arial");
+  const { createChangeFontAction } = useAppActions();
 
   const [dropDownButtonAnim, setDropDownButtonAnim] = React.useState();
   const [dropDownShow, setDropDownShow] = React.useState(false);
@@ -63,6 +67,10 @@ function FontPalleteElement() {
     );
   }
 
+  const changeFont = () => {
+    createChangeFontAction(font, fontSize);
+  };
+
   function ShowFontPallete(props: { status: boolean }) {
     return (
       <div
@@ -99,6 +107,7 @@ function FontPalleteElement() {
           >
             <ShowArrowButton status={dropDownShow} />
           </button>
+          <button onClick={changeFont} type={"button"}>submit</button>
         </div>
       </div>
     );

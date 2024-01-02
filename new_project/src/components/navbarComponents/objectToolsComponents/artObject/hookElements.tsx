@@ -1,5 +1,11 @@
-import { Figure, GeneralElementType, Slide } from "../../../../data/types";
+import {
+  Figure,
+  GeneralElementType,
+  Slide,
+  SlideElement,
+} from "../../../../data/types";
 import React from "react";
+import {useAppActions} from "../../../../redux/hooks";
 
 export function ShowGraphElement(
   Element: Figure,
@@ -7,6 +13,7 @@ export function ShowGraphElement(
   zoomY: number,
   visibility: string,
 ) {
+    const { createSetActiveElementAction } = useAppActions();
   function getIdElement(
     event: React.DragEvent<HTMLDivElement>,
     element: Figure,
@@ -24,12 +31,15 @@ export function ShowGraphElement(
         break;
     }
   }
-
+    const setActive = () => {
+        createSetActiveElementAction(Element.id);
+    };
   return (
     <>
       <div
         onDragStart={(event) => getIdElement(event, Element, "artobj")}
         draggable={true}
+        onClick={setActive}
       >
         <svg
           key={Element.id}
@@ -104,7 +114,15 @@ export const createGraphElement = (
   slide: Slide,
   shape: string,
 ) => {
-  const id: number = slide.elements.length + 1;
+  const findLastId = (elements: SlideElement[]) => {
+    if (elements.length === 0) {
+      return 0;
+    }
+    const max = elements.reduce((acc, curr) => (acc.id > curr.id ? acc : curr));
+    return max.id;
+  };
+
+  const id: number = findLastId(slide.elements) + 1;
   const shapec = shape;
   const element: Figure = {
     type: "Figure",
