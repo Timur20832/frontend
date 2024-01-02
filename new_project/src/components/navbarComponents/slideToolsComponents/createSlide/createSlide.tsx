@@ -1,5 +1,5 @@
 import React from "react";
-import { Presentation, Slide } from "../../../../data/types";
+import { Slide } from "../../../../data/types";
 import ButtonStyle from "./createSlide.module.css";
 import { ReactComponent as CreateSlideSVG } from "../../../../sources/navbar icons/add-slide.svg";
 import { useAppActions } from "../../../../redux/hooks";
