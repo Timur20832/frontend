@@ -141,12 +141,13 @@ const slidesReducer = (
       ].elements.findIndex((element) => element.isSelected);
       const selectedElement =
         newState[activeSlideIndex].elements[selectedElementIndex];
-
-      if (selectedElement.type === "Text") {
-        const textBox = selectedElement as TextBox;
-        textBox.font.font_size = action.payload.size;
-        textBox.font.font_family = action.payload.font;
-        newState[activeSlideIndex].elements[selectedElementIndex] = textBox;
+      if (selectedElement !== undefined) {
+        if (selectedElement.type === "Text") {
+          const textBox = selectedElement as TextBox;
+          textBox.font.font_size = action.payload.size;
+          textBox.font.font_family = action.payload.font;
+          newState[activeSlideIndex].elements[selectedElementIndex] = textBox;
+        }
       }
       return newState;
     }
