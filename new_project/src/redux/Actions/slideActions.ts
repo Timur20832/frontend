@@ -1,10 +1,4 @@
-import {
-  Figure,
-  GeneralElementType,
-  Picture,
-  Slide,
-  TextBox,
-} from "../../data/types";
+import { GeneralElementType, Slide } from "../../data/types";
 
 enum SlideActions {
   CREATE_SLIDE = "CREATE_SLIDE",
@@ -15,6 +9,8 @@ enum SlideActions {
   MOVE_ELEMENT = "MOVE_ELEMENT",
   RESIZE_ELEMENT = "RESIZE_ELEMENT",
   CHANGE_BACKGROUND_COLOR = "CHANGE_BACKGROUND_COLOR",
+  CHANGE_ELEMENT_COLOR = "CHANGE_ELEMENT_COLOR",
+  CHANGE_ELEMENT_BORDER_COLOR = "CHANGE_ELEMENT_BORDER_COLOR",
   SET_ACTIVE_ELEMENT = "SET_ACTIVE_ELEMENT",
   DELETE_ACTIVE_ELEMENT = "DELETE_ACTIVE_ELEMENT",
   CHANGE_FONT = "CHANGE_FONT",
@@ -77,7 +73,20 @@ type ResizeElementAction = {
 type ChangeBackgroundColorAction = {
   type: SlideActions.CHANGE_BACKGROUND_COLOR;
   payload: {
-    activeSlideIndex: number;
+    newColor: string;
+  };
+};
+
+type ChangeElementColorAction = {
+  type: SlideActions.CHANGE_ELEMENT_COLOR;
+  payload: {
+    newColor: string;
+  };
+};
+
+type ChangeElementBorderColorAction = {
+  type: SlideActions.CHANGE_ELEMENT_BORDER_COLOR;
+  payload: {
     newColor: string;
   };
 };
@@ -113,6 +122,8 @@ type SlideAction =
   | ChangeBackgroundColorAction
   | SetActiveElementAction
   | DeleteActiveElementAction
-  | ChangeFontAction;
+  | ChangeFontAction
+  | ChangeElementColorAction
+  | ChangeElementBorderColorAction;
 
 export { SlideActions, type SlideAction };

@@ -49,9 +49,21 @@ export type Slide = {
   active: boolean;
 };
 
+export enum ToolType {
+  CIRCLE = "circle",
+  TRIANGLE = "triangle",
+  SQUARE = "square",
+  TEXT = "text",
+  NO_TOOL = "nothing",
+}
 export type Presentation = {
   name: string;
   slide: Array<Slide>;
   history: Array<Presentation>;
   historyIndex: number;
+};
+
+export type ToolState = {
+  activeTool: ToolType;
+  activeColor: string;
 };

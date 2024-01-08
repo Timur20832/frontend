@@ -95,7 +95,11 @@ function FontPalleteElement() {
               </button>
             ))}
           </div>
-          <button className={FontPalleteStyle.fontSelectButton} onClick={changeFont} type={"button"}>
+          <button
+            className={FontPalleteStyle.fontSelectButton}
+            onClick={changeFont}
+            type={"button"}
+          >
             submit
           </button>
         </div>

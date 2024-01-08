@@ -15,9 +15,13 @@ import ColorPalleteElement from "../slideToolsComponents/palleteSlide/palleteEle
 import TextPalleteElement from "../objectToolsComponents/textElement/fontPallete";
 import ImageElement from "../objectToolsComponents/image/imgElement";
 import CursorElement from "../slideToolsComponents/cursorComponent/cursorElement";
+import BorderPainterComponent from "../slideToolsComponents/borderPainterComponent/borderPainterElement";
+import SlidePainterComponent from "../slideToolsComponents/slidePainterComponent/slidePainterElement";
+import FigurePainterComponent from "../slideToolsComponents/figurePainterComponent/figurePainterElement";
 
 export function Navbar() {
   const slides = useAppSelector((state) => state.slides);
+  const toolState = useAppSelector((state) => state.toolState);
   const presentation = useAppSelector((state) => state.presentation);
   return (
     <div className={NavbarStyle.navbar}>
@@ -46,6 +50,13 @@ export function Navbar() {
         <SquareElement />
         <span className={NavbarStyle.separator}></span>
         <ColorPalleteElement slides={slides} />
+        <span className={NavbarStyle.separator}></span>
+        <BorderPainterComponent toolState={toolState} />
+        <span className={NavbarStyle.separator}></span>
+        <FigurePainterComponent toolState={toolState} />
+        <span className={NavbarStyle.separator}></span>
+        <SlidePainterComponent toolState={toolState} />
+        <span className={NavbarStyle.separator}></span>
       </div>
     </div>
   );

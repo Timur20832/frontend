@@ -4,9 +4,9 @@ import React from "react";
 import ButtonStyle from "./textElement.module.css";
 
 // import svg / svg's
-import {ReactComponent as TextNavbarSVG} from "../../../../sources/navbar icons/text-navbar-icon.svg";
-import {useAppActions} from "../../../../redux/hooks";
-import {ToolType} from "../../../../data/ToolTypes";
+import { ReactComponent as TextNavbarSVG } from "../../../../sources/navbar icons/text-navbar-icon.svg";
+import { useAppActions } from "../../../../redux/hooks";
+import { ToolType } from "../../../../data/types";
 
 const TextElement = () => {
   const { createChooseToolAction } = useAppActions();

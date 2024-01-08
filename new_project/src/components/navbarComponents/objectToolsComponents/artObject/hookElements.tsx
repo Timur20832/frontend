@@ -3,10 +3,10 @@ import {
   GeneralElementType,
   Slide,
   SlideElement,
+  ToolType,
 } from "../../../../data/types";
 import React from "react";
 import { useAppActions } from "../../../../redux/hooks";
-import {ToolType} from "../../../../data/ToolTypes";
 
 export function ShowGraphElement(
   Element: Figure,

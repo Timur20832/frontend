@@ -12,7 +12,7 @@ type PalleteProp = {
 function colorPalleteElement(prop: PalleteProp) {
   const [show, setShow] = React.useState(false);
   const [hexColor, setHexColor] = React.useState("#ffffff");
-  const { createChangeBackgroundColor } = useAppActions();
+  const { createChooseColorAction } = useAppActions();
   const [Pallete] = useState([
     { unitId: 1, nameColor: "white", color: "#ffffff" },
     { unitId: 2, nameColor: "black", color: "#000000" },
@@ -42,10 +42,7 @@ function colorPalleteElement(prop: PalleteProp) {
     } else {
       setHexColor("#ffffff");
     }
-    createChangeBackgroundColor(
-      hexColor,
-      prop.slides.findIndex((slide) => slide.active),
-    );
+    createChooseColorAction(hexColor);
   }
 
   function ShowPallete(props: { status: boolean }) {

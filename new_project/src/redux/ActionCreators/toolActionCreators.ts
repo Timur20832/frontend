@@ -1,5 +1,5 @@
 import { ToolActions } from "../Actions/toolActions";
-import { ToolType } from "../../data/ToolTypes";
+import { ToolType } from "../../data/types";
 
 function createChooseToolAction(activeTool: ToolType) {
   return {
@@ -9,4 +9,14 @@ function createChooseToolAction(activeTool: ToolType) {
     },
   };
 }
-export { createChooseToolAction };
+
+function createChooseColorAction(activeColor: string) {
+  return {
+    type: ToolActions.CHOOSE_COLOR,
+    payload: {
+      activeColor: activeColor,
+    },
+  };
+}
+
+export { createChooseToolAction, createChooseColorAction };

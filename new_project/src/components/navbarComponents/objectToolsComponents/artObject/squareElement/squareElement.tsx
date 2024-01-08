@@ -1,8 +1,8 @@
 import React from "react";
 import ButtonStyle from "./squareElement.module.css";
-import {ReactComponent as SquareNavbarSVG} from "../../../../../sources/navbar icons/square-navbar-icon.svg";
-import {useAppActions} from "../../../../../redux/hooks";
-import {ToolType} from "../../../../../data/ToolTypes";
+import { ReactComponent as SquareNavbarSVG } from "../../../../../sources/navbar icons/square-navbar-icon.svg";
+import { useAppActions } from "../../../../../redux/hooks";
+import { ToolType } from "../../../../../data/types";
 
 const SquareElement = () => {
   const { createChooseToolAction } = useAppActions();

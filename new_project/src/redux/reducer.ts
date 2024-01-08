@@ -1,15 +1,29 @@
 import { SlideAction, SlideActions } from "./Actions/slideActions";
-import { Presentation, Slide, TextBox } from "../data/types";
-import { presentationInitState } from "../data/consts";
+import {
+  Figure,
+  Presentation,
+  Slide,
+  SlideElement,
+  TextBox,
+  ToolType,
+} from "../data/types";
+import { presentationInitState, toolsInitState } from "../data/consts";
 import { combineReducers } from "redux";
 import {
   PresentationAction,
   PresentationActions,
 } from "./Actions/presentationActions";
 import { ToolAction, ToolActions } from "./Actions/toolActions";
-import { ToolType } from "../data/ToolTypes";
 
 const initData: Presentation = presentationInitState;
+
+const findActiveSlide = (slides: Slide[]) => {
+  return slides.findIndex((slide) => slide.active);
+};
+
+const findActiveElement = (elements: SlideElement[]) => {
+  return elements.findIndex((element) => element.isSelected);
+};
 
 const slidesReducer = (
   state: Slide[] = initData.slide,
@@ -55,65 +69,86 @@ const slidesReducer = (
     }
     case SlideActions.ADD_ELEMENT: {
       const newState = [...state];
-      const currentSlide = newState.findIndex((slide) => slide.active);
-      newState[currentSlide].elements.push(action.payload.element);
+      const activeSlide = findActiveSlide(newState);
+      newState[activeSlide].elements.push(action.payload.element);
       return newState;
     }
     case SlideActions.MOVE_ELEMENT: {
       const newState = [...state];
-      const currentSlideIndex = newState.findIndex((slide) => slide.active);
-      const currentIndexElement = newState[
-        currentSlideIndex
-      ].elements.findIndex(
+      const activeSlide = findActiveSlide(newState);
+      const currentIndexElement = newState[activeSlide].elements.findIndex(
         (element) => element.id === action.payload.elementId,
       );
-      newState[currentSlideIndex].elements[currentIndexElement].pos.left =
+      newState[activeSlide].elements[currentIndexElement].pos.left =
         action.payload.newLeft;
-      newState[currentSlideIndex].elements[currentIndexElement].pos.top =
+      newState[activeSlide].elements[currentIndexElement].pos.top =
         action.payload.newTop;
       return newState;
     }
     case SlideActions.RESIZE_ELEMENT: {
       const newState = [...state];
-      const currentSlideIndex = newState.findIndex((slide) => slide.active);
-      const currentIndexElement = newState[
-        currentSlideIndex
-      ].elements.findIndex(
+      const activeSlide = findActiveSlide(newState);
+      const activeIndexElement = newState[activeSlide].elements.findIndex(
         (element) => element.id === action.payload.elementId,
       );
-      newState[currentSlideIndex].elements[currentIndexElement].size.height =
+      newState[activeSlide].elements[activeIndexElement].size.height =
         action.payload.newHeight;
-      newState[currentSlideIndex].elements[currentIndexElement].size.width =
+      newState[activeSlide].elements[activeIndexElement].size.width =
         action.payload.newWidth;
       return newState;
     }
     case SlideActions.CHANGE_BACKGROUND_COLOR: {
       const newState = [...state];
-      newState[action.payload.activeSlideIndex].backgroundColor =
-        action.payload.newColor;
+      const activeSlide = findActiveSlide(newState);
+      newState[activeSlide].backgroundColor = action.payload.newColor;
+      return newState;
+    }
+    case SlideActions.CHANGE_ELEMENT_COLOR: {
+      const newState = [...state];
+      const activeSlide = findActiveSlide(newState);
+      const activeElement = findActiveElement(newState[activeSlide].elements);
+      if (newState[activeSlide].elements[activeElement] === undefined) {
+        return newState;
+      }
+      if (newState[activeSlide].elements[activeElement].type === "Figure") {
+        const element = newState[activeSlide].elements[activeElement] as Figure;
+        element.innerColor = action.payload.newColor;
+        newState[activeSlide].elements[activeElement] = element;
+      }
+      return newState;
+    }
+    case SlideActions.CHANGE_ELEMENT_BORDER_COLOR: {
+      const newState = [...state];
+      const activeSlide = findActiveSlide(newState);
+      const activeElement = findActiveElement(newState[activeSlide].elements);
+      if (newState[activeSlide].elements[activeElement] === undefined) {
+        return newState;
+      }
+      if (newState[activeSlide].elements[activeElement].type === "Figure") {
+        const element = newState[activeSlide].elements[activeElement] as Figure;
+        element.borderColor = action.payload.newColor;
+        newState[activeSlide].elements[activeElement] = element;
+      }
       return newState;
     }
     case SlideActions.SET_ACTIVE_ELEMENT: {
       const newState = [...state];
-      const activeSlideIndex = newState.findIndex((slide) => slide.active);
-      const selectedElementIndex = newState[
-        activeSlideIndex
-      ].elements.findIndex((element) => element.isSelected);
-      if (selectedElementIndex > -1) {
-        newState[activeSlideIndex].elements[selectedElementIndex].isSelected =
-          false;
+      const activeSlide = findActiveSlide(newState);
+      const activeElement = findActiveElement(newState[activeSlide].elements);
+      if (activeElement > -1) {
+        newState[activeSlide].elements[activeElement].isSelected = false;
       }
       if (
-        newState[activeSlideIndex].elements[
-          newState[activeSlideIndex].elements.findIndex(
+        newState[activeSlide].elements[
+          newState[activeSlide].elements.findIndex(
             (element) => element.id === action.payload.elementId,
           )
         ] === undefined
       ) {
         return newState;
       }
-      newState[activeSlideIndex].elements[
-        newState[activeSlideIndex].elements.findIndex(
+      newState[activeSlide].elements[
+        newState[activeSlide].elements.findIndex(
           (element) => element.id === action.payload.elementId,
         )
       ].isSelected = true;
@@ -121,32 +156,26 @@ const slidesReducer = (
     }
     case SlideActions.DELETE_ACTIVE_ELEMENT: {
       const newState = [...state];
-      const activeSlideIndex = newState.findIndex((slide) => slide.active);
-      const selectedElementIndex = newState[
-        activeSlideIndex
-      ].elements.findIndex((element) => element.isSelected);
-
-      if (selectedElementIndex > -1) {
-        newState[activeSlideIndex].elements = newState[
-          activeSlideIndex
-        ].elements.filter((item) => !item.isSelected);
+      const activeSlide = findActiveSlide(newState);
+      const activeElement = findActiveElement(newState[activeSlide].elements);
+      if (activeElement > -1) {
+        newState[activeSlide].elements = newState[activeSlide].elements.filter(
+          (item) => !item.isSelected,
+        );
       }
       return newState;
     }
     case SlideActions.CHANGE_FONT: {
       const newState = [...state];
-      const activeSlideIndex = newState.findIndex((slide) => slide.active);
-      const selectedElementIndex = newState[
-        activeSlideIndex
-      ].elements.findIndex((element) => element.isSelected);
-      const selectedElement =
-        newState[activeSlideIndex].elements[selectedElementIndex];
+      const activeSlide = findActiveSlide(newState);
+      const activeElement = findActiveElement(newState[activeSlide].elements);
+      const selectedElement = newState[activeSlide].elements[activeElement];
       if (selectedElement !== undefined) {
         if (selectedElement.type === "Text") {
           const textBox = selectedElement as TextBox;
           textBox.font.font_size = action.payload.size;
           textBox.font.font_family = action.payload.font;
-          newState[activeSlideIndex].elements[selectedElementIndex] = textBox;
+          newState[activeSlide].elements[activeElement] = textBox;
         }
       }
       return newState;
@@ -163,7 +192,6 @@ const presentationReducer = (
   switch (action.type) {
     case PresentationActions.IMPORT_PRESENTATION: {
       const newState = action.payload.newPresentation;
-
       return newState;
     }
     case PresentationActions.RENAME_PRESENTATION: {
@@ -177,41 +205,28 @@ const presentationReducer = (
   }
 };
 
-const toolReducer = (state = ToolType.NO_TOOL, action: ToolAction) => {
+const toolReducer = (state = toolsInitState, action: ToolAction) => {
   switch (action.type) {
     case ToolActions.CHOOSE_TOOL: {
-      let newState = state;
-      switch (action.payload.activeTool) {
-        case "text": {
-          newState = ToolType.TEXT;
-          break;
-        }
-        case "triangle": {
-          newState = ToolType.TRIANGLE;
-          break;
-        }
-        case "square": {
-          newState = ToolType.SQUARE;
-          break;
-        }
-        case "circle": {
-          newState = ToolType.CIRCLE;
-          break;
-        }
-        default:
-          newState = ToolType.NO_TOOL;
-      }
+      const newState = state;
+      newState.activeTool = action.payload.activeTool;
+      return newState;
+    }
+    case ToolActions.CHOOSE_COLOR: {
+      const newState = state;
+      console.log(action.payload.activeColor);
+      newState.activeColor = action.payload.activeColor;
       return newState;
     }
     default:
-      return ToolType.NO_TOOL;
+      return state;
   }
 };
 
 const rootReducer = combineReducers({
   slides: slidesReducer,
   presentation: presentationReducer,
-  activeTool: toolReducer,
+  toolState: toolReducer,
 });
 
 export { rootReducer };

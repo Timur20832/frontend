@@ -1,4 +1,12 @@
-import { Figure, Picture, TextBox, Slide, Presentation } from "./types";
+import {
+  Figure,
+  Picture,
+  Presentation,
+  Slide,
+  TextBox,
+  ToolState,
+  ToolType,
+} from "./types";
 
 const figure: Figure = {
   type: "Figure",
@@ -97,4 +105,9 @@ export const presentationInitState: Presentation = {
   slide: [slide, slide2],
   history: [],
   historyIndex: 1,
+};
+
+export const toolsInitState: ToolState = {
+  activeTool: ToolType.NO_TOOL,
+  activeColor: "#ffffff",
 };

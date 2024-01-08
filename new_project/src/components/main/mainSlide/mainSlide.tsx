@@ -1,11 +1,10 @@
 import React from "react";
-import {GeneralElementType, Slide} from "../../../data/types";
-import {SelectTypeOfElement} from "../viewHook";
-import {createTextElement} from "../../navbarComponents/objectToolsComponents/textElement/hookText";
-import {createGraphElement} from "../../navbarComponents/objectToolsComponents/artObject/hookElements";
+import { GeneralElementType, Slide, ToolType } from "../../../data/types";
+import { SelectTypeOfElement } from "../viewHook";
+import { createTextElement } from "../../navbarComponents/objectToolsComponents/textElement/hookText";
+import { createGraphElement } from "../../navbarComponents/objectToolsComponents/artObject/hookElements";
 import SlideStyle from "./mainSlide.module.css";
-import {useAppActions} from "../../../redux/hooks";
-import {ToolType} from "../../../data/ToolTypes";
+import { useAppActions } from "../../../redux/hooks";
 
 type SlideProps = {
   slides: Slide[];

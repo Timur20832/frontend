@@ -80,14 +80,28 @@ function createResizeElementAction(
   };
 }
 
-function createChangeBackgroundColor(
-  newColor: string,
-  activeSlideIndex: number,
-) {
+function createChangeBackgroundColor(newColor: string) {
   return {
     type: SlideActions.CHANGE_BACKGROUND_COLOR,
     payload: {
-      activeSlideIndex: activeSlideIndex,
+      newColor: newColor,
+    },
+  };
+}
+
+function createChangeElementColor(newColor: string) {
+  return {
+    type: SlideActions.CHANGE_ELEMENT_COLOR,
+    payload: {
+      newColor: newColor,
+    },
+  };
+}
+
+function createChangeElementBorderColor(newColor: string) {
+  return {
+    type: SlideActions.CHANGE_ELEMENT_BORDER_COLOR,
+    payload: {
       newColor: newColor,
     },
   };
@@ -128,6 +142,8 @@ export {
   createMoveElementAction,
   createResizeElementAction,
   createChangeBackgroundColor,
+  createChangeElementBorderColor,
+  createChangeElementColor,
   createSetActiveElementAction,
   createDeleteActiveElementAction,
   createChangeFontAction,
