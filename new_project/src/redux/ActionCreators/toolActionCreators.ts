@@ -1,6 +1,7 @@
 import { ToolActions } from "../Actions/toolActions";
+import { ToolType } from "../../data/ToolTypes";
 
-function createChooseToolAction(activeTool: string) {
+function createChooseToolAction(activeTool: ToolType) {
   return {
     type: ToolActions.CHOOSE_TOOL,
     payload: {

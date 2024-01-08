@@ -1,10 +1,11 @@
 import React from "react";
-import { GeneralElementType, Presentation, Slide } from "../../../data/types";
-import { SelectTypeOfElement } from "../viewHook";
-import { createTextElement } from "../../navbarComponents/objectToolsComponents/textElement/hookText";
-import { createGraphElement } from "../../navbarComponents/objectToolsComponents/artObject/hookElements";
+import {GeneralElementType, Slide} from "../../../data/types";
+import {SelectTypeOfElement} from "../viewHook";
+import {createTextElement} from "../../navbarComponents/objectToolsComponents/textElement/hookText";
+import {createGraphElement} from "../../navbarComponents/objectToolsComponents/artObject/hookElements";
 import SlideStyle from "./mainSlide.module.css";
-import { useAppActions } from "../../../redux/hooks";
+import {useAppActions} from "../../../redux/hooks";
+import {ToolType} from "../../../data/ToolTypes";
 
 type SlideProps = {
   slides: Slide[];
@@ -27,16 +28,17 @@ export function ShowSlide(prop: SlideProps) {
   }
   const addElementSlide = (element: GeneralElementType) => {
     createAddElementAction(element);
-    createChooseToolAction("nothing");
+    createChooseToolAction(ToolType.NO_TOOL);
   };
   const handleSlideClick = (event: React.MouseEvent) => {
-    if (prop.activeTool === "text") {
+    console.log(prop.activeTool);
+    if (prop.activeTool === ToolType.TEXT) {
       const element = createTextElement(event, activeSlide);
       addElementSlide(element);
     } else if (
-      prop.activeTool === "circle" ||
-      prop.activeTool === "square" ||
-      prop.activeTool === "triangle"
+      prop.activeTool === ToolType.CIRCLE ||
+      prop.activeTool === ToolType.SQUARE ||
+      prop.activeTool === ToolType.TRIANGLE
     ) {
       const element = createGraphElement(event, activeSlide, prop.activeTool);
       addElementSlide(element);

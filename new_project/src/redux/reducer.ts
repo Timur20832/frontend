@@ -1,13 +1,13 @@
 import { SlideAction, SlideActions } from "./Actions/slideActions";
 import { Presentation, Slide, TextBox } from "../data/types";
-import { presentationInitState, slide } from "../data/consts";
+import { presentationInitState } from "../data/consts";
 import { combineReducers } from "redux";
 import {
   PresentationAction,
   PresentationActions,
 } from "./Actions/presentationActions";
 import { ToolAction, ToolActions } from "./Actions/toolActions";
-import { type } from "node:os";
+import { ToolType } from "../data/ToolTypes";
 
 const initData: Presentation = presentationInitState;
 
@@ -177,15 +177,34 @@ const presentationReducer = (
   }
 };
 
-const toolReducer = (state = "nothing", action: ToolAction) => {
+const toolReducer = (state = ToolType.NO_TOOL, action: ToolAction) => {
   switch (action.type) {
     case ToolActions.CHOOSE_TOOL: {
       let newState = state;
-      newState = action.payload.activeTool;
+      switch (action.payload.activeTool) {
+        case "text": {
+          newState = ToolType.TEXT;
+          break;
+        }
+        case "triangle": {
+          newState = ToolType.TRIANGLE;
+          break;
+        }
+        case "square": {
+          newState = ToolType.SQUARE;
+          break;
+        }
+        case "circle": {
+          newState = ToolType.CIRCLE;
+          break;
+        }
+        default:
+          newState = ToolType.NO_TOOL;
+      }
       return newState;
     }
     default:
-      return "nothing";
+      return ToolType.NO_TOOL;
   }
 };
 

@@ -6,6 +6,7 @@ import {
 } from "../../../../data/types";
 import React from "react";
 import { useAppActions } from "../../../../redux/hooks";
+import {ToolType} from "../../../../data/ToolTypes";
 
 export function ShowGraphElement(
   Element: Figure,
@@ -112,7 +113,7 @@ export function ShowGraphElement(
 export const createGraphElement = (
   event: React.MouseEvent,
   slide: Slide,
-  shape: string,
+  shape: ToolType,
 ) => {
   const findLastId = (elements: SlideElement[]) => {
     if (elements.length === 0) {
@@ -124,6 +125,7 @@ export const createGraphElement = (
 
   const id: number = findLastId(slide.elements) + 1;
   const shapec = shape;
+  console.log(shape);
   const element: Figure = {
     type: "Figure",
     id: id,
