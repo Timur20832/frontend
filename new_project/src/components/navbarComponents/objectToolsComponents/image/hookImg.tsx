@@ -25,6 +25,8 @@ export function ShowImageElement(
       case "img":
         event.dataTransfer.setData("img", "true");
         event.dataTransfer.setData("div", "false");
+        event.dataTransfer.setData("offSetX", `${event.clientX - element.pos.left}`);
+        event.dataTransfer.setData("offSetY", `${event.clientY - element.pos.top}`);
         break;
     }
   }
