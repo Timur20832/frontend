@@ -1,6 +1,5 @@
 import { Presentation } from "../../data/types";
 import { PresentationActions } from "../Actions/presentationActions";
-import {SlideActions} from "../Actions/slideActions";
 
 function createRenamePresentationAction(newName: string) {
   return {

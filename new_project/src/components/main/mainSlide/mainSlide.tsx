@@ -4,7 +4,7 @@ import { SelectTypeOfElement } from "../viewHook";
 import { createTextElement } from "../../navbarComponents/objectToolsComponents/textElement/hookText";
 import { createGraphElement } from "../../navbarComponents/objectToolsComponents/artObject/hookElements";
 import SlideStyle from "./mainSlide.module.css";
-import {useAppActions, useAppSelector} from "../../../redux/hooks";
+import { useAppActions, useAppSelector } from "../../../redux/hooks";
 
 type SlideProps = {
   slides: Slide[];

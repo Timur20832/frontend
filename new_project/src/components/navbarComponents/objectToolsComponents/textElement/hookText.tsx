@@ -1,5 +1,4 @@
 import {
-  GeneralElementType,
   Slide,
   SlideElement,
   TextBox,
@@ -19,13 +18,13 @@ import { useAppActions } from "../../../../redux/hooks";
 export function ShowTextElement(
   Element: TextBox,
   zoomX: number,
-  zoomY: number,
   visibility: string,
 ) {
   if (!Element.isSelected) {
     visibility = "none";
   }
-    const { createSetActiveElementAction, createChangeTextAction } = useAppActions();
+  const { createSetActiveElementAction, createChangeTextAction } =
+    useAppActions();
   function getIdElement(
     event:
       | React.DragEvent<HTMLTextAreaElement>
@@ -68,11 +67,11 @@ export function ShowTextElement(
         style={{
           position: "absolute",
           width: Element.size.width * zoomX,
-          height: Element.size.height * zoomY,
-          fontSize: (Element.font.font_size * (zoomX + zoomY)) / 2,
+          height: Element.size.height * zoomX,
+          fontSize: (Element.font.font_size * (zoomX + zoomX)) / 2,
           fontFamily: Element.font.font_family,
           color: Element.font.Color,
-          top: Element.pos.top * zoomY + "px",
+          top: Element.pos.top * zoomX + "px",
           left: Element.pos.left * zoomX + "px",
           overflow: "hidden",
           resize: "none",
@@ -98,7 +97,7 @@ export function ShowTextElement(
           position: "absolute",
           backgroundColor: "green",
           width: `${5 * zoomX}px`,
-          height: `${5 * zoomY}px`,
+          height: `${5 * zoomX}px`,
           top: (Element.pos.top + Element.size.height) * zoomX + 5 * zoomX,
           left: (Element.pos.left + Element.size.width) * zoomX + 5 * zoomX,
           display: visibility,

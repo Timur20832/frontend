@@ -1,19 +1,9 @@
-import { SlideAction, SlideActions } from "./Actions/slideActions";
-import {
-  Figure,
-  Presentation, PresentationState,
-  Slide,
-  SlideElement,
-  TextBox,
-  ToolType,
-} from "../data/types";
-import {presentationInitData, presentationInitState, toolsInitState} from "../data/consts";
-import { combineReducers } from "redux";
-import {
-  PresentationAction,
-  PresentationActions,
-} from "./Actions/presentationActions";
-import { ToolAction, ToolActions } from "./Actions/toolActions";
+import {SlideAction, SlideActions} from "./Actions/slideActions";
+import {Figure, Presentation, PresentationState, Slide, SlideElement, TextBox,} from "../data/types";
+import {presentationInitData, presentationInitState, toolsInitState,} from "../data/consts";
+import {combineReducers} from "redux";
+import {PresentationAction, PresentationActions,} from "./Actions/presentationActions";
+import {ToolAction, ToolActions} from "./Actions/toolActions";
 
 const initData: Presentation = presentationInitData;
 
@@ -31,8 +21,7 @@ const slidesReducer = (
 ) => {
   switch (action.type) {
     case SlideActions.CREATE_SLIDE: {
-      const newState = [...state, action.payload.slide];
-      return newState;
+      return [...state, action.payload.slide];
     }
     case SlideActions.DELETE_SLIDE: {
       let newState = [...state];
@@ -199,7 +188,7 @@ const slidesReducer = (
           newState[activeSlide].elements[activeElement] = textBox;
         }
       }
-      console.log(newState[activeSlide].elements[activeElement])
+      console.log(newState[activeSlide].elements[activeElement]);
       return newState;
     }
     default:

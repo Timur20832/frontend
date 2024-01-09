@@ -72,4 +72,4 @@ export type ToolState = {
 export type PresentationState = {
   Presentation: Presentation;
   ViewMode: boolean;
-}
+};

@@ -1,5 +1,4 @@
 import { Presentation } from "../../data/types";
-import {Action} from "redux";
 
 enum PresentationActions {
   RENAME_PRESENTATION = "RENAME_PRESENTATION",

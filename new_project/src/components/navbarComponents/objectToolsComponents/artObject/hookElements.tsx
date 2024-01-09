@@ -5,7 +5,6 @@ import { useAppActions } from "../../../../redux/hooks";
 export function ShowGraphElement(
   Element: Figure,
   zoomX: number,
-  zoomY: number,
   visibility: string,
 ) {
   const { createSetActiveElementAction } = useAppActions();
@@ -61,9 +60,9 @@ export function ShowGraphElement(
             <g>
               <g>
                 <polygon
-                  points={`${0}, ${Element.size.height * zoomY} 
+                  points={`${0}, ${Element.size.height * zoomX} 
                 ${(Element.size.width / 2) * zoomX},${0} 
-                ${Element.size.width * zoomX}, ${Element.size.height * zoomY}`}
+                ${Element.size.width * zoomX}, ${Element.size.height * zoomX}`}
                   fill={Element.innerColor}
                   stroke={Element.borderColor}
                   strokeWidth={2 * zoomX}
@@ -89,9 +88,9 @@ export function ShowGraphElement(
               <g>
                 <ellipse
                   cx={(Element.size.width * zoomX) / 2}
-                  cy={(Element.size.height * zoomY) / 2}
+                  cy={(Element.size.height * zoomX) / 2}
                   rx={Element.size.width * (zoomX / 2) - 5}
-                  ry={Element.size.height * (zoomY / 2) - 5}
+                  ry={Element.size.height * (zoomX / 2) - 5}
                   fill={Element.innerColor}
                   stroke={Element.borderColor}
                   strokeWidth={2 * zoomX}
@@ -109,9 +108,9 @@ export function ShowGraphElement(
           position: "absolute",
           backgroundColor: "green",
           width: `${5 * zoomX}px`,
-          height: `${5 * zoomY}px`,
+          height: `${5 * zoomX}px`,
           top: (Element.pos.top + Element.size.height) * zoomX + 5 * zoomX,
-          left: (Element.pos.left + Element.size.width) * zoomX + 5 * zoomY,
+          left: (Element.pos.left + Element.size.width) * zoomX + 5 * zoomX,
           display: visibility,
         }}
       ></div>

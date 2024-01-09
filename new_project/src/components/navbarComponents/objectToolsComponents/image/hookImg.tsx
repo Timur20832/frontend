@@ -1,11 +1,9 @@
 import { Picture } from "../../../../data/types";
-import img from "../../../../sources/shapes/shapes images/shape-img.png";
 import React from "react";
 import { useAppActions } from "../../../../redux/hooks";
 export function ShowImageElement(
   Element: Picture,
   zoomX: number,
-  zoomY: number,
   visibility: string,
 ) {
   const { createSetActiveElementAction } = useAppActions();
@@ -69,9 +67,9 @@ export function ShowImageElement(
           position: "absolute",
           backgroundColor: "green",
           width: `${5 * zoomX}px`,
-          height: `${5 * zoomY}px`,
+          height: `${5 * zoomX}px`,
           top: (Element.pos.top + Element.size.height) * zoomX + 5 * zoomX,
-          left: (Element.pos.left + Element.size.width) * zoomX + 5 * zoomY,
+          left: (Element.pos.left + Element.size.width) * zoomX + 5 * zoomX,
           display: visibility,
         }}
       ></div>
