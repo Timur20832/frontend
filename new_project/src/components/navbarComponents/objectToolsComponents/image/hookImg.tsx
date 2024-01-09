@@ -45,6 +45,9 @@ export function ShowImageElement(
           height: Element.size.height * zoomX,
           top: Element.pos.top * zoomX,
           left: Element.pos.left * zoomX,
+            borderWidth: 2 * zoomX,
+            borderColor: Element.borderColor,
+            borderStyle: "solid"
         }}
       />
       <div

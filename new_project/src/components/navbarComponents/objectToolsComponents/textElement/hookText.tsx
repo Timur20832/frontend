@@ -60,7 +60,9 @@ export function ShowTextElement(
           overflow: "hidden",
           resize: "none",
           outline: "none",
-          backgroundColor: "transparent",
+          backgroundColor: Element.backgroundColor,
+          borderWidth: 2 * zoomX,
+          borderColor: Element.borderColor,
         }}
         onClick={setActive}
         onDragStart={(event) => getIdElement(event, Element, "textarea")}
@@ -100,6 +102,7 @@ export const createTextElement = (event: React.MouseEvent, slide: Slide) => {
     type: "Text",
     id: id,
     content: "write your text",
+      backgroundColor: "transparent",
     pos: {
       left: event.clientX - event.currentTarget.getBoundingClientRect().left,
       top: event.clientY - event.currentTarget.getBoundingClientRect().top,

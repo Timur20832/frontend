@@ -37,6 +37,7 @@ export type TextBox = SlideElement & {
   type: "Text";
   content: string;
   font: Font;
+  backgroundColor: string;
 };
 
 export type GeneralElementType = Figure | Picture | TextBox;

@@ -114,6 +114,14 @@ const slidesReducer = (
         const element = newState[activeSlide].elements[activeElement] as Figure;
         element.innerColor = action.payload.newColor;
         newState[activeSlide].elements[activeElement] = element;
+      } else if (
+        newState[activeSlide].elements[activeElement].type === "Text"
+      ) {
+        const element = newState[activeSlide].elements[
+          activeElement
+        ] as TextBox;
+        element.backgroundColor = action.payload.newColor;
+        newState[activeSlide].elements[activeElement] = element;
       }
       return newState;
     }
@@ -124,11 +132,10 @@ const slidesReducer = (
       if (newState[activeSlide].elements[activeElement] === undefined) {
         return newState;
       }
-      if (newState[activeSlide].elements[activeElement].type === "Figure") {
-        const element = newState[activeSlide].elements[activeElement] as Figure;
-        element.borderColor = action.payload.newColor;
-        newState[activeSlide].elements[activeElement] = element;
-      }
+      const element = newState[activeSlide].elements[activeElement];
+      element.borderColor = action.payload.newColor;
+      newState[activeSlide].elements[activeElement] = element;
+      console.log(newState[activeSlide].elements[activeElement]);
       return newState;
     }
     case SlideActions.SET_ACTIVE_ELEMENT: {

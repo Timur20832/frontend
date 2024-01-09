@@ -1,10 +1,4 @@
-import {
-  Figure,
-  GeneralElementType,
-  Slide,
-  SlideElement,
-  ToolType,
-} from "../../../../data/types";
+import { Figure, Slide, SlideElement, ToolType } from "../../../../data/types";
 import React from "react";
 import { useAppActions } from "../../../../redux/hooks";
 
@@ -61,6 +55,7 @@ export function ShowGraphElement(
                 ${Element.size.width * zoomX}, ${Element.size.height * zoomY}`}
                   fill={Element.innerColor}
                   stroke={Element.borderColor}
+                  strokeWidth={2 * zoomX}
                 />
               </g>
             </g>
@@ -73,6 +68,7 @@ export function ShowGraphElement(
                   height={Element.size.height * zoomX}
                   fill={Element.innerColor}
                   stroke={Element.borderColor}
+                  strokeWidth={2 * zoomX}
                 />
               </g>
             </g>
@@ -86,6 +82,7 @@ export function ShowGraphElement(
                   r={(Element.size.height * ((zoomX + zoomY) / 2)) / 2 - 5}
                   fill={Element.innerColor}
                   stroke={Element.borderColor}
+                  strokeWidth={2 * zoomX}
                 />
               </g>
             </g>

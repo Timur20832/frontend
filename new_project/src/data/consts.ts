@@ -55,6 +55,7 @@ export const text: TextBox = {
   borderColor: "black",
   isSelected: false,
   content: "Write your text",
+  backgroundColor: "transparent",
   font: {
     font_style: "normal",
     font_family: "",
@@ -77,6 +78,7 @@ export const text1: TextBox = {
   borderColor: "black",
   isSelected: false,
   content: "Write your text",
+  backgroundColor: "transparent",
   font: {
     font_style: "normal",
     font_family: "",

@@ -14,14 +14,14 @@ function colorPalleteElement(prop: PalleteProp) {
   const [hexColor, setHexColor] = React.useState("#ffffff");
   const { createChooseColorAction } = useAppActions();
   const [Pallete] = useState([
-    { unitId: 1, nameColor: "white", color: "#ffffff" },
-    { unitId: 2, nameColor: "black", color: "#000000" },
-    { unitId: 3, nameColor: "red", color: "#ff0000" },
-    { unitId: 4, nameColor: "blue", color: "#0000ff" },
-    { unitId: 5, nameColor: "yellow", color: "#ffff00" },
-    { unitId: 6, nameColor: "green", color: "#008000" },
-    { unitId: 7, nameColor: "white", color: "#ffffff" },
-    { unitId: 8, nameColor: "white", color: "#ffffff" },
+    { color: "#ffffff" },
+    { color: "#000000" },
+    { color: "#ff0000" },
+    { color: "#0000ff" },
+    { color: "#ffff00" },
+    { color: "#008000" },
+    { color: "#ffffff" },
+    { color: "#ffffff" },
   ]);
 
   function handleSubmit(e: { preventDefault: () => void; target: any }) {
@@ -38,6 +38,8 @@ function colorPalleteElement(prop: PalleteProp) {
         formJson["myInput"].length === 7
       ) {
         setHexColor(formJson["myInput"]);
+        Pallete.shift();
+        Pallete.push({ color: formJson["myInput"] });
       }
     } else {
       setHexColor("#ffffff");
