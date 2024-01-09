@@ -9,6 +9,9 @@ export function ShowGraphElement(
   visibility: string,
 ) {
   const { createSetActiveElementAction } = useAppActions();
+  if (!Element.isSelected) {
+    visibility = "none";
+  }
   function getIdElement(
     event: React.DragEvent<HTMLDivElement>,
     element: Figure,
@@ -23,8 +26,14 @@ export function ShowGraphElement(
       case "artobj":
         event.dataTransfer.setData("artobj", "true");
         event.dataTransfer.setData("div", "false");
-        event.dataTransfer.setData("offSetX", `${event.clientX - element.pos.left}`);
-        event.dataTransfer.setData("offSetY", `${event.clientY - element.pos.top}`);
+        event.dataTransfer.setData(
+          "offSetX",
+          `${event.clientX - element.pos.left}`,
+        );
+        event.dataTransfer.setData(
+          "offSetY",
+          `${event.clientY - element.pos.top}`,
+        );
         break;
     }
   }
@@ -81,8 +90,8 @@ export function ShowGraphElement(
                 <ellipse
                   cx={(Element.size.width * zoomX) / 2}
                   cy={(Element.size.height * zoomY) / 2}
-                  rx={(Element.size.width * (zoomX / 2)) - 5}
-                  ry={(Element.size.height * ((zoomY) / 2)) - 5}
+                  rx={Element.size.width * (zoomX / 2) - 5}
+                  ry={Element.size.height * (zoomY / 2) - 5}
                   fill={Element.innerColor}
                   stroke={Element.borderColor}
                   strokeWidth={2 * zoomX}

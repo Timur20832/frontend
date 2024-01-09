@@ -22,6 +22,9 @@ export function ShowTextElement(
   zoomY: number,
   visibility: string,
 ) {
+  if (!Element.isSelected) {
+    visibility = "none";
+  }
   const { createSetActiveElementAction } = useAppActions();
   function getIdElement(
     event:
@@ -39,8 +42,14 @@ export function ShowTextElement(
       case "textarea":
         event.dataTransfer.setData("textarea", "true");
         event.dataTransfer.setData("div", "false");
-        event.dataTransfer.setData("offSetX", `${event.clientX - element.pos.left}`);
-        event.dataTransfer.setData("offSetY", `${event.clientY - element.pos.top}`);
+        event.dataTransfer.setData(
+          "offSetX",
+          `${event.clientX - element.pos.left}`,
+        );
+        event.dataTransfer.setData(
+          "offSetY",
+          `${event.clientY - element.pos.top}`,
+        );
         break;
     }
   }
@@ -104,7 +113,7 @@ export const createTextElement = (event: React.MouseEvent, slide: Slide) => {
     type: "Text",
     id: id,
     content: "write your text",
-      backgroundColor: "transparent",
+    backgroundColor: "transparent",
     pos: {
       left: event.clientX - event.currentTarget.getBoundingClientRect().left,
       top: event.clientY - event.currentTarget.getBoundingClientRect().top,

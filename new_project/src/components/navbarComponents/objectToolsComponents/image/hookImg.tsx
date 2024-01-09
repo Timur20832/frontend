@@ -9,6 +9,9 @@ export function ShowImageElement(
   visibility: string,
 ) {
   const { createSetActiveElementAction } = useAppActions();
+  if (!Element.isSelected) {
+    visibility = "none";
+  }
   function getIdElement(
     event:
       | React.DragEvent<HTMLTextAreaElement>
@@ -25,8 +28,14 @@ export function ShowImageElement(
       case "img":
         event.dataTransfer.setData("img", "true");
         event.dataTransfer.setData("div", "false");
-        event.dataTransfer.setData("offSetX", `${event.clientX - element.pos.left}`);
-        event.dataTransfer.setData("offSetY", `${event.clientY - element.pos.top}`);
+        event.dataTransfer.setData(
+          "offSetX",
+          `${event.clientX - element.pos.left}`,
+        );
+        event.dataTransfer.setData(
+          "offSetY",
+          `${event.clientY - element.pos.top}`,
+        );
         break;
     }
   }
@@ -47,9 +56,9 @@ export function ShowImageElement(
           height: Element.size.height * zoomX,
           top: Element.pos.top * zoomX,
           left: Element.pos.left * zoomX,
-            borderWidth: 2 * zoomX,
-            borderColor: Element.borderColor,
-            borderStyle: "solid"
+          borderWidth: 2 * zoomX,
+          borderColor: Element.borderColor,
+          borderStyle: "solid",
         }}
       />
       <div
