@@ -20,7 +20,6 @@ export function ShowSlide(prop: SlideProps) {
     createResizeElementAction,
   } = useAppActions();
   const zoomX = 1;
-  const zoomY = 1;
   const visibility = "block";
   const activeSlide = prop.slides.find((slide) => slide.active);
   if (!activeSlide) {
@@ -101,7 +100,7 @@ export function ShowSlide(prop: SlideProps) {
       }}
     >
       {activeSlide.elements.map((element) =>
-        SelectTypeOfElement({ element, zoomX, zoomY, visibility }),
+        SelectTypeOfElement({ element, zoomX, visibility }),
       )}
     </div>
   );
