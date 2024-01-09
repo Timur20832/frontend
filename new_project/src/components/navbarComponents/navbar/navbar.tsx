@@ -19,7 +19,7 @@ import BorderPainterComponent from "../slideToolsComponents/borderPainterCompone
 import SlidePainterComponent from "../slideToolsComponents/slidePainterComponent/slidePainterElement";
 import FigurePainterComponent from "../slideToolsComponents/figurePainterComponent/figurePainterElement";
 import ShowPresentationButton from "../../main/showPresentation/showPresentationButton";
-import { Presentation, PresentationState } from "../../../data/types";
+import { PresentationState } from "../../../data/types";
 
 type prop = {
   presentationState: PresentationState;
@@ -77,7 +77,7 @@ function Navbar(prop: prop) {
         <span className={NavbarStyle.separator}></span>
         <SquareElement />
         <span className={NavbarStyle.separator}></span>
-        <ColorPalleteElement slides={slides} />
+        <ColorPalleteElement />
         <span className={NavbarStyle.separator}></span>
         <BorderPainterComponent toolState={toolState} />
         <span className={NavbarStyle.separator}></span>

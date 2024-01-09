@@ -1,4 +1,4 @@
-import { Presentation, Slide } from "../../../data/types";
+import { Slide } from "../../../data/types";
 import { SelectTypeOfElement } from "../viewHook";
 import SliderStyle from "./slider.module.css";
 import { useState } from "react";
@@ -9,9 +9,7 @@ type SliderProps = {
 };
 
 function ShowSlider(prop: SliderProps) {
-  const presentation = useAppSelector((state) => state.presentation);
   const zoomX = 0.21;
-  const zoomY = 0.26;
   const visibility = "none";
   const [currentSlide, setCurrentSlide] = useState<Slide | null>(null);
   const { createChangeSlideOrderAction, createChangeActiveSlideAction } =
@@ -73,7 +71,7 @@ function ShowSlider(prop: SliderProps) {
             }}
           >
             {slide.elements.map((element) =>
-              SelectTypeOfElement({ element, zoomX, zoomY, visibility }),
+              SelectTypeOfElement({ element, zoomX, visibility }),
             )}
           </div>
         ))}

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import SelectTypeOfElement from "../viewHook";
 
@@ -18,7 +18,6 @@ function ShowPresentationElement() {
   const presentation = useAppSelector((state) => state.presentation);
 
   const zoomX = 1;
-  const zoomY = 1;
   const visibility = "block";
 
   const keyDownHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -57,7 +56,7 @@ function ShowPresentationElement() {
       }}
     >
       {activeSlide.elements.map((element) =>
-        SelectTypeOfElement({ element, zoomX, zoomY, visibility }),
+        SelectTypeOfElement({ element, zoomX, visibility }),
       )}
     </div>
   );

@@ -5,11 +5,7 @@ import { ReactComponent as PalleteSVG } from "../../../../sources/navbar icons/p
 import { useAppActions } from "../../../../redux/hooks";
 import { Slide } from "../../../../data/types";
 
-type PalleteProp = {
-  slides: Slide[];
-};
-
-function colorPalleteElement(prop: PalleteProp) {
+function colorPalleteElement() {
   const [show, setShow] = React.useState(false);
   const [hexColor, setHexColor] = React.useState("#ffffff");
   const { createChooseColorAction } = useAppActions();
