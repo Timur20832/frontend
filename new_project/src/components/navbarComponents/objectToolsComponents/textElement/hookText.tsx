@@ -25,7 +25,7 @@ export function ShowTextElement(
   if (!Element.isSelected) {
     visibility = "none";
   }
-  const { createSetActiveElementAction } = useAppActions();
+    const { createSetActiveElementAction, createChangeTextAction } = useAppActions();
   function getIdElement(
     event:
       | React.DragEvent<HTMLTextAreaElement>
@@ -53,9 +53,15 @@ export function ShowTextElement(
         break;
     }
   }
+
   const setActive = () => {
     createSetActiveElementAction(Element.id);
   };
+  const saveText = (e: React.FormEvent<HTMLTextAreaElement>) => {
+    const text = e.target as HTMLTextAreaElement;
+    createChangeTextAction(text.value);
+  };
+
   return (
     <>
       <textarea
@@ -78,9 +84,12 @@ export function ShowTextElement(
         onClick={setActive}
         onDragStart={(event) => getIdElement(event, Element, "textarea")}
         draggable={true}
-      >
-        {Element.content}
-      </textarea>
+        onChange={(e) => {
+          saveText(e);
+        }}
+        value={Element.content}
+        readOnly={zoomX !== 1}
+      ></textarea>
       <div
         onDragStart={(event) => getIdElement(event, Element, "div")}
         draggable={true}

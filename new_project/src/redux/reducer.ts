@@ -187,6 +187,21 @@ const slidesReducer = (
       }
       return newState;
     }
+    case SlideActions.CHANGE_TEXT: {
+      const newState = [...state];
+      const activeSlide = findActiveSlide(newState);
+      const activeElement = findActiveElement(newState[activeSlide].elements);
+      const selectedElement = newState[activeSlide].elements[activeElement];
+      if (selectedElement !== undefined) {
+        if (selectedElement.type === "Text") {
+          const textBox = selectedElement as TextBox;
+          textBox.content = action.payload.newText;
+          newState[activeSlide].elements[activeElement] = textBox;
+        }
+      }
+      console.log(newState[activeSlide].elements[activeElement])
+      return newState;
+    }
     default:
       return [...state];
   }
@@ -198,12 +213,18 @@ const presentationReducer = (
 ) => {
   switch (action.type) {
     case PresentationActions.IMPORT_PRESENTATION: {
-      const newState = state;
+      const newState: PresentationState = {
+        Presentation: state.Presentation,
+        ViewMode: state.ViewMode,
+      };
       newState.Presentation = action.payload.newPresentation;
       return newState;
     }
     case PresentationActions.RENAME_PRESENTATION: {
-      const newState = state;
+      const newState: PresentationState = {
+        Presentation: state.Presentation,
+        ViewMode: state.ViewMode,
+      };
       newState.Presentation.name = action.payload.newName;
       return newState;
     }

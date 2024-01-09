@@ -14,6 +14,7 @@ enum SlideActions {
   SET_ACTIVE_ELEMENT = "SET_ACTIVE_ELEMENT",
   DELETE_ACTIVE_ELEMENT = "DELETE_ACTIVE_ELEMENT",
   CHANGE_FONT = "CHANGE_FONT",
+  CHANGE_TEXT = "CHANGE_TEXT",
 }
 
 type CreateSlideAction = {
@@ -110,6 +111,12 @@ type ChangeFontAction = {
     size: number;
   };
 };
+type SaveTextAction = {
+  type: SlideActions.CHANGE_TEXT;
+  payload: {
+    newText: string;
+  };
+};
 
 type SlideAction =
   | CreateSlideAction
@@ -124,6 +131,7 @@ type SlideAction =
   | DeleteActiveElementAction
   | ChangeFontAction
   | ChangeElementColorAction
-  | ChangeElementBorderColorAction;
+  | ChangeElementBorderColorAction
+  | SaveTextAction;
 
 export { SlideActions, type SlideAction };

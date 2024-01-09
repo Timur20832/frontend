@@ -133,6 +133,15 @@ function createChangeFontAction(font: string, size: number) {
   };
 }
 
+function createChangeTextAction(newText: string) {
+  return {
+    type: SlideActions.CHANGE_TEXT,
+    payload: {
+      newText: newText,
+    },
+  };
+}
+
 export {
   createChangeActiveSlideAction,
   createChangeSlideOrderAction,
@@ -147,4 +156,5 @@ export {
   createSetActiveElementAction,
   createDeleteActiveElementAction,
   createChangeFontAction,
+  createChangeTextAction,
 };
