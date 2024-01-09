@@ -6,6 +6,7 @@ import {
   TextBox,
   ToolState,
   ToolType,
+  PresentationState,
 } from "./types";
 
 const figure: Figure = {
@@ -102,7 +103,7 @@ const slide2: Slide = {
   active: false,
 };
 
-export const presentationInitState: Presentation = {
+export const presentationInitData: Presentation = {
   name: "untitled1",
   slide: [slide, slide2],
   history: [],
@@ -112,4 +113,9 @@ export const presentationInitState: Presentation = {
 export const toolsInitState: ToolState = {
   activeTool: ToolType.NO_TOOL,
   activeColor: "#ffffff",
+};
+
+export const presentationInitState: PresentationState = {
+  Presentation: presentationInitData,
+  ViewMode: false,
 };

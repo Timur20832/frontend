@@ -2,13 +2,14 @@ import { Presentation, Slide } from "../../../data/types";
 import { SelectTypeOfElement } from "../viewHook";
 import SliderStyle from "./slider.module.css";
 import { useState } from "react";
-import { useAppActions } from "../../../redux/hooks";
+import { useAppActions, useAppSelector } from "../../../redux/hooks";
 
 type SliderProps = {
   slides: Slide[];
 };
 
 function ShowSlider(prop: SliderProps) {
+  const presentation = useAppSelector((state) => state.presentation);
   const zoomX = 0.21;
   const zoomY = 0.26;
   const visibility = "none";

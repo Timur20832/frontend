@@ -4,7 +4,7 @@ import { SelectTypeOfElement } from "../viewHook";
 import { createTextElement } from "../../navbarComponents/objectToolsComponents/textElement/hookText";
 import { createGraphElement } from "../../navbarComponents/objectToolsComponents/artObject/hookElements";
 import SlideStyle from "./mainSlide.module.css";
-import { useAppActions } from "../../../redux/hooks";
+import {useAppActions, useAppSelector} from "../../../redux/hooks";
 
 type SlideProps = {
   slides: Slide[];
@@ -12,6 +12,7 @@ type SlideProps = {
 };
 
 export function ShowSlide(prop: SlideProps) {
+  const presentation = useAppSelector((state) => state.presentation);
   const {
     createChooseToolAction,
     createAddElementAction,
@@ -90,6 +91,13 @@ export function ShowSlide(prop: SlideProps) {
       onDrop={(event) => dropHandler(event)}
       style={{
         backgroundColor: activeSlide.backgroundColor,
+        visibility: presentation.ViewMode ? "hidden" : "visible",
+        opacity: presentation.ViewMode ? "0" : "100%",
+        width: presentation.ViewMode ? "0" : "75vw",
+        height: presentation.ViewMode ? "0" : "82vh",
+        border: presentation.ViewMode ? "none" : "5px solid black",
+        margin: presentation.ViewMode ? "0" : "53px 40px 0 40px",
+        overflow: "hidden",
       }}
     >
       {activeSlide.elements.map((element) =>

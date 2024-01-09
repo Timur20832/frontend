@@ -1,10 +1,4 @@
 .main {
   position: relative;
-  background-color: #ffffff;
-  width: 1429px;
-  height: 770px;
-  margin: 53px 0px 0 40px;
-  border: 5px solid black;
   border-radius: 20px;
-  overflow: hidden;
 }

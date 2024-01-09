@@ -1,13 +1,14 @@
 import React from "react";
 import ButtonStyle from "./slidePainterElement.module.css";
 
-import { ReactComponent as CursorNavbarSVG } from "../../../../sources/navbar icons/cursor-navbar-icon.svg";
+import { ReactComponent as SlideFillNavbarSVG } from "../../../../sources/navbar icons/fill-navbar-icon.svg";
 import { useAppActions } from "../../../../redux/hooks";
 import { ToolState } from "../../../../data/types";
 
 type prop = {
   toolState: ToolState;
 };
+
 const SlidePainterElement = (prop: prop) => {
   const { createChangeBackgroundColor } = useAppActions();
   const deleteElement = () => {
@@ -16,7 +17,7 @@ const SlidePainterElement = (prop: prop) => {
   };
   return (
     <button className={ButtonStyle.buttontools} onClick={deleteElement}>
-      <CursorNavbarSVG />
+      <SlideFillNavbarSVG />
     </button>
   );
 };

@@ -1,10 +1,7 @@
 .editor {
-  width: 100%;
   display: flex;
 }
 
 .slide_area {
-  height: calc(100vh - 65px);
-  width: calc(100vw - 350px);
   background-color: #ffffff;
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import ButtonStyle from "./figurePainterElement.module.css";
 
-import { ReactComponent as CursorNavbarSVG } from "../../../../sources/navbar icons/cursor-navbar-icon.svg";
+import { ReactComponent as ShapeFillNavbarSVG } from "../../../../sources/navbar icons/shape-fill-navbar-icon.svg";
 import { useAppActions } from "../../../../redux/hooks";
 import { ToolState } from "../../../../data/types";
 
@@ -15,7 +15,7 @@ const FigurePainterElement = (prop: prop) => {
   };
   return (
     <button className={ButtonStyle.buttontools} onClick={deleteElement}>
-      <CursorNavbarSVG />
+      <ShapeFillNavbarSVG />
     </button>
   );
 };

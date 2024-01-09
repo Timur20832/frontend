@@ -1,13 +1,13 @@
 import { SlideAction, SlideActions } from "./Actions/slideActions";
 import {
   Figure,
-  Presentation,
+  Presentation, PresentationState,
   Slide,
   SlideElement,
   TextBox,
   ToolType,
 } from "../data/types";
-import { presentationInitState, toolsInitState } from "../data/consts";
+import {presentationInitData, presentationInitState, toolsInitState} from "../data/consts";
 import { combineReducers } from "redux";
 import {
   PresentationAction,
@@ -15,7 +15,7 @@ import {
 } from "./Actions/presentationActions";
 import { ToolAction, ToolActions } from "./Actions/toolActions";
 
-const initData: Presentation = presentationInitState;
+const initData: Presentation = presentationInitData;
 
 const findActiveSlide = (slides: Slide[]) => {
   return slides.findIndex((slide) => slide.active);
@@ -193,18 +193,25 @@ const slidesReducer = (
 };
 
 const presentationReducer = (
-  state: Presentation = initData,
+  state: PresentationState = presentationInitState,
   action: PresentationAction,
 ) => {
   switch (action.type) {
     case PresentationActions.IMPORT_PRESENTATION: {
-      const newState = action.payload.newPresentation;
+      const newState = state;
+      newState.Presentation = action.payload.newPresentation;
       return newState;
     }
     case PresentationActions.RENAME_PRESENTATION: {
       const newState = state;
-      newState.name = action.payload.newName;
-
+      newState.Presentation.name = action.payload.newName;
+      return newState;
+    }
+    case PresentationActions.VIEW_PRESENTATION: {
+      const newState: PresentationState = {
+        Presentation: state.Presentation,
+        ViewMode: !state.ViewMode,
+      };
       return newState;
     }
     default:

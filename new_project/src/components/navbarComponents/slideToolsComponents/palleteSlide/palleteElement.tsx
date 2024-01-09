@@ -89,6 +89,7 @@ function colorPalleteElement(prop: PalleteProp) {
       <button
         className={PalleteStyle.buttontools}
         onClick={() => setShow(!show)}
+        style={{ backgroundColor: hexColor }}
       >
         <PalleteSVG />
       </button>

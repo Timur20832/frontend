@@ -11,7 +11,7 @@ body {
 .container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  max-height: 100vh;
 }
 
 .editor {
@@ -23,16 +23,6 @@ body {
   position: relative;
   background-color: white;
   width: 20%;
-}
-
-.main-slaid {
-  position: relative;
-  background-color: white;
-  width: 70%;
-  margin: 0% 5%;
-  height: 600px;
-  border: 1px solid grey;
-  overflow: hidden;
 }
 
 .pos {

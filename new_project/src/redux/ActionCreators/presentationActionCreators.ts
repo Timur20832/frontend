@@ -1,5 +1,6 @@
 import { Presentation } from "../../data/types";
 import { PresentationActions } from "../Actions/presentationActions";
+import {SlideActions} from "../Actions/slideActions";
 
 function createRenamePresentationAction(newName: string) {
   return {
@@ -18,4 +19,15 @@ function createImportPresentationAction(newPresentation: Presentation) {
     },
   };
 }
-export { createRenamePresentationAction, createImportPresentationAction };
+
+function createChangeViewModeAction() {
+  return {
+    type: PresentationActions.VIEW_PRESENTATION,
+    payload: "",
+  };
+}
+export {
+  createRenamePresentationAction,
+  createImportPresentationAction,
+  createChangeViewModeAction,
+};

@@ -1,7 +1,7 @@
 import React from "react";
 import ButtonStyle from "./borderPainterElement.module.css";
 
-import { ReactComponent as CursorNavbarSVG } from "../../../../sources/navbar icons/cursor-navbar-icon.svg";
+import { ReactComponent as BorderFillNavbarSVG } from "../../../../sources/navbar icons/border-fill-navbar-icon.svg";
 import { useAppActions } from "../../../../redux/hooks";
 import { ToolState } from "../../../../data/types";
 
@@ -16,7 +16,7 @@ const BorderPainterElement = (prop: prop) => {
   };
   return (
     <button className={ButtonStyle.buttontools} onClick={repaintBorder}>
-      <CursorNavbarSVG />
+      <BorderFillNavbarSVG className={ButtonStyle.svgIcon} />
     </button>
   );
 };

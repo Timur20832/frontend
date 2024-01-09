@@ -18,23 +18,51 @@ import CursorElement from "../slideToolsComponents/cursorComponent/cursorElement
 import BorderPainterComponent from "../slideToolsComponents/borderPainterComponent/borderPainterElement";
 import SlidePainterComponent from "../slideToolsComponents/slidePainterComponent/slidePainterElement";
 import FigurePainterComponent from "../slideToolsComponents/figurePainterComponent/figurePainterElement";
+import ShowPresentationButton from "../../main/showPresentation/showPresentationButton";
+import { Presentation, PresentationState } from "../../../data/types";
 
-export function Navbar() {
+type prop = {
+  presentationState: PresentationState;
+};
+
+function Navbar(prop: prop) {
+  const presentation = useAppSelector((state) => state.presentation);
   const slides = useAppSelector((state) => state.slides);
   const toolState = useAppSelector((state) => state.toolState);
-  const presentation = useAppSelector((state) => state.presentation);
   return (
-    <div className={NavbarStyle.navbar}>
+    <div
+      className={NavbarStyle.navbar}
+      style={{
+        visibility: presentation.ViewMode ? "hidden" : "visible",
+        opacity: presentation.ViewMode ? "0" : "100%",
+        width: presentation.ViewMode ? "0" : "100vw",
+        height: presentation.ViewMode ? "0" : "65px",
+      }}
+    >
       <LogoPresentation />
       <NamePresentation />
       <div className={NavbarStyle.first_group_buttontools}>
         <CreateSlide slides={slides} />
         <DeleteSlide slides={slides} />
         <span className={NavbarStyle.separator}></span>
-        <ExportFile presentation={presentation} slides={slides} />
+        <ExportFile
+          presentation={prop.presentationState.Presentation}
+          slides={slides}
+        />
         <ImportFile />
+        <span className={NavbarStyle.separator}></span>
+        <ShowPresentationButton />
       </div>
-      <div className={NavbarStyle.second_group_buttontools}>
+      <div
+        className={NavbarStyle.second_group_buttontools}
+        style={{
+          visibility: presentation.ViewMode ? "hidden" : "visible",
+          opacity: presentation.ViewMode ? "0" : "100%",
+          width: presentation.ViewMode ? "0" : "",
+          height: presentation.ViewMode ? "0" : "",
+          margin: presentation.ViewMode ? "-1000px 0 0 0" : "10px 0 10px 100px",
+        }}
+      >
         <CursorElement />
         <span className={NavbarStyle.separator}></span>
         <ImageElement slides={slides} />
@@ -61,3 +89,5 @@ export function Navbar() {
     </div>
   );
 }
+
+export default Navbar;

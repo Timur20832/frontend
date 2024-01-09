@@ -68,3 +68,8 @@ export type ToolState = {
   activeTool: ToolType;
   activeColor: string;
 };
+
+export type PresentationState = {
+  Presentation: Presentation;
+  ViewMode: boolean;
+}
