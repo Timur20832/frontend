@@ -59,8 +59,8 @@ export function ShowSlide(prop: SlideProps) {
     ) {
       createMoveElementAction(
         elementId,
-        event.pageX - event.currentTarget.getBoundingClientRect().left,
-        event.pageY - event.currentTarget.getBoundingClientRect().top,
+        event.clientX - +event.dataTransfer.getData("offSetX"),
+        event.clientY - +event.dataTransfer.getData("offSetY"),
       );
     } else if (event.dataTransfer.getData("div") === "true") {
       createResizeElementAction(
