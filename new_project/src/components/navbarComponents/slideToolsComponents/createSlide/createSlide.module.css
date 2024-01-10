@@ -10,7 +10,7 @@
 }
 
 .buttontools:active {
-	transition: 0.1s;
+	transition: 0.01s;;
 	width: 30px;
 	height: 30px;
 	margin: 7px 7px 7px 7px;

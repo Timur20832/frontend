@@ -1,6 +1,6 @@
 import React from 'react';
 import ButtonStyle from './undoAction.module.css';
-import {ReactComponent as ExportNavbarSVG} from '../../../../sources/navbar icons/export-navbar-icon.svg';
+import {ReactComponent as UndoNavbarSVG} from '../../../../sources/navbar icons/undo-navbar-icon.svg';
 import {useAppActions} from '../../../../redux/hooks';
 
 const UndoAction = () => {
@@ -12,7 +12,7 @@ const UndoAction = () => {
 
 	return (
 		<button className={ButtonStyle.buttontools} onClick={undoAction}>
-			<ExportNavbarSVG />
+			<UndoNavbarSVG />
 		</button>
 	);
 };
