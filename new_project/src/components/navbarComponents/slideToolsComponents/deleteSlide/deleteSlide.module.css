@@ -1,16 +1,16 @@
 .buttontools {
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 0;
-  background: none;
+	width: 48px;
+	height: 48px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 0;
+	background: none;
 }
 
 .buttontools:active {
-  transition: 0.1s;
-  width: 30px;
-  height: 30px;
-  margin: 10px 5px 10px 10px;
+	transition: 0.1s;
+	width: 30px;
+	height: 30px;
+	margin: 10px 5px 10px 10px;
 }

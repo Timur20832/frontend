@@ -1,30 +1,30 @@
 * {
-  padding: 0;
-  margin: 0;
+	padding: 0;
+	margin: 0;
 }
 
 body {
-  background-color: black;
-  height: 100%;
+	background-color: black;
+	height: 100%;
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
-  max-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	max-height: 100vh;
 }
 
 .editor {
-  width: 100%;
-  display: flex;
+	width: 100%;
+	display: flex;
 }
 
 .slider {
-  position: relative;
-  background-color: white;
-  width: 20%;
+	position: relative;
+	background-color: white;
+	width: 20%;
 }
 
 .pos {
-  position: absolute;
+	position: absolute;
 }

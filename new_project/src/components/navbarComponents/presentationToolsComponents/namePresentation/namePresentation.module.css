@@ -1,25 +1,25 @@
 .presentation_name {
-  border-radius: 5px;
-  margin: 15px 56px 15px 56px;
+	border-radius: 5px;
+	margin: 15px 56px 15px 56px;
 }
 
 .presentation_name_input {
-  margin-top: 1px;
-  border: none;
-  width: 246px;
-  height: 30px;
-  text-align: center;
-  color: black;
-  font-size: 24px;
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  outline: none;
-  background: transparent;
+	margin-top: 1px;
+	border: none;
+	width: 246px;
+	height: 30px;
+	text-align: center;
+	color: black;
+	font-size: 24px;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 500;
+	outline: none;
+	background: transparent;
 }
 
 .undertext_line {
-  border: none;
-  height: 0px;
-  width: 200px;
-  border-top: 10px solid black;
+	border: none;
+	height: 0px;
+	width: 200px;
+	border-top: 10px solid black;
 }
