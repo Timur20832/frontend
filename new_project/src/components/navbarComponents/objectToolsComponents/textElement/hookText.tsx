@@ -75,8 +75,7 @@ export function ShowTextElement(
 						resize: 'none',
 						outline: 'none',
 						backgroundColor: Element.backgroundColor,
-						borderWidth: 2 * zoomX,
-						borderColor: Element.borderColor,
+						borderStyle: 'none',
 					}}
 					onClick={setActive}
 					onDragStart={(event) =>

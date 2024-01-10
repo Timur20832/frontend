@@ -97,7 +97,7 @@ export function ShowSlide(prop: SlideProps) {
 				visibility: presentation.ViewMode ? 'hidden' : 'visible',
 				opacity: presentation.ViewMode ? '0' : '100%',
 				width: presentation.ViewMode ? '0' : '75vw',
-				height: presentation.ViewMode ? '0' : '82vh',
+				height: presentation.ViewMode ? '0' : '76vh',
 				border: presentation.ViewMode ? 'none' : '5px solid black',
 				margin: presentation.ViewMode ? '0' : '53px 40px 0 40px',
 				overflow: 'hidden',

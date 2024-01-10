@@ -16,7 +16,7 @@ function ShowPresentationElement() {
 
 	const presentation = useAppSelector((state) => state.presentation);
 
-	const zoomX = 1;
+	const zoomX = 1.4;
 	const visibility = 'block';
 
 	const keyDownHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -42,6 +42,8 @@ function ShowPresentationElement() {
 			onKeyDown={keyDownHandler}
 			className={SlideStyle.main}
 			style={{
+				alignContent: 'center',
+				justifyContent: 'center',
 				backgroundColor: slides[activeSlideIndex].backgroundColor,
 				visibility: !presentation.ViewMode ? 'hidden' : 'visible',
 				opacity: !presentation.ViewMode ? '0' : '100%',
