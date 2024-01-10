@@ -19,6 +19,7 @@ import {
 } from './Actions/presentationActions';
 import {ToolAction, ToolActions} from './Actions/toolActions';
 import {createHistory} from '../data/History';
+import {log} from 'node:util';
 
 const initData: Presentation = presentationInitData;
 
@@ -148,6 +149,7 @@ const slidesReducer = (
 				element.backgroundColor = action.payload.newColor;
 				newState[activeSlide].elements[activeElement] = element;
 			}
+			console.log(newState);
 			history.addHistoryItem(JSON.stringify(newState));
 			return newState;
 		}
@@ -304,6 +306,7 @@ const presentationReducer = (
 				Presentation: state.Presentation,
 				ViewMode: !state.ViewMode,
 			};
+			console.log(newState);
 			return newState;
 		}
 		default:

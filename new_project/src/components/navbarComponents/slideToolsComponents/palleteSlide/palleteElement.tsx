@@ -35,11 +35,14 @@ function colorPalleteElement() {
 					formJson['myInput'] === 'transparent')
 			) {
 				setHexColor(formJson['myInput']);
-				Pallete.shift();
-				Pallete.push({
-					id: Pallete[Pallete.length - 1].id + 1,
-					color: formJson['myInput'],
-				});
+				if (Pallete.find(color => color.color === formJson['myInput']) === undefined)
+				{
+					Pallete.shift();
+					Pallete.push({
+						id: Pallete[Pallete.length - 1].id + 1,
+						color: formJson['myInput'],
+					});
+				}
 			}
 		} else {
 			setHexColor('#ffffff');

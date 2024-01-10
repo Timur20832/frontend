@@ -40,7 +40,9 @@ export function ShowGraphElement(
 		createSetActiveElementAction(Element.id);
 	};
 	return (
-		<li key={Element.id}>
+		<li key={Element.id} style={{
+			listStyleType: 'none',
+		}}>
 			<>
 				<div
 					key={Element.id}

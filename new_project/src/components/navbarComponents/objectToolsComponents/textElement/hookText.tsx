@@ -58,7 +58,9 @@ export function ShowTextElement(
 	};
 
 	return (
-		<li key={Element.id}>
+		<li key={Element.id} style={{
+			listStyleType: 'none',
+		}}>
 			<>
 				<textarea
 					style={{

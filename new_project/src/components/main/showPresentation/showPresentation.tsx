@@ -17,7 +17,7 @@ function ShowPresentationElement() {
 	const presentation = useAppSelector((state) => state.presentation);
 
 	const zoomX = 1.4;
-	const visibility = 'block';
+	const visibility = 'none';
 
 	const keyDownHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
 		if (event.code === 'Escape' || event.code === 'Enter') {
