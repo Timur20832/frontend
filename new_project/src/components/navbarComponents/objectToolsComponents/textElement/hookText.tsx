@@ -58,56 +58,58 @@ export function ShowTextElement(
 	};
 
 	return (
-		<>
-			<textarea
-				key={Element.id}
-				style={{
-					position: 'absolute',
-					width: Element.size.width * zoomX,
-					height: Element.size.height * zoomX,
-					fontSize: (Element.font.font_size * (zoomX + zoomX)) / 2,
-					fontFamily: Element.font.font_family,
-					color: Element.font.Color,
-					top: Element.pos.top * zoomX + 'px',
-					left: Element.pos.left * zoomX + 'px',
-					overflow: 'hidden',
-					resize: 'none',
-					outline: 'none',
-					backgroundColor: Element.backgroundColor,
-					borderWidth: 2 * zoomX,
-					borderColor: Element.borderColor,
-				}}
-				onClick={setActive}
-				onDragStart={(event) =>
-					getIdElement(event, Element, 'textarea')
-				}
-				draggable={true}
-				onChange={(e) => {
-					saveText(e);
-				}}
-				value={Element.content}
-				readOnly={zoomX !== 1}
-			></textarea>
-			<div
-				key={Element.id+0.5}
-				onDragStart={(event) => getIdElement(event, Element, 'div')}
-				draggable={true}
-				style={{
-					cursor: 'nwse-resize',
-					position: 'absolute',
-					backgroundColor: 'green',
-					width: `${5 * zoomX}px`,
-					height: `${5 * zoomX}px`,
-					top:
-						(Element.pos.top + Element.size.height) * zoomX +
-						5 * zoomX,
-					left:
-						(Element.pos.left + Element.size.width) * zoomX +
-						5 * zoomX,
-					display: visibility,
-				}}
-			></div>
-		</>
+		<li key={Element.id}>
+			<>
+				<textarea
+					style={{
+						position: 'absolute',
+						width: Element.size.width * zoomX,
+						height: Element.size.height * zoomX,
+						fontSize:
+							(Element.font.font_size * (zoomX + zoomX)) / 2,
+						fontFamily: Element.font.font_family,
+						color: Element.font.Color,
+						top: Element.pos.top * zoomX + 'px',
+						left: Element.pos.left * zoomX + 'px',
+						overflow: 'hidden',
+						resize: 'none',
+						outline: 'none',
+						backgroundColor: Element.backgroundColor,
+						borderWidth: 2 * zoomX,
+						borderColor: Element.borderColor,
+					}}
+					onClick={setActive}
+					onDragStart={(event) =>
+						getIdElement(event, Element, 'textarea')
+					}
+					draggable={true}
+					onChange={(e) => {
+						saveText(e);
+					}}
+					value={Element.content}
+					readOnly={zoomX !== 1}
+				></textarea>
+				<div
+					key={Element.id + 0.5}
+					onDragStart={(event) => getIdElement(event, Element, 'div')}
+					draggable={true}
+					style={{
+						cursor: 'nwse-resize',
+						position: 'absolute',
+						backgroundColor: 'green',
+						width: `${5 * zoomX}px`,
+						height: `${5 * zoomX}px`,
+						top:
+							(Element.pos.top + Element.size.height) * zoomX +
+							5 * zoomX,
+						left:
+							(Element.pos.left + Element.size.width) * zoomX +
+							5 * zoomX,
+						display: visibility,
+					}}
+				></div>
+			</>
+		</li>
 	);
 }
 

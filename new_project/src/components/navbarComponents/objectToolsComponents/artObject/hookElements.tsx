@@ -40,89 +40,98 @@ export function ShowGraphElement(
 		createSetActiveElementAction(Element.id);
 	};
 	return (
-		<>
-			<div
-				key={Element.id}
-				onDragStart={(event) => getIdElement(event, Element, 'artobj')}
-				draggable={true}
-				onClick={setActive}
-			>
-				<svg
+		<li key={Element.id}>
+			<>
+				<div
 					key={Element.id}
-					style={{
-						position: 'absolute',
-						width: Element.size.width * zoomX,
-						height: Element.size.height * zoomX,
-						left: Element.pos.left * zoomX,
-						top: Element.pos.top * zoomX,
-					}}
+					onDragStart={(event) =>
+						getIdElement(event, Element, 'artobj')
+					}
+					draggable={true}
+					onClick={setActive}
 				>
-					{Element.shape === 'triangle' && (
-						<g>
+					<svg
+						key={Element.id}
+						style={{
+							position: 'absolute',
+							width: Element.size.width * zoomX,
+							height: Element.size.height * zoomX,
+							left: Element.pos.left * zoomX,
+							top: Element.pos.top * zoomX,
+						}}
+					>
+						{Element.shape === 'triangle' && (
 							<g>
-								<polygon
-									points={`${0}, ${
-										Element.size.height * zoomX
-									} 
+								<g>
+									<polygon
+										points={`${0}, ${
+											Element.size.height * zoomX
+										} 
                 ${(Element.size.width / 2) * zoomX},${0} 
                 ${Element.size.width * zoomX}, ${Element.size.height * zoomX}`}
-									fill={Element.innerColor}
-									stroke={Element.borderColor}
-									strokeWidth={2 * zoomX}
-								/>
+										fill={Element.innerColor}
+										stroke={Element.borderColor}
+										strokeWidth={2 * zoomX}
+									/>
+								</g>
 							</g>
-						</g>
-					)}
-					{Element.shape === 'square' && (
-						<g>
+						)}
+						{Element.shape === 'square' && (
 							<g>
-								<rect
-									width={Element.size.width * zoomX}
-									height={Element.size.height * zoomX}
-									fill={Element.innerColor}
-									stroke={Element.borderColor}
-									strokeWidth={2 * zoomX}
-								/>
+								<g>
+									<rect
+										width={Element.size.width * zoomX}
+										height={Element.size.height * zoomX}
+										fill={Element.innerColor}
+										stroke={Element.borderColor}
+										strokeWidth={2 * zoomX}
+									/>
+								</g>
 							</g>
-						</g>
-					)}
-					{Element.shape === 'circle' && (
-						<g>
+						)}
+						{Element.shape === 'circle' && (
 							<g>
-								<ellipse
-									cx={(Element.size.width * zoomX) / 2}
-									cy={(Element.size.height * zoomX) / 2}
-									rx={Element.size.width * (zoomX / 2) - 5}
-									ry={Element.size.height * (zoomX / 2) - 5}
-									fill={Element.innerColor}
-									stroke={Element.borderColor}
-									strokeWidth={2 * zoomX}
-								/>
+								<g>
+									<ellipse
+										cx={(Element.size.width * zoomX) / 2}
+										cy={(Element.size.height * zoomX) / 2}
+										rx={
+											Element.size.width * (zoomX / 2) - 5
+										}
+										ry={
+											Element.size.height * (zoomX / 2) -
+											5
+										}
+										fill={Element.innerColor}
+										stroke={Element.borderColor}
+										strokeWidth={2 * zoomX}
+									/>
+								</g>
 							</g>
-						</g>
-					)}
-				</svg>
-			</div>
-			<div
-				key={Element.id+0.5}
-				onDragStart={(event) => getIdElement(event, Element, 'div')}
-				draggable={true}
-				style={{
-					cursor: 'nwse-resize',
-					position: 'absolute',
-					backgroundColor: 'green',
-					width: `${5 * zoomX}px`,
-					height: `${5 * zoomX}px`,
-					top:
-						(Element.pos.top + Element.size.height) * zoomX +
-						5 * zoomX,
-					left:
-						(Element.pos.left + Element.size.width) * zoomX +
-						5 * zoomX,
-					display: visibility,
-				}}
-			></div>
-		</>
+						)}
+					</svg>
+				</div>
+				<div
+					key={Element.id + 0.5}
+					onDragStart={(event) => getIdElement(event, Element, 'div')}
+					draggable={true}
+					style={{
+						cursor: 'nwse-resize',
+						position: 'absolute',
+						backgroundColor: 'green',
+						width: `${5 * zoomX}px`,
+						height: `${5 * zoomX}px`,
+						top:
+							(Element.pos.top + Element.size.height) * zoomX +
+							5 * zoomX,
+						left:
+							(Element.pos.left + Element.size.width) * zoomX +
+							5 * zoomX,
+						display: visibility,
+					}}
+				></div>
+			</>
+		</li>
 	);
 }
 
@@ -143,7 +152,6 @@ export const createGraphElement = (
 
 	const id: number = findLastId(slide.elements) + 1;
 	const shapec = shape;
-	console.log(shape);
 	const element: Figure = {
 		type: 'Figure',
 		id: id,

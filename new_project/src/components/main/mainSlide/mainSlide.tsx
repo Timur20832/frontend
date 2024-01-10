@@ -30,7 +30,6 @@ export function ShowSlide(prop: SlideProps) {
 		createChooseToolAction(ToolType.NO_TOOL);
 	};
 	const handleSlideClick = (event: React.MouseEvent) => {
-		console.log(prop.activeTool);
 		if (prop.activeTool === ToolType.TEXT) {
 			const element = createTextElement(event, activeSlide);
 			addElementSlide(element);

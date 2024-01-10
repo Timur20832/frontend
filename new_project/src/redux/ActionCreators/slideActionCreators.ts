@@ -142,6 +142,28 @@ function createChangeTextAction(newText: string) {
 	};
 }
 
+function createUndoAction() {
+	return {
+		type: SlideActions.UNDO,
+		payload: '',
+	};
+}
+function createRedoAction() {
+	return {
+		type: SlideActions.REDO,
+		payload: '',
+	};
+}
+
+function createSetAction(slides: Slide[]) {
+	return {
+		type: SlideActions.SET,
+		payload: {
+			newSlides: slides,
+		},
+	};
+}
+
 export {
 	createChangeActiveSlideAction,
 	createChangeSlideOrderAction,
@@ -157,4 +179,7 @@ export {
 	createDeleteActiveElementAction,
 	createChangeFontAction,
 	createChangeTextAction,
+	createUndoAction,
+	createRedoAction,
+	createSetAction,
 };

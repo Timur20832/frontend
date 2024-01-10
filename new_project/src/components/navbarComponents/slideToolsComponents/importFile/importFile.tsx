@@ -6,10 +6,11 @@ import InputStyle from './importFile.module.css';
 
 // import svg / svg's
 import {ReactComponent as ImportSVG} from '../../../../sources/navbar icons/import-navbar-icon.svg';
-import {useAppActions} from '../../../../redux/hooks';
+import {useAppActions, useAppSelector} from '../../../../redux/hooks';
 
 const ImportFile = () => {
-	const {createImportPresentationAction} = useAppActions();
+	const {createImportPresentationAction, createSetAction} = useAppActions();
+	const presentation = useAppSelector((state) => state.presentation);
 	const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
 		const files = event.target.files;
 		if (files && files.length > 0) {
@@ -20,6 +21,7 @@ const ImportFile = () => {
 				console.log(JSON.parse(contents) as Presentation);
 				const newPresentation = JSON.parse(contents) as Presentation;
 				createImportPresentationAction(newPresentation);
+				createSetAction(newPresentation.slide);
 			};
 			reader.readAsText(file);
 		}

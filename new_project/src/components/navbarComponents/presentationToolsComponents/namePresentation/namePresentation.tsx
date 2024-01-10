@@ -2,7 +2,11 @@ import React from 'react';
 import PresentationNameStyle from './namePresentation.module.css';
 import {useAppActions} from '../../../../redux/hooks';
 
-const NamePresentation = () => {
+type prop = {
+	presentationName: string;
+};
+
+const NamePresentation = (prop: prop) => {
 	const {createRenamePresentationAction} = useAppActions();
 	function updateName(e: {preventDefault: () => void; target: any}) {
 		e.preventDefault();
@@ -21,8 +25,8 @@ const NamePresentation = () => {
 				spellCheck="false"
 				className={PresentationNameStyle.presentation_name_input}
 				type="text"
-				name="presentationName"
-				placeholder="Presentation name"
+				name={prop.presentationName}
+				placeholder={prop.presentationName}
 				onSubmit={updateName}
 			/>
 			<hr className={PresentationNameStyle.undextext_line}></hr>

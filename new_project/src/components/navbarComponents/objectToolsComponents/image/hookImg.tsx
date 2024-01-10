@@ -41,44 +41,45 @@ export function ShowImageElement(
 		createSetActiveElementAction(Element.id);
 	};
 	return (
-		<>
-			<img
-				key={Element.id}
-				className="pos"
-				onDragStart={(event) => getIdElement(event, Element, 'img')}
-				draggable={true}
-				src={Element.path}
-				alt="img"
-				onClick={setActive}
-				style={{
-					width: Element.size.width * zoomX,
-					height: Element.size.height * zoomX,
-					top: Element.pos.top * zoomX,
-					left: Element.pos.left * zoomX,
-					borderWidth: 2 * zoomX,
-					borderColor: Element.borderColor,
-					borderStyle: 'solid',
-				}}
-			/>
-			<div
-				key={Element.id+0.5}
-				onDragStart={(event) => getIdElement(event, Element, 'div')}
-				draggable={true}
-				style={{
-					cursor: 'nwse-resize',
-					position: 'absolute',
-					backgroundColor: 'green',
-					width: `${5 * zoomX}px`,
-					height: `${5 * zoomX}px`,
-					top:
-						(Element.pos.top + Element.size.height) * zoomX +
-						5 * zoomX,
-					left:
-						(Element.pos.left + Element.size.width) * zoomX +
-						5 * zoomX,
-					display: visibility,
-				}}
-			></div>
-		</>
+		<li key={Element.id}>
+			<>
+				<img
+					className="pos"
+					onDragStart={(event) => getIdElement(event, Element, 'img')}
+					draggable={true}
+					src={Element.path}
+					alt="img"
+					onClick={setActive}
+					style={{
+						width: Element.size.width * zoomX,
+						height: Element.size.height * zoomX,
+						top: Element.pos.top * zoomX,
+						left: Element.pos.left * zoomX,
+						borderWidth: 2 * zoomX,
+						borderColor: Element.borderColor,
+						borderStyle: 'solid',
+					}}
+				/>
+				<div
+					key={Element.id + 0.5}
+					onDragStart={(event) => getIdElement(event, Element, 'div')}
+					draggable={true}
+					style={{
+						cursor: 'nwse-resize',
+						position: 'absolute',
+						backgroundColor: 'green',
+						width: `${5 * zoomX}px`,
+						height: `${5 * zoomX}px`,
+						top:
+							(Element.pos.top + Element.size.height) * zoomX +
+							5 * zoomX,
+						left:
+							(Element.pos.left + Element.size.width) * zoomX +
+							5 * zoomX,
+						display: visibility,
+					}}
+				></div>
+			</>
+		</li>
 	);
 }

@@ -10,11 +10,11 @@ type prop = {
 };
 const FigurePainterElement = (prop: prop) => {
 	const {createChangeElementColor} = useAppActions();
-	const deleteElement = () => {
+	const repaintElement = () => {
 		createChangeElementColor(prop.toolState.activeColor);
 	};
 	return (
-		<button className={ButtonStyle.buttontools} onClick={deleteElement}>
+		<button className={ButtonStyle.buttontools} onClick={repaintElement}>
 			<ShapeFillNavbarSVG />
 		</button>
 	);

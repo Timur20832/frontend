@@ -18,8 +18,11 @@ import {
 	PresentationActions,
 } from './Actions/presentationActions';
 import {ToolAction, ToolActions} from './Actions/toolActions';
+import {createHistory} from '../data/History';
 
 const initData: Presentation = presentationInitData;
+
+const history = createHistory<string>(JSON.stringify(initData.slide));
 
 const findActiveSlide = (slides: Slide[]) => {
 	return slides.findIndex((slide) => slide.active);
@@ -35,7 +38,9 @@ const slidesReducer = (
 ) => {
 	switch (action.type) {
 		case SlideActions.CREATE_SLIDE: {
-			return [...state, action.payload.slide];
+			const newState = [...state, action.payload.slide];
+			history.addHistoryItem(JSON.stringify(newState));
+			return newState;
 		}
 		case SlideActions.DELETE_SLIDE: {
 			let newState = [...state];
@@ -46,6 +51,7 @@ const slidesReducer = (
 			} else {
 				newState[0].elements = [];
 			}
+			history.addHistoryItem(JSON.stringify(newState));
 			return newState;
 		}
 		case SlideActions.CHANGE_ORDER: {
@@ -60,6 +66,7 @@ const slidesReducer = (
 				newState[slideIndex].id,
 				(newState[slideIndex].id = newState[currentSlideIndex].id),
 			][0];
+			history.addHistoryItem(JSON.stringify(newState));
 			return newState;
 		}
 		case SlideActions.CHANGE_ACTIVE_SLIDE: {
@@ -69,12 +76,14 @@ const slidesReducer = (
 					false;
 			}
 			newState[action.payload.currentSlideId].active = true;
+			history.addHistoryItem(JSON.stringify(newState));
 			return newState;
 		}
 		case SlideActions.ADD_ELEMENT: {
 			const newState = [...state];
 			const activeSlide = findActiveSlide(newState);
 			newState[activeSlide].elements.push(action.payload.element);
+			history.addHistoryItem(JSON.stringify(newState));
 			return newState;
 		}
 		case SlideActions.MOVE_ELEMENT: {
@@ -89,6 +98,7 @@ const slidesReducer = (
 				action.payload.newLeft;
 			newState[activeSlide].elements[currentIndexElement].pos.top =
 				action.payload.newTop;
+			history.addHistoryItem(JSON.stringify(newState));
 			return newState;
 		}
 		case SlideActions.RESIZE_ELEMENT: {
@@ -101,12 +111,14 @@ const slidesReducer = (
 				action.payload.newHeight;
 			newState[activeSlide].elements[activeIndexElement].size.width =
 				action.payload.newWidth;
+			history.addHistoryItem(JSON.stringify(newState));
 			return newState;
 		}
 		case SlideActions.CHANGE_BACKGROUND_COLOR: {
 			const newState = [...state];
 			const activeSlide = findActiveSlide(newState);
 			newState[activeSlide].backgroundColor = action.payload.newColor;
+			history.addHistoryItem(JSON.stringify(newState));
 			return newState;
 		}
 		case SlideActions.CHANGE_ELEMENT_COLOR: {
@@ -116,6 +128,7 @@ const slidesReducer = (
 				newState[activeSlide].elements,
 			);
 			if (newState[activeSlide].elements[activeElement] === undefined) {
+				history.addHistoryItem(JSON.stringify(newState));
 				return newState;
 			}
 			if (
@@ -135,6 +148,7 @@ const slidesReducer = (
 				element.backgroundColor = action.payload.newColor;
 				newState[activeSlide].elements[activeElement] = element;
 			}
+			history.addHistoryItem(JSON.stringify(newState));
 			return newState;
 		}
 		case SlideActions.CHANGE_ELEMENT_BORDER_COLOR: {
@@ -144,12 +158,13 @@ const slidesReducer = (
 				newState[activeSlide].elements,
 			);
 			if (newState[activeSlide].elements[activeElement] === undefined) {
+				history.addHistoryItem(JSON.stringify(newState));
 				return newState;
 			}
 			const element = newState[activeSlide].elements[activeElement];
 			element.borderColor = action.payload.newColor;
 			newState[activeSlide].elements[activeElement] = element;
-			console.log(newState[activeSlide].elements[activeElement]);
+			history.addHistoryItem(JSON.stringify(newState));
 			return newState;
 		}
 		case SlideActions.SET_ACTIVE_ELEMENT: {
@@ -169,6 +184,7 @@ const slidesReducer = (
 					)
 				] === undefined
 			) {
+				history.addHistoryItem(JSON.stringify(newState));
 				return newState;
 			}
 			newState[activeSlide].elements[
@@ -176,6 +192,7 @@ const slidesReducer = (
 					(element) => element.id === action.payload.elementId,
 				)
 			].isSelected = true;
+			history.addHistoryItem(JSON.stringify(newState));
 			return newState;
 		}
 		case SlideActions.DELETE_ACTIVE_ELEMENT: {
@@ -189,6 +206,7 @@ const slidesReducer = (
 					activeSlide
 				].elements.filter((item) => !item.isSelected);
 			}
+			history.addHistoryItem(JSON.stringify(newState));
 			return newState;
 		}
 		case SlideActions.CHANGE_FONT: {
@@ -207,6 +225,7 @@ const slidesReducer = (
 					newState[activeSlide].elements[activeElement] = textBox;
 				}
 			}
+			history.addHistoryItem(JSON.stringify(newState));
 			return newState;
 		}
 		case SlideActions.CHANGE_TEXT: {
@@ -224,14 +243,40 @@ const slidesReducer = (
 					newState[activeSlide].elements[activeElement] = textBox;
 				}
 			}
-			console.log(newState[activeSlide].elements[activeElement]);
+			history.addHistoryItem(JSON.stringify(newState));
 			return newState;
+		}
+		case SlideActions.UNDO: {
+			const prevState = history.undo();
+			if (prevState) {
+				return JSON.parse(prevState) as Slide[];
+			}
+			return state;
+		}
+		case SlideActions.REDO: {
+			const nextState = history.redo();
+			if (nextState) {
+				return JSON.parse(nextState) as Slide[];
+			}
+			return state;
+		}
+		case SlideActions.SET: {
+			if (action.payload.newSlides) {
+				return action.payload.newSlides;
+			}
+			return state;
 		}
 		default:
 			return [...state];
 	}
 };
 
+const clearHistory = () => {
+	let prevState = history.undo();
+	while (prevState) {
+		prevState = history.undo();
+	}
+};
 const presentationReducer = (
 	state: PresentationState = presentationInitState,
 	action: PresentationAction,
@@ -243,6 +288,7 @@ const presentationReducer = (
 				ViewMode: state.ViewMode,
 			};
 			newState.Presentation = action.payload.newPresentation;
+			clearHistory();
 			return newState;
 		}
 		case PresentationActions.RENAME_PRESENTATION: {
@@ -274,7 +320,6 @@ const toolReducer = (state = toolsInitState, action: ToolAction) => {
 		}
 		case ToolActions.CHOOSE_COLOR: {
 			const newState = state;
-			console.log(action.payload.activeColor);
 			newState.activeColor = action.payload.activeColor;
 			return newState;
 		}

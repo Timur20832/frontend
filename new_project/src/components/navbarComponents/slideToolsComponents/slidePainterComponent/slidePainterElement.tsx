@@ -11,12 +11,12 @@ type prop = {
 
 const SlidePainterElement = (prop: prop) => {
 	const {createChangeBackgroundColor} = useAppActions();
-	const deleteElement = () => {
+	const repaintBackground = () => {
 		console.log(prop.toolState.activeColor);
 		createChangeBackgroundColor(prop.toolState.activeColor);
 	};
 	return (
-		<button className={ButtonStyle.buttontools} onClick={deleteElement}>
+		<button className={ButtonStyle.buttontools} onClick={repaintBackground}>
 			<SlideFillNavbarSVG />
 		</button>
 	);

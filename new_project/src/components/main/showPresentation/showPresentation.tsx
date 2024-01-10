@@ -10,7 +10,6 @@ import SlideStyle from '../mainSlide/mainSlide.module.css';
 
 function ShowPresentationElement() {
 	const slides = useAppSelector((state) => state.slides);
-	const [activeSlide, setActiveSlide] = React.useState(slides[0]);
 	const [activeSlideIndex, setActiveSlideIndex] = React.useState(0);
 
 	const {createChangeViewModeAction} = useAppActions();
@@ -27,13 +26,11 @@ function ShowPresentationElement() {
 	};
 
 	function NextSlideId() {
-		if (activeSlideIndex + 1 <= slides.length) {
+		if (activeSlideIndex + 1 < slides.length) {
 			setActiveSlideIndex(activeSlideIndex + 1);
-			setActiveSlide(slides[activeSlideIndex]);
 		} else {
 			createChangeViewModeAction();
 			setActiveSlideIndex(0);
-			setActiveSlide(slides[0]);
 		}
 	}
 
@@ -45,7 +42,7 @@ function ShowPresentationElement() {
 			onKeyDown={keyDownHandler}
 			className={SlideStyle.main}
 			style={{
-				backgroundColor: activeSlide.backgroundColor,
+				backgroundColor: slides[activeSlideIndex].backgroundColor,
 				visibility: !presentation.ViewMode ? 'hidden' : 'visible',
 				opacity: !presentation.ViewMode ? '0' : '100%',
 				width: !presentation.ViewMode ? '0' : '100vw',
@@ -55,7 +52,7 @@ function ShowPresentationElement() {
 				overflow: 'hidden',
 			}}
 		>
-			{activeSlide.elements.map((element) =>
+			{slides[activeSlideIndex].elements.map((element) =>
 				SelectTypeOfElement({element, zoomX, visibility}),
 			)}
 		</div>

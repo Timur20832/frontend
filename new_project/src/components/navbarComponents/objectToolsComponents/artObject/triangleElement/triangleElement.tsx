@@ -7,7 +7,6 @@ import {ToolType} from '../../../../../data/types';
 const TriangleElement = () => {
 	const {createChooseToolAction} = useAppActions();
 	const changeActive = () => {
-		console.log(ToolType.TRIANGLE);
 		createChooseToolAction(ToolType.TRIANGLE);
 	};
 	return (

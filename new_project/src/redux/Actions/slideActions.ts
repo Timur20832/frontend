@@ -15,6 +15,9 @@ enum SlideActions {
 	DELETE_ACTIVE_ELEMENT = 'DELETE_ACTIVE_ELEMENT',
 	CHANGE_FONT = 'CHANGE_FONT',
 	CHANGE_TEXT = 'CHANGE_TEXT',
+	UNDO = 'UNDO',
+	REDO = 'REDO',
+	SET = 'SET',
 }
 
 type CreateSlideAction = {
@@ -118,6 +121,23 @@ type SaveTextAction = {
 	};
 };
 
+type UndoAction = {
+	type: SlideActions.UNDO;
+	payload: Record<string, never>;
+};
+
+type RedoAction = {
+	type: SlideActions.REDO;
+	payload: Record<string, never>;
+};
+
+type SetAction = {
+	type: SlideActions.SET;
+	payload: {
+		newSlides: Slide[];
+	};
+};
+
 type SlideAction =
 	| CreateSlideAction
 	| DeleteSlideAction
@@ -132,6 +152,9 @@ type SlideAction =
 	| ChangeFontAction
 	| ChangeElementColorAction
 	| ChangeElementBorderColorAction
-	| SaveTextAction;
+	| SaveTextAction
+	| UndoAction
+	| RedoAction
+	| SetAction;
 
 export {SlideActions, type SlideAction};

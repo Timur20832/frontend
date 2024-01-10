@@ -16,29 +16,29 @@ function ShowSlider(prop: SliderProps) {
 		useAppActions();
 
 	function dragStartHandler(
-		e: React.DragEvent<HTMLDivElement>,
+		e: React.DragEvent<HTMLUListElement>,
 		slide: Slide,
 	) {
 		setCurrentSlide(slide);
 	}
 
-	function dragEndHandler(e: React.DragEvent<HTMLDivElement>) {
-		const targetElement = e.target as HTMLDivElement;
+	function dragEndHandler(e: React.DragEvent<HTMLUListElement>) {
+		const targetElement = e.target as HTMLUListElement;
 		targetElement.style.borderColor = '#000000';
 	}
 
-	function dragOverHandler(e: React.DragEvent<HTMLDivElement>) {
+	function dragOverHandler(e: React.DragEvent<HTMLUListElement>) {
 		e.preventDefault();
-		const targetElement = e.target as HTMLDivElement;
+		const targetElement = e.target as HTMLUListElement;
 		targetElement.style.borderColor = '#ff0000';
 	}
 
-	function dropHandler(e: React.DragEvent<HTMLDivElement>, slide: Slide) {
+	function dropHandler(e: React.DragEvent<HTMLUListElement>, slide: Slide) {
 		e.preventDefault();
 		if (currentSlide === null) {
 			return;
 		}
-		const targetElement = e.target as HTMLDivElement;
+		const targetElement = e.target as HTMLUListElement;
 		createChangeSlideOrderAction(currentSlide.id, slide.id);
 		targetElement.style.borderColor = '#000000';
 	}
@@ -58,28 +58,33 @@ function ShowSlider(prop: SliderProps) {
 
 	return (
 		<div className={SliderStyle.slider}>
-			<div className={SliderStyle.list}>
+			<ul className={SliderStyle.list}>
 				{prop.slides.sort(sortSlides).map((slide) => (
-					<div
-						key={slide.id}
-						className={SliderStyle.child}
-						onDragStart={(e) => dragStartHandler(e, slide)}
-						onDragLeave={(e) => dragEndHandler(e)}
-						onDragEnd={(e) => dragEndHandler(e)}
-						onDragOver={(e) => dragOverHandler(e)}
-						onDrop={(e) => dropHandler(e, slide)}
-						draggable={true}
-						onClick={() => changeActive(slide)}
-						style={{
-							backgroundColor: slide.backgroundColor,
-						}}
-					>
-						{slide.elements.map((element) =>
-							SelectTypeOfElement({element, zoomX, visibility}),
-						)}
-					</div>
+					<li key={slide.id} className={SliderStyle.child}>
+						<ul
+							onDragStart={(e) => dragStartHandler(e, slide)}
+							onDragLeave={(e) => dragEndHandler(e)}
+							onDragEnd={(e) => dragEndHandler(e)}
+							onDragOver={(e) => dragOverHandler(e)}
+							onDrop={(e) => dropHandler(e, slide)}
+							draggable={true}
+							onClick={() => changeActive(slide)}
+							style={{
+								backgroundColor: slide.backgroundColor,
+								height: '100%',
+							}}
+						>
+							{slide.elements.map((element) =>
+								SelectTypeOfElement({
+									element,
+									zoomX,
+									visibility,
+								}),
+							)}
+						</ul>
+					</li>
 				))}
-			</div>
+			</ul>
 			<div className={SliderStyle.scroll_area}></div>
 		</div>
 	);

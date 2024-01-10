@@ -1,13 +1,10 @@
 import Navbar from '../navbarComponents/navbar/navbar';
 import Editor from './editor';
-import React, {useEffect} from 'react';
+import React from 'react';
 import {useAppSelector} from '../../redux/hooks';
 
 function MainContainer() {
 	const presentation = useAppSelector((state) => state.presentation);
-	useEffect(() => {
-		console.log(presentation);
-	}, [presentation.ViewMode]);
 	return (
 		<div
 			style={{

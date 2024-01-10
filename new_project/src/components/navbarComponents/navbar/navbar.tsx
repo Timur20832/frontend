@@ -14,12 +14,14 @@ import {useAppSelector} from '../../../redux/hooks';
 import ColorPalleteElement from '../slideToolsComponents/palleteSlide/palleteElement';
 import TextPalleteElement from '../objectToolsComponents/textElement/fontPallete';
 import ImageElement from '../objectToolsComponents/image/imgElement';
-import CursorElement from '../slideToolsComponents/cursorComponent/cursorElement';
+import TrashElement from '../slideToolsComponents/cursorComponent/cursorElement';
 import BorderPainterComponent from '../slideToolsComponents/borderPainterComponent/borderPainterElement';
 import SlidePainterComponent from '../slideToolsComponents/slidePainterComponent/slidePainterElement';
 import FigurePainterComponent from '../slideToolsComponents/figurePainterComponent/figurePainterElement';
 import ShowPresentationButton from '../../main/showPresentation/showPresentationButton';
 import {PresentationState} from '../../../data/types';
+import RedoAction from '../slideToolsComponents/redoAction/redoAction';
+import UndoAction from '../slideToolsComponents/undoAction/undoAction';
 
 type prop = {
 	presentationState: PresentationState;
@@ -40,7 +42,9 @@ function Navbar(prop: prop) {
 			}}
 		>
 			<LogoPresentation />
-			<NamePresentation />
+			<NamePresentation
+				presentationName={presentation.Presentation.name}
+			/>
 			<div className={NavbarStyle.first_group_buttontools}>
 				<CreateSlide slides={slides} />
 				<DeleteSlide slides={slides} />
@@ -65,7 +69,7 @@ function Navbar(prop: prop) {
 						: '10px 0 10px 100px',
 				}}
 			>
-				<CursorElement />
+				<TrashElement />
 				<span className={NavbarStyle.separator}></span>
 				<ImageElement slides={slides} />
 				<span className={NavbarStyle.separator}></span>
@@ -86,6 +90,10 @@ function Navbar(prop: prop) {
 				<FigurePainterComponent toolState={toolState} />
 				<span className={NavbarStyle.separator}></span>
 				<SlidePainterComponent toolState={toolState} />
+				<span className={NavbarStyle.separator}></span>
+				<RedoAction />
+				<span className={NavbarStyle.separator}></span>
+				<UndoAction />
 				<span className={NavbarStyle.separator}></span>
 			</div>
 		</div>
