@@ -149,7 +149,6 @@ const slidesReducer = (
 				element.backgroundColor = action.payload.newColor;
 				newState[activeSlide].elements[activeElement] = element;
 			}
-			console.log(newState);
 			history.addHistoryItem(JSON.stringify(newState));
 			return newState;
 		}
@@ -291,6 +290,7 @@ const presentationReducer = (
 			};
 			newState.Presentation = action.payload.newPresentation;
 			clearHistory();
+			history.addHistoryItem(JSON.stringify(action.payload.newPresentation.slide))
 			return newState;
 		}
 		case PresentationActions.RENAME_PRESENTATION: {
@@ -299,6 +299,7 @@ const presentationReducer = (
 				ViewMode: state.ViewMode,
 			};
 			newState.Presentation.name = action.payload.newName;
+			console.log(newState);
 			return newState;
 		}
 		case PresentationActions.VIEW_PRESENTATION: {

@@ -50,6 +50,7 @@ function ShowPresentationElement() {
 				width: !presentation.ViewMode ? '0' : '100vw',
 				height: !presentation.ViewMode ? '0' : '100vh',
 				border: 'none',
+				borderRadius: '0',
 				margin: '0',
 				overflow: 'hidden',
 			}}

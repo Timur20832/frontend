@@ -96,10 +96,10 @@ export function ShowSlide(prop: SlideProps) {
 				backgroundColor: activeSlide.backgroundColor,
 				visibility: presentation.ViewMode ? 'hidden' : 'visible',
 				opacity: presentation.ViewMode ? '0' : '100%',
-				width: presentation.ViewMode ? '0' : '71vw',
+				width: presentation.ViewMode ? '0' : '75vw',
 				height: presentation.ViewMode ? '0' : '76vh',
 				border: presentation.ViewMode ? 'none' : '5px solid black',
-				margin: presentation.ViewMode ? '0' : '53px 40px 0 100px',
+				margin: presentation.ViewMode ? '0' : '53px 40px 0 40px',
 				overflow: 'hidden',
 			}}
 		>

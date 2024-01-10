@@ -8,16 +8,9 @@ type prop = {
 
 const NamePresentation = (prop: prop) => {
 	const {createRenamePresentationAction} = useAppActions();
-	function updateName(e: {preventDefault: () => void; target: any}) {
+	function updateName(e: React.ChangeEvent<HTMLInputElement>) {
 		e.preventDefault();
-
-		const form = e.target;
-		const formData = new FormData(form);
-
-		const formJson = Object.fromEntries(formData.entries());
-		if (typeof formJson['presentationName'] === 'string') {
-			createRenamePresentationAction(formJson['presentationName']);
-		}
+		createRenamePresentationAction(e.target.value);
 	}
 	return (
 		<div className={PresentationNameStyle.presentation_name}>
@@ -27,7 +20,7 @@ const NamePresentation = (prop: prop) => {
 				type="text"
 				name={prop.presentationName}
 				placeholder={prop.presentationName}
-				onSubmit={updateName}
+				onChange={updateName}
 			/>
 			<hr className={PresentationNameStyle.undextext_line}></hr>
 		</div>

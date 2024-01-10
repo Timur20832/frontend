@@ -91,9 +91,9 @@ function Navbar(prop: prop) {
 				<span className={NavbarStyle.separator}></span>
 				<SlidePainterComponent toolState={toolState} />
 				<span className={NavbarStyle.separator}></span>
-				<RedoAction />
-				<span className={NavbarStyle.separator}></span>
 				<UndoAction />
+				<span className={NavbarStyle.separator}></span>
+				<RedoAction />
 				<span className={NavbarStyle.separator}></span>
 			</div>
 		</div>

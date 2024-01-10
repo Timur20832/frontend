@@ -2,15 +2,6 @@ import {Slide, SlideElement, TextBox} from '../../../../data/types';
 import React from 'react';
 import {useAppActions} from '../../../../redux/hooks';
 
-/*function changeActiveElements(slide: Slide, element: GeneralElementType) {
-  slide.elements.map((element) => {
-    if (element.isSelected === true) {
-      element.isSelected = false;
-    }
-  });
-  element.isSelected = true;
-}*/
-
 export function ShowTextElement(
 	Element: TextBox,
 	zoomX: number,
