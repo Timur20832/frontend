@@ -30,8 +30,9 @@ function colorPalleteElement() {
 		if (typeof formJson['myInput'] === 'string') {
 			if (
 				formJson['myInput'] !== '' &&
-				formJson['myInput'][0] === '#' &&
-				formJson['myInput'].length === 7
+				((formJson['myInput'][0] === '#' &&
+					formJson['myInput'].length === 7) ||
+					formJson['myInput'] === 'transparent')
 			) {
 				setHexColor(formJson['myInput']);
 				Pallete.shift();
